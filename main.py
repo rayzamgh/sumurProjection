@@ -1,5 +1,8 @@
 from iapws import IAPWS97
-import numpy
+
+import numpy as np
+
+import pandas as pd
 
 class Table:
     def __init__(self, multipleSegments):
@@ -39,7 +42,7 @@ class inputTable:
         self.pwf = pwf
         self.subTable = []
     
-    def print(self):
+    def printe(self):
         print("WHP (bar)")
         print(self.whp)
         print("Massrate (Kg/s)")
@@ -51,6 +54,8 @@ class inputTable:
         for v in self.subTable:
             v.print()
 
+
+SEGMENT_CONST = 3 
 
 def main():
 
@@ -93,7 +98,22 @@ def main():
         if loopStop == "y" :
             loopInput = True
     
-    
     currentTableInput.print()
+
+
+    # INPUT TO PANDAS
+
+    mdlist = []
+    for x in range(0, elemListSubinput.subTable , 3):
+        mdlist.append(x)
+    mdlist.append()
+
+    data = {
+        'MDmeter'   : ,
+        'Segment'   : ,
+        'Angle'     : ,
+        'Diameter'  : ,
+        'Roughness' : ,
+    }
 
 main()
