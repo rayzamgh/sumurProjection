@@ -4,6 +4,7 @@ import numpy as np
 
 import pandas as pd
 
+
 class Table:
     def __init__(self, multipleSegments):
         self.segments = multipleSegments
@@ -42,7 +43,7 @@ class inputTable:
         self.pwf = pwf
         self.subTable = []
     
-    def printe(self):
+    def print(self):
         print("WHP (bar)")
         print(self.whp)
         print("Massrate (Kg/s)")
@@ -60,7 +61,6 @@ SEGMENT_CONST = 3
 def main():
 
     # Table Variable
-    tableAll = Table([])
 
     print("WHP (bar)")
     whp = float(input())
@@ -103,17 +103,54 @@ def main():
 
     # INPUT TO PANDAS
 
-    mdlist = []
-    for x in range(0, elemListSubinput.subTable , 3):
+    mdlist      = []
+    segment     = []
+    angle       = []
+    diameter    = []
+    roughness   = []
+    massrate    = []
+    gravity     = []
+
+    for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
         mdlist.append(x)
-    mdlist.append()
+    mdlist.append(int(np.floor((currentTableInput.subTable[-1].md))))
+
+    for x in mdlist:
+        segment.append(x *-1)
+
+    for x in mdlist:
+        for y in currentTableInput.subTable:
+            if x <= y.md:
+                angle.append(y.angle)
+                diameter.append(y.diameter)
+                roughness.append(y.roughness)
+                break
+            
+    for x in mdlist:
+        massrate.append(currentTableInput.massrate)
+
+    for x in mdlist:
+        gravity.append(9.81)
+
+    # print(len(mdlist))
+    # print(len(angle))
+    # print(len(diameter))
+    # print(len(roughness))
 
     data = {
-        'MDmeter'   : ,
-        'Segment'   : ,
-        'Angle'     : ,
-        'Diameter'  : ,
-        'Roughness' : ,
+        'MDmeter'   : mdlist,
+        'Segment'   : segment,
+        'Angle'     : angle,
+        'Diameter'  : diameter,
+        'Roughness' : roughness,
+        'Pressure'  : "",
+        'H-entalphy': "",
+        'Gravity'   : gravity,
     }
+
+    df = pd.DataFrame(data)
+    
+    print(df)
+    
 
 main()
