@@ -132,12 +132,12 @@ def funcBW(x, y, z):
 # z = B4
 # a = B3
 # b = C3
-def funcBV():
+def funcBV(x, y, z, a, b):
 	return x*y*(z-a)*np.cos(np.radians(b))/10**5
 
 # TAN(RADIANS(C3))
 # x = C3
-def funcBU():
+def funcBU(x):
 	return np.tan(np.radians(x))
 
 # 4*BS3
@@ -150,7 +150,7 @@ def funcBT(x):
 # y = D3
 # z = BQ3
 # a = BR3
-def funcBS():
+def funcBS(x, y, z, a):
 	return 1/(4*np.log10(x/y/3.7065 - 5.0452/z*np.log10(a)))
 
 # ((E3/D3)^1.1098)/2.8257+(7.149/BQ3)^0.8981
@@ -179,14 +179,14 @@ def funcBP(x, y):
 # y = B4
 # z = B3
 # a = C3
-def funcBO():
+def funcBO(x, y, z, a):
 	return x*(y-y)*np.cos(np.radians(a))
 
 # (BK3+BL3)/BM3
 # x = BK3
 # y = BL3
 # z = BM3
-def funcBN():
+def funcBN(x, y, z):
 	return (x+y)/z
 
 # 1-L3*(O3*Q3)/10^5/F3
@@ -202,7 +202,7 @@ def funcBM(x, y, z, a):
 # y = AS3
 # z = K3
 # a = L3
-def funcBL():
+def funcBL(x, y, z, a):
 	return x*(y*z+(1-y)*a)/10**5
 
 # IF(AN3="transition",BH3*BG3+BI3*(BF3*L3*M3*Q3^2)/2/D3/10^5,BG3)
@@ -313,7 +313,7 @@ def funcBA(x, y):
 # IF(AY3<0.45,1,'Chart Regresion'!$AU$5-'Chart Regresion'!$AU$6*EXP(-'Chart Regresion'!$AU$7*AY3^'Chart Regresion'!$AU$8))
 # x = AY3
 # 
-def funcAZ():
+def funcAZ(x):
 	if(x < 0.45):
 		return 1
 	else:
@@ -376,9 +376,15 @@ def funcAM(x):
 # 		'Chart Regresion'!$AK$12+'Chart Regresion'!$AK$13*Z3+'Chart Regresion'!$AK$14*(Z3^2)+'Chart Regresion'!$AK$15*(Z3^3),
 # 		('Chart Regresion'!$AO$5*'Chart Regresion'!$AO$6+'Chart Regresion'!$AO$7*(Z3^'Chart Regresion'!$AO$8))/($BS$6+(Z3^'Chart Regresion'!$AO$8))))
 # x = Z3
-# y =  		
-def funcAK():
-	return None
+# y = $BS$6 		
+def funcAK(x, y):
+	if(x < 0.016):
+		return (CRAK5 + CRAK6*x)/(1+CRAK7*x+CRAK8*(x**2))
+	else:
+		if(x < 0.07):
+			return (CRAK12 + CRAK13*x + CRAK14*(x**2) + CRAK15*(x**3))
+		else:
+			return (CRAO5*CRAO6 + CRAO7*(x**CRAO8))/(y+(x**CRAO8))
 
 
 # IF(Z3<0.05,
