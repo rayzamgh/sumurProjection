@@ -90,7 +90,7 @@ def funcCC(x, y, z):
 	return -x*(y-z)/10**3
 
 # G3/(CA3*N3)
-# x = G3
+  # x = G3
 # y = CA3
 # z = N3
 def funcCB(x, y, z):
@@ -107,7 +107,7 @@ def funcBZ(x, y):
 # y = BX3
 # z = BW3
 def funcBY(x, y, z):
-	(x+y)/z
+	return (x+y)/z
 
 # (0.5*BT3*(B4-B3)*J3*O3^2)/D3/10^5
 # x = BT3
@@ -117,7 +117,7 @@ def funcBY(x, y, z):
 # b = O3
 # c = D3 
 def funcBX(x, y, z, a, b, c):
-	(0.5*x*(y-z)*a*b**2)/c/(10**5)
+	return (0.5*x*(y-z)*a*b**2)/c/(10**5)
 
 # 1-J3*(O3^2)/10^5/F3
 # x = J3
@@ -158,7 +158,7 @@ def funcBS(x, y, z, a):
 # y = D3
 # z = BQ3
 def funcBR(x, y, z):
-	return ((x/y)^1.1098)/2.8257+(7.149/z)^0.8981
+	return ((x/y)**1.1098)/2.8257+(7.149/z)**0.8981
 
 # J3*O3*D3/R3
 # x = J3
@@ -180,7 +180,7 @@ def funcBP(x, y):
 # z = B3
 # a = C3
 def funcBO(x, y, z, a):
-	return x*(y-y)*np.cos(np.radians(a))
+	return x*(y-z)*np.cos(np.radians(a))
 
 # (BK3+BL3)/BM3
 # x = BK3
@@ -243,7 +243,7 @@ def funcBI(x, y, z):
 def funcBH(x, y, z):
 	return (x-y)/(x-z)
 
-# IF(AN3="mist",(BF3*L3*Q3^2)/2/D3,BB3*K3*P3*O3/2/D3)/10^5
+# IF(AN3="Mist",(BF3*L3*Q3^2)/2/D3,BB3*K3*P3*O3/2/D3)/10^5
 # x = AN3
 # y = BF3
 # z = L3
@@ -254,10 +254,10 @@ def funcBH(x, y, z):
 # e = P3
 # f = O3
 def funcBG(x, y, z, a, b, c, d, e, f):
-	if(x == "mist"):
+	if(x == "Mist"):
 		return (y*z*a**3)/2/b/10**5
 	else:
-		return c*d*e/2/b/10**5
+		return c*d*e*f/2/b/10**5
 
 # IF(BE3>0.005,4*(1/(4*LOG(0.027*BE3))^2+0.067*BE3^1.73),AW3)
 # x = BE3
@@ -325,7 +325,7 @@ def funcAZ(x):
 # z = Y3
 # a = P3
 def funcAY(x, y, z, a):
-	return (x*y*z^(2/3))/a
+	return (x*y*z**(2/3))/a
 
 # IF(AN3="Mist",(P3/O3),(AR3-O3+SQRT((O3-AR3)^2+4*AR3*P3))/(2*AR3))
 # x = AN3
