@@ -1,5 +1,6 @@
-from iapws import IAPWS97
-
+# from iapws import IAPWS97
+import SteamTable as st
+import calculation as calc
 import numpy as np
 
 import pandas as pd
@@ -110,6 +111,8 @@ def main():
     roughness   = []
     massrate    = []
     gravity     = []
+    dryness     = []
+    area        = []
 
     for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
         mdlist.append(x)
@@ -117,6 +120,8 @@ def main():
 
     for x in mdlist:
         segment.append(x *-1)
+        massrate.append(currentTableInput.massrate)
+        gravity.append(9.81)
 
     for x in mdlist:
         for y in currentTableInput.subTable:
@@ -125,27 +130,95 @@ def main():
                 diameter.append(y.diameter)
                 roughness.append(y.roughness)
                 break
-            
-    for x in mdlist:
-        massrate.append(currentTableInput.massrate)
 
-    for x in mdlist:
-        gravity.append(9.81)
-
-    # print(len(mdlist))
-    # print(len(angle))
-    # print(len(diameter))
-    # print(len(roughness))
+    for x in diameter:
+        area.append(calc.area(x))
 
     data = {
-        'MDmeter'   : mdlist,
-        'Segment'   : segment,
-        'Angle'     : angle,
-        'Diameter'  : diameter,
-        'Roughness' : roughness,
-        'Pressure'  : "",
-        'H-entalphy': "",
-        'Gravity'   : gravity,
+        'MDmeter'                   : mdlist,
+        'Segment'                   : segment,
+        'Angle'                     : angle,
+        'Diameter'                  : diameter,
+        'Roughness'                 : roughness,
+        # 'Pressure'                : "",
+        'Massrate'                  : massrate,
+        # 'H-entalphy'              : "",
+        # 'Dryness'                 : dryness,
+        # 'Rhom_'                   : "",
+        # "rhol"                    : "",	
+        # "rhog"                    : "",
+        'Gravity'                   : gravity,
+        'Area'                      : area,
+        # "velocity"                  : "",
+        # "Vsl"                       : "",
+        # "Vsg"                       : "",
+        # "miu"                       : "",
+        # "miuL"                      : "",
+        # "miug"                      : "",
+        # "deltaw"                    : "",
+        # "NoslipHoldup"              : "",
+        # "LiqVelNumb"                : "",
+        # "GasVelNumb"                : "",
+        # "diaNum"                    : "",
+        # "liqVisNum"                 : "",
+        # "L1"                        : "",
+        # "L2"                        : "",
+        # "Lb"                        : "",
+        # "Ls"                        : "",
+        # "Lm"                        : "",
+        # "F1"                        : "",
+        # "F2"                        : "",
+        # "F3"                        : "",
+        # "F4"                        : "",
+        # "F5"                        : "",
+        # "F6"                        : "",
+        # "F6aksen"                   : "",
+        # "F7"                        : "",
+        # "PolaAliran"                : "",
+        # "Sbubble"                   : "",
+        # "Sslug"                     : "",
+        # "S_pattern"                 : "",
+        # "slip_vel_for_bubble_slug"  : "",
+        # "HL"                        : "",
+        # "Re"                        : "",
+        # "Debil"                     : "",
+        # "fff"                       : "",
+        # "f1"                        : "",
+        # "R"                         : "",
+        # "f_input_bub_frifact"       : "",  
+        # "f2"                        : "",
+        # "f3"                        : "",
+        # "fm"                        : "",
+        # "Nre"                       : "",
+        # "Nw"                        : "",
+        # "e/D"                       : "",
+        # "fm"                        : "",
+        # "dp/dz"                     : "",
+        # "A"                         : "",
+        # "B"                         : "",
+        # "dens_correction"           : "",
+        # "transisi"                  : "",
+        # "BLColumn"                  : "",
+        # "1-Ek"                      : "",
+        # "Dp/dz_total"               : "",
+        # "Dptot"                     : "",
+        # "P2"                        : "",
+        # "Re"                        : "",
+        # "BRColumn"                  : "",
+        # "fff"                       : "",
+        # "mff"                       : "",
+        # "BUColumn"                  : "",
+        # "DeltaPGravity"             : "",
+        # "acceleration"              : "",
+        # "DeltaPfriksi"              : "",
+        # "DeltaPtotal"               : "",
+        # "P2"                        : "",
+        # "rho_"                      : "",
+        # "velocity"                  : "",
+        # "Ep"                        : "",
+        # "Ek"                        : "",
+        # "H2"                        : "",
+        # "T2"                        : "",
     }
 
     df = pd.DataFrame(data)

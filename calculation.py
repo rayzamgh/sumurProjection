@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
+import formulas
 
 PI_CONST = 3.14159265358979323
-<<<<<<< Updated upstream
 RADIANS = 0.0174533
 
 CRU5 = 1.1949704158
@@ -496,5 +496,6 @@ def funcAF(x):
 		return CRU5 + CRU6*x + CRU7*(x**2) + CRU*(x**3)
 	else:
 		return (CRU12 + CRU13*x) / (1 + CRU14*x + CRU15*(x**2))
-=======
->>>>>>> Stashed changes
+# def funcAA():
+	
+
