@@ -5,6 +5,11 @@ import pandas as pd
 PI_CONST = 3.14159265358979323
 RADIANS = 0.0174533
 
+CRK5 = 2.17698613994
+CRK6 = 0.0340019622762
+CRK7 = -0.00186762652262
+CRK8 = 0.0000164593735483
+
 CRU5 = 1.1949704158
 CRU6 = 21.2171276373
 CRU7 = -1318.1143978
@@ -442,3 +447,18 @@ def funcAF(x):
 		return CRU5 + CRU6*x + CRU7*(x**2) + CRU*(x**3)
 	else:
 		return (CRU12 + CRU13*x) / (1 + CRU14*x + CRU15*(x**2))
+
+# IF(Y3<30,
+# 	2,
+# 	IF(Y3<70,
+# 		'Chart Regresion'!$K$5+'Chart Regresion'!$K$6*Y3+'Chart Regresion'!$K$7*(Y3^2)+'Chart Regresion'!$K$8*(Y3^3),
+# 		1))
+# x = Y3
+def funcAA(x):
+	if(x < 30):
+		return 2
+	else:
+		if(x < 70):
+			return CRK5 + CRK6 * x + CRK7 * (x**2)  + CRK8 * (x**3)
+		else :
+			return 1
