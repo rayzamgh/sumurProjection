@@ -1,8 +1,10 @@
-from iapws import IAPWS97
-
+# from iapws import IAPWS97
+import SteamTable as st
+import calculation as calc
 import numpy as np
 
 import pandas as pd
+
 
 class Table:
     def __init__(self, multipleSegments):
@@ -42,7 +44,7 @@ class inputTable:
         self.pwf = pwf
         self.subTable = []
     
-    def printe(self):
+    def print(self):
         print("WHP (bar)")
         print(self.whp)
         print("Massrate (Kg/s)")
@@ -60,7 +62,6 @@ SEGMENT_CONST = 3
 def main():
 
     # Table Variable
-    tableAll = Table([])
 
     print("WHP (bar)")
     whp = float(input())
@@ -103,17 +104,126 @@ def main():
 
     # INPUT TO PANDAS
 
-    mdlist = []
-    for x in range(0, elemListSubinput.subTable , 3):
+    mdlist      = []
+    segment     = []
+    angle       = []
+    diameter    = []
+    roughness   = []
+    massrate    = []
+    gravity     = []
+    dryness     = []
+    area        = []
+
+    for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
         mdlist.append(x)
-    mdlist.append()
+    mdlist.append(int(np.floor((currentTableInput.subTable[-1].md))))
+
+    for x in mdlist:
+        segment.append(x *-1)
+        massrate.append(currentTableInput.massrate)
+        gravity.append(9.81)
+
+    for x in mdlist:
+        for y in currentTableInput.subTable:
+            if x <= y.md:
+                angle.append(y.angle)
+                diameter.append(y.diameter)
+                roughness.append(y.roughness)
+                break
+
+    for x in diameter:
+        area.append(calc.area(x))
 
     data = {
-        'MDmeter'   : ,
-        'Segment'   : ,
-        'Angle'     : ,
-        'Diameter'  : ,
-        'Roughness' : ,
+        'MDmeter'                   : mdlist,
+        'Segment'                   : segment,
+        'Angle'                     : angle,
+        'Diameter'                  : diameter,
+        'Roughness'                 : roughness,
+        # 'Pressure'                : "",
+        'Massrate'                  : massrate,
+        # 'H-entalphy'              : "",
+        # 'Dryness'                 : dryness,
+        # 'Rhom_'                   : "",
+        # "rhol"                    : "",	
+        # "rhog"                    : "",
+        'Gravity'                   : gravity,
+        'Area'                      : area,
+        # "velocity"                  : "",
+        # "Vsl"                       : "",
+        # "Vsg"                       : "",
+        # "miu"                       : "",
+        # "miuL"                      : "",
+        # "miug"                      : "",
+        # "deltaw"                    : "",
+        # "NoslipHoldup"              : "",
+        # "LiqVelNumb"                : "",
+        # "GasVelNumb"                : "",
+        # "diaNum"                    : "",
+        # "liqVisNum"                 : "",
+        # "L1"                        : "",
+        # "L2"                        : "",
+        # "Lb"                        : "",
+        # "Ls"                        : "",
+        # "Lm"                        : "",
+        # "F1"                        : "",
+        # "F2"                        : "",
+        # "F3"                        : "",
+        # "F4"                        : "",
+        # "F5"                        : "",
+        # "F6"                        : "",
+        # "F6aksen"                   : "",
+        # "F7"                        : "",
+        # "PolaAliran"                : "",
+        # "Sbubble"                   : "",
+        # "Sslug"                     : "",
+        # "S_pattern"                 : "",
+        # "slip_vel_for_bubble_slug"  : "",
+        # "HL"                        : "",
+        # "Re"                        : "",
+        # "Debil"                     : "",
+        # "fff"                       : "",
+        # "f1"                        : "",
+        # "R"                         : "",
+        # "f_input_bub_frifact"       : "",  
+        # "f2"                        : "",
+        # "f3"                        : "",
+        # "fm"                        : "",
+        # "Nre"                       : "",
+        # "Nw"                        : "",
+        # "e/D"                       : "",
+        # "fm"                        : "",
+        # "dp/dz"                     : "",
+        # "A"                         : "",
+        # "B"                         : "",
+        # "dens_correction"           : "",
+        # "transisi"                  : "",
+        # "BLColumn"                  : "",
+        # "1-Ek"                      : "",
+        # "Dp/dz_total"               : "",
+        # "Dptot"                     : "",
+        # "P2"                        : "",
+        # "Re"                        : "",
+        # "BRColumn"                  : "",
+        # "fff"                       : "",
+        # "mff"                       : "",
+        # "BUColumn"                  : "",
+        # "DeltaPGravity"             : "",
+        # "acceleration"              : "",
+        # "DeltaPfriksi"              : "",
+        # "DeltaPtotal"               : "",
+        # "P2"                        : "",
+        # "rho_"                      : "",
+        # "velocity"                  : "",
+        # "Ep"                        : "",
+        # "Ek"                        : "",
+        # "H2"                        : "",
+        # "T2"                        : "",
     }
+
+    df = pd.DataFrame(data)
+    
+    print(df)
+    
 
 main()
