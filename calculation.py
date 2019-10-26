@@ -198,7 +198,7 @@ def funcBW(x, y, z):
 # a = B3
 # b = C3
 def funcBV(x, y, z, a, b):
-	return x*y*(z-a)*np.cos(np.radians(b))/10**5
+	return(x*y*(z-a)*np.cos(np.radians(b))/10**5)
 
 # TAN(RADIANS(C3))
 # x = C3
@@ -504,7 +504,7 @@ def funcAG(x):
 # x = Z3
 def funcAF(x):
 	if(x <= 0.03):
-		return CRU5 + CRU6*x + CRU7*(x**2) + CRU*(x**3)
+		return CRU5 + CRU6*x + CRU7*(x**2) + CRU8*(x**3)
 	else:
 		return (CRU12 + CRU13*x) / (1 + CRU14*x + CRU15*(x**2))
 

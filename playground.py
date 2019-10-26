@@ -1,4 +1,4 @@
+asawawu = ['AAA', 'BBB']
 
-maxrange = 1600
-for x in range(0, maxrange, 3):
-    
+for a in asawawu:
+    eval(a + " = 1")

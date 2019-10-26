@@ -56,6 +56,237 @@ class inputTable:
         for v in self.subTable:
             v.print()
 
+class DataFrameSteam:
+    def __init__(self, currentTableInput):
+
+        self.columnnames = ["mdlist", "segment","angle","diameter","roughness","pressure","massrate","gravity", "dryness","area","H_entalphy","Dryness","Rhom_", "rhol","rhog","velocity","Vsl","Vsg","miu","miuL", "miug","deltaw","NoslipHoldup","LiqVelNumb", "GasVelNumb","diaNum","liqVisNum", "L1","L2","Lb","Ls","Lm","F1","F2","F3","F4","F5","F6", "F6aksen","F7","PolaAliran","Sbubble","Sslug", "S_pattern","slip_vel_for_bubble_slug", "HL","Re","Debil","fff","f1","R","f_input_bub_frifact", "f2","f3","fmBF","Nre","Nw","eD","fm","dpdz","A","B", "dens_correction","transisi","BLColumn", "EkComplement","Dpdz_total","Dptot","P2","ReBQ", "BRColumn","fff","mff","BUColumn","DeltaPGravity", "acceleration","DeltaPfriksi","DeltaPtotal","P2", "rho_","velocity", "Ep", "Ek", "H2", "T2"]
+
+        self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.dryness,self.area,self.H_entalphy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2,self.rho_,self.velocity, self.Ep, self.Ek, self.H2, self.T2 = ([] for i in range(len(self.columnnames)))
+
+        self.columns = [self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.dryness,self.area,self.H_entalphy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2,self.rho_,self.velocity, self.Ep, self.Ek, self.H2, self.T2]
+        
+        # self.mdlist                     = []
+        # self.segment                    = []
+        # self.angle                      = []
+        # self.diameter                   = []
+        # self.roughness                  = []
+        # self.pressure                   = []
+        # self.massrate                   = []
+        # self.gravity                    = []
+        # self.dryness                    = []
+        # self.area                       = []
+        # self.H_entalphy                 = []        
+        # self.Dryness                    = []        
+        # self.Rhom_                      = []    
+        # self.rhol                       = []    
+        # self.rhog                       = []    
+        # self.velocity                   = []        
+        # self.Vsl                        = []    
+        # self.Vsg                        = []    
+        # self.miu                        = []    
+        # self.miuL                       = []    
+        # self.miug                       = []    
+        # self.deltaw                     = []    
+        # self.NoslipHoldup               = []            
+        # self.LiqVelNumb                 = []        
+        # self.GasVelNumb                 = []        
+        # self.diaNum                     = []    
+        # self.liqVisNum                  = []        
+        # self.L1                         = []
+        # self.L2                         = []
+        # self.Lb                         = []
+        # self.Ls                         = []
+        # self.Lm                         = []
+        # self.F1                         = []
+        # self.F2                         = []
+        # self.F3                         = []
+        # self.F4                         = []
+        # self.F5                         = []
+        # self.F6                         = []
+        # self.F6aksen                    = []        
+        # self.F7                         = []
+        # self.PolaAliran                 = []        
+        # self.Sbubble                    = []        
+        # self.Sslug                      = []    
+        # self.S_pattern                  = []        
+        # self.slip_vel_for_bubble_slug   = []                        
+        # self.HL                         = []
+        # self.Re                         = []
+        # self.Debil                      = []    
+        # self.fff                        = []    
+        # self.f1                         = []
+        # self.R                          = []
+        # self.f_input_bub_frifact        = []                    
+        # self.f2                         = []
+        # self.f3                         = []
+        # self.fm                         = []
+        # self.Nre                        = []    
+        # self.Nw                         = []
+        # self.eD                         = []
+        # self.fm                         = []
+        # self.dpdz                       = []
+        # self.A                          = []
+        # self.B                          = []
+        # self.dens_correction            = []                
+        # self.transisi                   = []        
+        # self.BLColumn                   = []        
+        # self.EkComplement               = []
+        # self.Dpdz_total                 = []
+        # self.Dptot                      = []    
+        # self.P2                         = []
+        # self.Re                         = []
+        # self.BRColumn                   = []        
+        # self.fff                        = []    
+        # self.mff                        = []    
+        # self.BUColumn                   = []        
+        # self.DeltaPGravity              = []            
+        # self.acceleration               = []            
+        # self.DeltaPfriksi               = []            
+        # self.DeltaPtotal                = []            
+        # self.P2                         = []
+        # self.rho_                       = []    
+        # self.velocity                   = []        
+        # self.Ep                         = []
+        # self.Ek                         = []
+        # self.H2                         = []
+        # self.T2                         = []
+
+        self.lenofdata = 0
+
+        for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
+            self.lenofdata += 1
+        self.lenofdata += 1
+        
+        for x in self.columns:
+            for _ in range(0,self.lenofdata):
+                x.append(0)
+        
+        i = 0
+        for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
+            self.mdlist[i] = x
+            i += 1
+        self.mdlist[i] = (int(np.floor((currentTableInput.subTable[-1].md))))
+
+        i = 0
+        for x in self.mdlist:
+            self.segment[i] = (x * -1)
+
+            self.massrate[i] = currentTableInput.massrate
+            
+            self.gravity[i] = (9.81)
+            i += 1
+
+        i = 0
+        for x in self.mdlist:
+            for y in currentTableInput.subTable:
+                if x <= y.md:
+                    self.angle[i] = (y.angle)
+                    self.diameter[i] = (y.diameter)
+                    self.roughness[i] = (y.roughness)
+                    i += 1
+                    break
+
+        i = 0
+        for x in self.diameter:
+            self.area[i] = (calc.area(x))
+            i += 1
+        
+        self.data = {
+        'MDmeter'                   : self.mdlist,
+        'Segment'                   : self.segment,
+        'Angle'                     : self.angle,
+        'Diameter'                  : self.diameter,
+        'Roughness'                 : self.roughness,
+        'Pressure'                  : self.pressure,
+        'Massrate'                  : self.massrate,
+        'H_entalphy'                : self.H_entalphy,
+        'Dryness'                   : self.Dryness,
+        'Rhom_'                     : self.Rhom_,
+        "rhol"                      : self.rhol,	
+        "rhog"                      : self.rhog,
+        'Gravity'                   : self.gravity,
+        'Area'                      : self.area,
+        "velocity"                  : self.velocity,
+        "Vsl"                       : self.Vsl,
+        "Vsg"                       : self.Vsg,
+        "miu"                       : self.miu,
+        "miuL"                      : self.miuL,
+        "miug"                      : self.miug,
+        "deltaw"                    : self.deltaw,
+        "NoslipHoldup"              : self.NoslipHoldup,
+        "LiqVelNumb"                : self.LiqVelNumb,
+        "GasVelNumb"                : self.GasVelNumb,
+        "diaNum"                    : self.diaNum,
+        "liqVisNum"                 : self.liqVisNum,
+        "L1"                        : self.L1,        
+        "L2"                        : self.L2,
+        "Lb"                        : self.Lb,
+        "Ls"                        : self.Ls,
+        "Lm"                        : self.Lm,
+        "F1"                        : self.F1,
+        "F2"                        : self.F2,
+        "F3"                        : self.F3,
+        "F4"                        : self.F4,
+        "F5"                        : self.F5,
+        "F6"                        : self.F6,
+        "F6aksen"                   : self.F6aksen,
+        "F7"                        : self.F7,
+        "PolaAliran"                : self.PolaAliran,
+        "Sbubble"                   : self.Sbubble,
+        "Sslug"                     : self.Sslug,
+        "S_pattern"                 : self.S_pattern,
+        "slip_vel_for_bubble_slug"  : self.slip_vel_for_bubble_slug,
+        "HL"                        : self.HL,
+        "ReBQ"                      : self.ReBQ,
+        "Debil"                     : self.Debil,
+        "fffAV"                       : self.fffAV,
+        "f1"                        : self.f1,
+        "R"                         : self.R,
+        "f_input_bub_frifact"       : self.f_input_bub_frifact,  
+        "f2"                        : self.f2,
+        "f3"                        : self.f3,
+        "fm"                        : self.fm,
+        "Nre"                       : self.Nre,
+        "Nw"                        : self.Nw,
+        "e/D"                       : self.eD,
+        "fmBF"                      : self.fmBF,
+        "dp/dz"                     : self.dpdz,
+        "A"                         : self.A,
+        "B"                         : self.B,
+        "dens_correction"           : self.dens_correction,
+        "transisi"                  : self.transisi,
+        "BLColumn"                  : self.BLColumn,
+        "EkComplement"              : self.EkComplement,
+        "Dp/dz_total"               : self.Dpdz_total,
+        "Dptot"                     : self.Dptot,
+        "P2"                        : self.P2,
+        "Re"                        : self.Re,
+        "BRColumn"                  : self.BRColumn,
+        "fff"                       : self.fff,
+        "mff"                       : self.mff,
+        "BUColumn"                  : self.BUColumn,
+        "DeltaPGravity"             : self.DeltaPGravity,
+        "acceleration"              : self.acceleration,
+        "DeltaPfriksi"              : self.DeltaPfriksi,
+        "DeltaPtotal"               : self.DeltaPtotal,
+        "P2"                        : self.P2,
+        "rho_"                      : self.rho_,
+        "velocity"                  : self.velocity,
+        "Ep"                        : self.Ep,
+        "Ek"                        : self.Ek,
+        "H2"                        : self.H2,
+        "T2"                        : self.T2,
+    }
+
+    def print(self):
+        print("===============================")
+        print("Harusnya:" +  str(self.lenofdata))
+        for x in self.columnnames:
+            if (eval("len(self." + x + ") != self.lenofdata")):
+                print(x)
+                print(eval("len(self." + x + ")"))
+        df = pd.DataFrame(self.data)
+        print(df)
 
 SEGMENT_CONST = 3 
 
@@ -101,129 +332,10 @@ def main():
     
     currentTableInput.print()
 
+    currentDataframe = DataFrameSteam(currentTableInput)
 
-    # INPUT TO PANDAS
+    currentDataframe.print()
 
-    mdlist      = []
-    segment     = []
-    angle       = []
-    diameter    = []
-    roughness   = []
-    massrate    = []
-    gravity     = []
-    dryness     = []
-    area        = []
-
-    for x in range(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
-        mdlist.append(x)
-    mdlist.append(int(np.floor((currentTableInput.subTable[-1].md))))
-
-    for x in mdlist:
-        segment.append(x *-1)
-        massrate.append(currentTableInput.massrate)
-        gravity.append(9.81)
-
-    for x in mdlist:
-        for y in currentTableInput.subTable:
-            if x <= y.md:
-                angle.append(y.angle)
-                diameter.append(y.diameter)
-                roughness.append(y.roughness)
-                break
-
-    for x in diameter:
-        area.append(calc.area(x))
-
-    data = {
-        'MDmeter'                   : mdlist,
-        'Segment'                   : segment,
-        'Angle'                     : angle,
-        'Diameter'                  : diameter,
-        'Roughness'                 : roughness,
-        # 'Pressure'                : "",
-        'Massrate'                  : massrate,
-        # 'H-entalphy'              : "",
-        # 'Dryness'                 : dryness,
-        # 'Rhom_'                   : "",
-        # "rhol"                    : "",	
-        # "rhog"                    : "",
-        'Gravity'                   : gravity,
-        'Area'                      : area,
-        # "velocity"                  : "",
-        # "Vsl"                       : "",
-        # "Vsg"                       : "",
-        # "miu"                       : "",
-        # "miuL"                      : "",
-        # "miug"                      : "",
-        # "deltaw"                    : "",
-        # "NoslipHoldup"              : "",
-        # "LiqVelNumb"                : "",
-        # "GasVelNumb"                : "",
-        # "diaNum"                    : "",
-        # "liqVisNum"                 : "",
-        # "L1"                        : "",
-        # "L2"                        : "",
-        # "Lb"                        : "",
-        # "Ls"                        : "",
-        # "Lm"                        : "",
-        # "F1"                        : "",
-        # "F2"                        : "",
-        # "F3"                        : "",
-        # "F4"                        : "",
-        # "F5"                        : "",
-        # "F6"                        : "",
-        # "F6aksen"                   : "",
-        # "F7"                        : "",
-        # "PolaAliran"                : "",
-        # "Sbubble"                   : "",
-        # "Sslug"                     : "",
-        # "S_pattern"                 : "",
-        # "slip_vel_for_bubble_slug"  : "",
-        # "HL"                        : "",
-        # "Re"                        : "",
-        # "Debil"                     : "",
-        # "fff"                       : "",
-        # "f1"                        : "",
-        # "R"                         : "",
-        # "f_input_bub_frifact"       : "",  
-        # "f2"                        : "",
-        # "f3"                        : "",
-        # "fm"                        : "",
-        # "Nre"                       : "",
-        # "Nw"                        : "",
-        # "e/D"                       : "",
-        # "fm"                        : "",
-        # "dp/dz"                     : "",
-        # "A"                         : "",
-        # "B"                         : "",
-        # "dens_correction"           : "",
-        # "transisi"                  : "",
-        # "BLColumn"                  : "",
-        # "1-Ek"                      : "",
-        # "Dp/dz_total"               : "",
-        # "Dptot"                     : "",
-        # "P2"                        : "",
-        # "Re"                        : "",
-        # "BRColumn"                  : "",
-        # "fff"                       : "",
-        # "mff"                       : "",
-        # "BUColumn"                  : "",
-        # "DeltaPGravity"             : "",
-        # "acceleration"              : "",
-        # "DeltaPfriksi"              : "",
-        # "DeltaPtotal"               : "",
-        # "P2"                        : "",
-        # "rho_"                      : "",
-        # "velocity"                  : "",
-        # "Ep"                        : "",
-        # "Ek"                        : "",
-        # "H2"                        : "",
-        # "T2"                        : "",
-    }
-
-    df = pd.DataFrame(data)
-    
-    print(df)
     
 
 main()
