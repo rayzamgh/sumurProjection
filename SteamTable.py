@@ -260,13 +260,13 @@ def p_hs(h, s):
 
 def p_hrho(h, rho):
     _ret = None
-    High_Bound = Double()
+    # High_Bound = Double()
 
-    Low_Bound = Double()
+    # Low_Bound = Double()
 
-    p = Double()
+    # p = Double()
 
-    rhos = Double()
+    # rhos = Double()
     #*Not valid for water or sumpercritical since water rho does not change very much with p.
     #*Uses iteration to find p.
     High_Bound = fromSIunit_p(100)
@@ -340,7 +340,7 @@ def h_pT(p, T):
 
 def h_ps(p, s):
     _ret = None
-    xs = Double()
+    # xs = Double()
     p = toSIunit_p(p)
     s = toSIunit_s(s)
     _select5 = region_ps(p, s)
@@ -361,9 +361,9 @@ def h_ps(p, s):
 
 def h_px(p, x):
     _ret = None
-    hL = Double()
+    # hL = Double()
 
-    hV = Double()
+    # hV = Double()
     p = toSIunit_p(p)
     x = toSIunit_x(x)
     if x > 1 or x < 0 or p >= 22.064:
@@ -376,11 +376,11 @@ def h_px(p, x):
 
 def h_Tx(T, x):
     _ret = None
-    hL = Double()
+    # hL = Double()
 
-    hV = Double()
+    # hV = Double()
 
-    p = Double()
+    # p = Double()
     T = toSIunit_T(T)
     x = toSIunit_x(x)
     if x > 1 or x < 0 or T >= 647.096:
@@ -394,15 +394,15 @@ def h_Tx(T, x):
 
 def h_prho(p, rho):
     _ret = None
-    hL = Variant()
+    # hL = Variant()
 
-    hV = Variant()
+    # hV = Variant()
 
-    vL = Variant()
+    # vL = Variant()
 
-    vV = Variant()
+    # vV = Variant()
 
-    x = Double()
+    # x = Double()
     p = toSIunit_p(p)
     rho = 1 / toSIunit_v(1 / rho)
     _select6 = Region_prho(p, rho)
@@ -498,11 +498,11 @@ def v_pT(p, T):
 
 def v_ph(p, h):
     _ret = None
-    xs = Double()
+    # xs = Double()
 
-    v4V = Double()
+    # v4V = Double()
 
-    v4L = Double()
+    # v4L = Double()
     p = toSIunit_p(p)
     h = toSIunit_h(h)
     _select8 = region_ph(p, h)
@@ -529,11 +529,11 @@ def v_ph(p, h):
 
 def v_ps(p, s):
     _ret = None
-    xs = Double()
+    # xs = Double()
 
-    v4V = Double()
+    # v4V = Double()
 
-    v4L = Double()
+    # v4L = Double()
     p = toSIunit_p(p)
     s = toSIunit_s(s)
     _select9 = region_ps(p, s)
@@ -662,17 +662,17 @@ def s_pT(p, T):
 
 def s_ph(p, h):
     _ret = None
-    Ts = Double()
+    # Ts = Double()
 
-    xs = Double()
+    # xs = Double()
 
-    s4V = Double()
+    # s4V = Double()
 
-    s4L = Double()
+    # s4L = Double()
 
-    v4V = Double()
+    # v4V = Double()
 
-    v4L = Double()
+    # v4L = Double()
     p = toSIunit_p(p)
     h = toSIunit_h(h)
     _select11 = region_ph(p, h)
@@ -769,17 +769,17 @@ def u_pT(p, T):
 
 def u_ph(p, h):
     _ret = None
-    Ts = Double()
+    # Ts = Double()
 
-    xs = Double()
+    # xs = Double()
 
-    u4v = Double()
+    # u4v = Double()
 
-    u4L = Double()
+    # u4L = Double()
 
-    v4V = Double()
+    # v4V = Double()
 
-    v4L = Double()
+    # v4L = Double()
     p = toSIunit_p(p)
     h = toSIunit_h(h)
     _select13 = region_ph(p, h)
@@ -810,15 +810,15 @@ def u_ph(p, h):
 
 def u_ps(p, s):
     _ret = None
-    x = Double()
+    # x = Double()
 
-    u4v = Variant()
+    # u4v = Variant()
 
-    uLp = Variant()
+    # uLp = Variant()
 
-    uVp = Variant()
+    # uVp = Variant()
 
-    u4L = Double()
+    # u4L = Double()
     p = toSIunit_p(p)
     s = toSIunit_s(s)
     _select14 = region_ps(p, s)
@@ -857,11 +857,11 @@ def CpV_p(p):
 
 def CpL_p(p):
     _ret = None
-    T = Variant()
+    # T = Variant()
 
-    h = Variant()
+    # h = Variant()
 
-    v = Double()
+    # v = Double()
     p = toSIunit_p(p)
     if p > 0.000611657 and p < 22.06395:
         if p < 16.529:
@@ -1199,11 +1199,11 @@ def my_ps(p, s):
 
 def Pr_pT(p, T):
     _ret = None
-    Cp = Double()
+    # Cp = Double()
 
-    my = Double()
+    # my = Double()
 
-    tc = Double()
+    # tc = Double()
     Cp = toSIunit_Cp(Cp_pT(p, T))
     my = toSIunit_my(my_pT(p, T))
     tc = toSIunit_tc(tc_pT(p, T))
@@ -1212,11 +1212,11 @@ def Pr_pT(p, T):
 
 def Pr_ph(p, h):
     _ret = None
-    Cp = Double()
+    # Cp = Double()
 
-    my = Double()
+    # my = Double()
 
-    tc = Double()
+    # tc = Double()
     Cp = toSIunit_Cp(Cp_ph(p, h))
     my = toSIunit_my(my_ph(p, h))
     tc = toSIunit_tc(tc_ph(p, h))
@@ -1225,9 +1225,9 @@ def Pr_ph(p, h):
 
 def Kappa_pT(p, T):
     _ret = None
-    Cp = Double()
+    # Cp = Double()
 
-    Cv = Double()
+    # Cv = Double()
     Cp = Cp_pT(p, T)
     Cv = Cv_pT(p, T)
     _ret = Cp / Cv
@@ -1235,9 +1235,9 @@ def Kappa_pT(p, T):
 
 def Kappa_ph(p, h):
     _ret = None
-    Cp = Double()
+    # Cp = Double()
 
-    Cv = Double()
+    # Cv = Double()
     Cv = Cv_ph(p, h)
     Cp = Cp_ph(p, h)
     _ret = Cp / Cv
@@ -1251,7 +1251,7 @@ def st_t(T):
 
 def st_p(p):
     _ret = None
-    T = Double()
+    # T = Double()
     T = Tsat_p(p)
     T = toSIunit_T(T)
     _ret = fromSIunit_st(Surface_Tension_T(T))
@@ -1259,9 +1259,9 @@ def st_p(p):
 
 def tcL_p(p):
     _ret = None
-    T = Double()
+    # T = Double()
 
-    v = Double()
+    # v = Double()
     T = Tsat_p(p)
     v = vL_p(p)
     p = toSIunit_p(p)
@@ -1272,9 +1272,9 @@ def tcL_p(p):
 
 def tcV_p(p):
     _ret = None
-    T = Double()
+    # T = Double()
 
-    v = Double()
+    # v = Double()
     T = Tsat_p(p)
     v = vV_p(p)
     p = toSIunit_p(p)
@@ -1285,9 +1285,9 @@ def tcV_p(p):
 
 def tcL_T(T):
     _ret = None
-    p = Variant()
+    # p = Variant()
 
-    v = Double()
+    # v = Double()
     p = psat_T(T)
     v = vL_T(T)
     p = toSIunit_p(p)
@@ -1298,9 +1298,9 @@ def tcL_T(T):
 
 def tcV_T(T):
     _ret = None
-    p = Variant()
+    # p = Variant()
 
-    v = Double()
+    # v = Double()
     p = psat_T(T)
     v = vV_T(T)
     p = toSIunit_p(p)
@@ -1311,7 +1311,7 @@ def tcV_T(T):
 
 def tc_pT(p, T):
     _ret = None
-    v = Double()
+    # v = Double()
     v = v_pT(p, T)
     p = toSIunit_p(p)
     T = toSIunit_T(T)
@@ -1321,9 +1321,9 @@ def tc_pT(p, T):
 
 def tc_ph(p, h):
     _ret = None
-    v = Double()
+    # v = Double()
 
-    T = Double()
+    # T = Double()
     v = v_ph(p, h)
     T = T_ph(p, h)
     p = toSIunit_p(p)
@@ -1334,11 +1334,11 @@ def tc_ph(p, h):
 
 def tc_hs(h, s):
     _ret = None
-    p = Double()
+    # p = Double()
 
-    v = Double()
+    # v = Double()
 
-    T = Double()
+    # T = Double()
     p = p_hs(h, s)
     v = v_ph(p, h)
     T = T_ph(p, h)
@@ -1370,11 +1370,11 @@ def x_ps(p, s):
 
 def vx_ph(p, h):
     _ret = None
-    vL = Double()
+    # vL = Double()
 
-    vV = Double()
+    # vV = Double()
 
-    xs = Double()
+    # xs = Double()
     p = toSIunit_p(p)
     h = toSIunit_h(h)
     if p > 0.000611657 and p < 22.06395:
@@ -1392,11 +1392,11 @@ def vx_ph(p, h):
 
 def vx_ps(p, s):
     _ret = None
-    vL = Double()
+    # vL = Double()
 
-    vV = Double()
+    # vV = Double()
 
-    xs = Double()
+    # xs = Double()
     p = toSIunit_p(p)
     s = toSIunit_s(s)
     if p > 0.000611657 and p < 22.06395:
@@ -1414,81 +1414,81 @@ def vx_ps(p, s):
 
 def v1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    ps = Variant()
+    # ps = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g_p = Double()
+    # g_p = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #5 Equations for Region 1, Section. 5.1 Basic Equation
     #Eqution 7, Table 3, Page 6
-    I1 = Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 8, 8, 21, 23, 29, 30, 31, 32)
-    J1 = Array(- 2, - 1, 0, 1, 2, 3, 4, 5, - 9, - 7, - 1, 0, 1, 3, - 3, 0, 1, 3, 17, - 4, 0, 6, - 5, - 2, 10, - 8, - 11, - 6, - 29, - 31, - 38, - 39, - 40, - 41)
-    n1 = Array(0.14632971213167, - 0.84548187169114, - 3.756360367204, 3.3855169168385, - 0.95791963387872, 0.15772038513228, - 0.016616417199501, 8.1214629983568E-04, 2.8319080123804E-04, - 6.0706301565874E-04, - 0.018990068218419, - 0.032529748770505, - 0.021841717175414, - 5.283835796993E-05, - 4.7184321073267E-04, - 3.0001780793026E-04, 4.7661393906987E-05, - 4.4141845330846E-06, - 7.2694996297594E-16, - 3.1679644845054E-05, - 2.8270797985312E-06, - 8.5205128120103E-10, - 2.2425281908E-06, - 6.5171222895601E-07, - 1.4341729937924E-13, - 4.0516996860117E-07, - 1.2734301741641E-09, - 1.7424871230634E-10, - 6.8762131295531E-19, 1.4478307828521E-20, 2.6335781662795E-23, - 1.1947622640071E-23, 1.8228094581404E-24, - 9.3537087292458E-26)
+    I1 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 8, 8, 21, 23, 29, 30, 31, 32]
+    J1 = [- 2, - 1, 0, 1, 2, 3, 4, 5, - 9, - 7, - 1, 0, 1, 3, - 3, 0, 1, 3, 17, - 4, 0, 6, - 5, - 2, 10, - 8, - 11, - 6, - 29, - 31, - 38, - 39, - 40, - 41]
+    n1 = [0.14632971213167, - 0.84548187169114, - 3.756360367204, 3.3855169168385, - 0.95791963387872, 0.15772038513228, - 0.016616417199501, 8.1214629983568E-04, 2.8319080123804E-04, - 6.0706301565874E-04, - 0.018990068218419, - 0.032529748770505, - 0.021841717175414, - 5.283835796993E-05, - 4.7184321073267E-04, - 3.0001780793026E-04, 4.7661393906987E-05, - 4.4141845330846E-06, - 7.2694996297594E-16, - 3.1679644845054E-05, - 2.8270797985312E-06, - 8.5205128120103E-10, - 2.2425281908E-06, - 6.5171222895601E-07, - 1.4341729937924E-13, - 4.0516996860117E-07, - 1.2734301741641E-09, - 1.7424871230634E-10, - 6.8762131295531E-19, 1.4478307828521E-20, 2.6335781662795E-23, - 1.1947622640071E-23, 1.8228094581404E-24, - 9.3537087292458E-26]
     ps = p / 16.53
     tau = 1386 / T
     g_p = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         g_p = g_p - n1(i) * I1(i) *  ( 7.1 - ps )  **  ( I1(i) - 1 )  *  ( tau - 1.222 )  ** J1(i)
     _ret = R * T / p * ps * g_p / 1000
     return _ret
 
 def h1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    ps = Variant()
+    # ps = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g_t = Double()
+    # g_t = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #5 Equations for Region 1, Section. 5.1 Basic Equation
     #Eqution 7, Table 3, Page 6
-    I1 = Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 8, 8, 21, 23, 29, 30, 31, 32)
-    J1 = Array(- 2, - 1, 0, 1, 2, 3, 4, 5, - 9, - 7, - 1, 0, 1, 3, - 3, 0, 1, 3, 17, - 4, 0, 6, - 5, - 2, 10, - 8, - 11, - 6, - 29, - 31, - 38, - 39, - 40, - 41)
-    n1 = Array(0.14632971213167, - 0.84548187169114, - 3.756360367204, 3.3855169168385, - 0.95791963387872, 0.15772038513228, - 0.016616417199501, 8.1214629983568E-04, 2.8319080123804E-04, - 6.0706301565874E-04, - 0.018990068218419, - 0.032529748770505, - 0.021841717175414, - 5.283835796993E-05, - 4.7184321073267E-04, - 3.0001780793026E-04, 4.7661393906987E-05, - 4.4141845330846E-06, - 7.2694996297594E-16, - 3.1679644845054E-05, - 2.8270797985312E-06, - 8.5205128120103E-10, - 2.2425281908E-06, - 6.5171222895601E-07, - 1.4341729937924E-13, - 4.0516996860117E-07, - 1.2734301741641E-09, - 1.7424871230634E-10, - 6.8762131295531E-19, 1.4478307828521E-20, 2.6335781662795E-23, - 1.1947622640071E-23, 1.8228094581404E-24, - 9.3537087292458E-26)
+    I1 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 8, 8, 21, 23, 29, 30, 31, 32]
+    J1 = [- 2, - 1, 0, 1, 2, 3, 4, 5, - 9, - 7, - 1, 0, 1, 3, - 3, 0, 1, 3, 17, - 4, 0, 6, - 5, - 2, 10, - 8, - 11, - 6, - 29, - 31, - 38, - 39, - 40, - 41]
+    n1 = [0.14632971213167, - 0.84548187169114, - 3.756360367204, 3.3855169168385, - 0.95791963387872, 0.15772038513228, - 0.016616417199501, 8.1214629983568E-04, 2.8319080123804E-04, - 6.0706301565874E-04, - 0.018990068218419, - 0.032529748770505, - 0.021841717175414, - 5.283835796993E-05, - 4.7184321073267E-04, - 3.0001780793026E-04, 4.7661393906987E-05, - 4.4141845330846E-06, - 7.2694996297594E-16, - 3.1679644845054E-05, - 2.8270797985312E-06, - 8.5205128120103E-10, - 2.2425281908E-06, - 6.5171222895601E-07, - 1.4341729937924E-13, - 4.0516996860117E-07, - 1.2734301741641E-09, - 1.7424871230634E-10, - 6.8762131295531E-19, 1.4478307828521E-20, 2.6335781662795E-23, - 1.1947622640071E-23, 1.8228094581404E-24, - 9.3537087292458E-26]
     p = p / 16.53
     tau = 1386 / T
     g_t = 0
-    for i in vbForRange(0, 33):
-        g_t = g_t +  ( n1(i) *  ( 7.1 - p )  ** I1(i) * J1(i) *  ( tau - 1.222 )  **  ( J1(i) - 1 ) )
+    for i in range(0, 1 + 33):
+        g_t = g_t +  ( n1[i] *  ( 7.1 - p )  ** I1[i] * J1[i] *  ( tau - 1.222 )  **  ( J1[i] - 1 ) )
     _ret = R * T * tau * g_t
     return _ret
 
 def u1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g_t = Variant()
+    # g_t = Variant()
 
-    g_p = Double()
+    # g_p = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1501,7 +1501,7 @@ def u1_pT(p, T):
     tau = 1386 / T
     g_t = 0
     g_p = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         g_p = g_p - n1(i) * I1(i) *  ( 7.1 - p )  **  ( I1(i) - 1 )  *  ( tau - 1.222 )  ** J1(i)
         g_t = g_t +  ( n1(i) *  ( 7.1 - p )  ** I1(i) * J1(i) *  ( tau - 1.222 )  **  ( J1(i) - 1 ) )
     _ret = R * T *  ( tau * g_t - p * g_p )
@@ -1509,17 +1509,17 @@ def u1_pT(p, T):
 
 def s1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    g = Variant()
+    # g = Variant()
 
-    g_t = Double()
+    # g_t = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1532,7 +1532,7 @@ def s1_pT(p, T):
     T = 1386 / T
     g = 0
     g_t = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         g_t = g_t +  ( n1(i) *  ( 7.1 - p )  ** I1(i) * J1(i) *  ( T - 1.222 )  **  ( J1(i) - 1 ) )
         g = g + n1(i) *  ( 7.1 - p )  ** I1(i) *  ( T - 1.222 )  ** J1(i)
     _ret = R * T * g_t - R * g
@@ -1540,15 +1540,15 @@ def s1_pT(p, T):
 
 def Cp1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    G_tt = Double()
+    # G_tt = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1560,28 +1560,28 @@ def Cp1_pT(p, T):
     p = p / 16.53
     T = 1386 / T
     G_tt = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         G_tt = G_tt +  ( n1(i) *  ( 7.1 - p )  ** I1(i) * J1(i) *  ( J1(i) - 1 )  *  ( T - 1.222 )  **  ( J1(i) - 2 ) )
     _ret = - R * T ** 2 * G_tt
     return _ret
 
 def Cv1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    g_p = Variant()
+    # g_p = Variant()
 
-    g_pp = Variant()
+    # g_pp = Variant()
 
-    g_pt = Variant()
+    # g_pt = Variant()
 
-    G_tt = Double()
+    # G_tt = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1596,7 +1596,7 @@ def Cv1_pT(p, T):
     g_pp = 0
     g_pt = 0
     G_tt = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         g_p = g_p - n1(i) * I1(i) *  ( 7.1 - p )  **  ( I1(i) - 1 )  *  ( T - 1.222 )  ** J1(i)
         g_pp = g_pp + n1(i) * I1(i) *  ( I1(i) - 1 )  *  ( 7.1 - p )  **  ( I1(i) - 2 )  *  ( T - 1.222 )  ** J1(i)
         g_pt = g_pt - n1(i) * I1(i) *  ( 7.1 - p )  **  ( I1(i) - 1 )  * J1(i) *  ( T - 1.222 )  **  ( J1(i) - 1 )
@@ -1606,23 +1606,23 @@ def Cv1_pT(p, T):
 
 def w1_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    g_p = Variant()
+    # g_p = Variant()
 
-    g_pp = Variant()
+    # g_pp = Variant()
 
-    g_pt = Variant()
+    # g_pt = Variant()
 
-    G_tt = Variant()
+    # G_tt = Variant()
 
-    tau = Double()
+    # tau = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1637,7 +1637,7 @@ def w1_pT(p, T):
     g_pp = 0
     g_pt = 0
     G_tt = 0
-    for i in vbForRange(0, 33):
+    for i in range(0, 1 + 33):
         g_p = g_p - n1(i) * I1(i) *  ( 7.1 - p )  **  ( I1(i) - 1 )  *  ( tau - 1.222 )  ** J1(i)
         g_pp = g_pp + n1(i) * I1(i) *  ( I1(i) - 1 )  *  ( 7.1 - p )  **  ( I1(i) - 2 )  *  ( tau - 1.222 )  ** J1(i)
         g_pt = g_pt - n1(i) * I1(i) *  ( 7.1 - p )  **  ( I1(i) - 1 )  * J1(i) *  ( tau - 1.222 )  **  ( J1(i) - 1 )
@@ -1647,15 +1647,15 @@ def w1_pT(p, T):
 
 def T1_ph(p, h):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    T = Double()
+    # T = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #5 Equations for Region 1, Section. 5.1 Basic Equation, 5.2.1 The Backward Equation T ( p,h )
     #Eqution 11, Table 6, Page 10
@@ -1664,20 +1664,20 @@ def T1_ph(p, h):
     n1 = Array(- 238.72489924521, 404.21188637945, 113.49746881718, - 5.8457616048039, - 1.528548241314E-04, - 1.0866707695377E-06, - 13.391744872602, 43.211039183559, - 54.010067170506, 30.535892203916, - 6.5964749423638, 9.3965400878363E-03, 1.157364750534E-07, - 2.5858641282073E-05, - 4.0644363084799E-09, 6.6456186191635E-08, 8.0670734103027E-11, - 9.3477771213947E-13, 5.8265442020601E-15, - 1.5020185953503E-17)
     h = h / 2500
     T = 0
-    for i in vbForRange(0, 19):
+    for i in range(0, 1 + 19):
         T = T + n1(i) * p ** I1(i) *  ( h + 1 )  ** J1(i)
     _ret = T
     return _ret
 
 def T1_ps(p, s):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #5 Equations for Region 1, Section. 5.1 Basic Equation, 5.2.2 The Backward Equation T ( p, s )
     #Eqution 13, Table 8, Page 11
@@ -1685,21 +1685,21 @@ def T1_ps(p, s):
     J1 = Array(0, 1, 2, 3, 11, 31, 0, 1, 2, 3, 12, 31, 0, 1, 2, 9, 31, 10, 32, 32)
     n1 = Array(174.78268058307, 34.806930892873, 6.5292584978455, 0.33039981775489, - 1.9281382923196E-07, - 2.4909197244573E-23, - 0.26107636489332, 0.22592965981586, - 0.064256463395226, 7.8876289270526E-03, 3.5672110607366E-10, 1.7332496994895E-24, 5.6608900654837E-04, - 3.2635483139717E-04, 4.4778286690632E-05, - 5.1322156908507E-10, - 4.2522657042207E-26, 2.6400441360689E-13, 7.8124600459723E-29, - 3.0732199903668E-31)
     _ret = 0
-    for i in vbForRange(0, 19):
+    for i in range(0, 1 + 19):
         _ret = T1_ps() + n1(i) * p ** I1(i) *  ( s + 2 )  ** J1(i)
     return _ret
 
 def p1_hs(h, s):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    p = Double()
+    # p = Double()
 
-    I1 = Variant()
+    # I1 = Variant()
 
-    J1 = Variant()
+    # J1 = Variant()
 
-    n1 = Variant()
+    # n1 = Variant()
     #Supplementary Release on Backward Equations for Pressure as a Function of Enthalpy and Entropy p(h,s) to the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam
     #5 Backward Equation p(h,s) for Region 1
     #Eqution 1, Table 2, Page 5
@@ -1709,22 +1709,22 @@ def p1_hs(h, s):
     h = h / 3400
     s = s / 7.6
     p = 0
-    for i in vbForRange(0, 18):
+    for i in range(0, 1 + 18):
         p = p + n1(i) *  ( h + 0.05 )  ** I1(i) *  ( s + 0.05 )  ** J1(i)
     _ret = p * 100
     return _ret
 
 def T1_prho(p, rho):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    rhos = Double()
+    # rhos = Double()
     #Solve by iteration. Observe that fo low temperatures this equation has 2 solutions.
     #Solve with half interval method
     Low_Bound = 273.15
@@ -1741,23 +1741,23 @@ def T1_prho(p, rho):
 
 def v2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_pi = Variant()
+    # g0_pi = Variant()
 
-    gr_pi = Double()
+    # gr_pi = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1771,73 +1771,73 @@ def v2_pT(p, T):
     tau = 540 / T
     g0_pi = 1 / p
     gr_pi = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr_pi = gr_pi + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  *  ( tau - 0.5 )  ** Jr(i)
     _ret = R * T / p * p *  ( g0_pi + gr_pi )  / 1000
     return _ret
 
 def h2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_tau = Variant()
+    # g0_tau = Variant()
 
-    gr_tau = Double()
+    # gr_tau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #6 Equations for Region 2, Section. 6.1 Basic Equation
     #Table 11 and 12, Page 14 and 15
-    J0 = Array(0, 1, - 5, - 4, - 3, - 2, - 1, 2, 3)
-    n0 = Array(- 9.6927686500217, 10.086655968018, - 0.005608791128302, 0.071452738081455, - 0.40710498223928, 1.4240819171444, - 4.383951131945, - 0.28408632460772, 0.021268463753307)
-    Ir = Array(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 5, 6, 6, 6, 7, 7, 7, 8, 8, 9, 10, 10, 10, 16, 16, 18, 20, 20, 20, 21, 22, 23, 24, 24, 24)
-    Jr = Array(0, 1, 2, 3, 6, 1, 2, 4, 7, 36, 0, 1, 3, 6, 35, 1, 2, 3, 7, 3, 16, 35, 0, 11, 25, 8, 36, 13, 4, 10, 14, 29, 50, 57, 20, 35, 48, 21, 53, 39, 26, 40, 58)
-    nr = Array(- 1.7731742473213E-03, - 0.017834862292358, - 0.045996013696365, - 0.057581259083432, - 0.05032527872793, - 3.3032641670203E-05, - 1.8948987516315E-04, - 3.9392777243355E-03, - 0.043797295650573, - 2.6674547914087E-05, 2.0481737692309E-08, 4.3870667284435E-07, - 3.227767723857E-05, - 1.5033924542148E-03, - 0.040668253562649, - 7.8847309559367E-10, 1.2790717852285E-08, 4.8225372718507E-07, 2.2922076337661E-06, - 1.6714766451061E-11, - 2.1171472321355E-03, - 23.895741934104, - 5.905956432427E-18, - 1.2621808899101E-06, - 0.038946842435739, 1.1256211360459E-11, - 8.2311340897998, 1.9809712802088E-08, 1.0406965210174E-19, - 1.0234747095929E-13, - 1.0018179379511E-09, - 8.0882908646985E-11, 0.10693031879409, - 0.33662250574171, 8.9185845355421E-25, 3.0629316876232E-13, - 4.2002467698208E-06, - 5.9056029685639E-26, 3.7826947613457E-06, - 1.2768608934681E-15, 7.3087610595061E-29, 5.5414715350778E-17, - 9.436970724121E-07)
+    J0 = [0, 1, - 5, - 4, - 3, - 2, - 1, 2, 3]
+    n0 = [- 9.6927686500217, 10.086655968018, - 0.005608791128302, 0.071452738081455, - 0.40710498223928, 1.4240819171444, - 4.383951131945, - 0.28408632460772, 0.021268463753307]
+    Ir = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 5, 6, 6, 6, 7, 7, 7, 8, 8, 9, 10, 10, 10, 16, 16, 18, 20, 20, 20, 21, 22, 23, 24, 24, 24]
+    Jr = [0, 1, 2, 3, 6, 1, 2, 4, 7, 36, 0, 1, 3, 6, 35, 1, 2, 3, 7, 3, 16, 35, 0, 11, 25, 8, 36, 13, 4, 10, 14, 29, 50, 57, 20, 35, 48, 21, 53, 39, 26, 40, 58]
+    nr = [- 1.7731742473213E-03, - 0.017834862292358, - 0.045996013696365, - 0.057581259083432, - 0.05032527872793, - 3.3032641670203E-05, - 1.8948987516315E-04, - 3.9392777243355E-03, - 0.043797295650573, - 2.6674547914087E-05, 2.0481737692309E-08, 4.3870667284435E-07, - 3.227767723857E-05, - 1.5033924542148E-03, - 0.040668253562649, - 7.8847309559367E-10, 1.2790717852285E-08, 4.8225372718507E-07, 2.2922076337661E-06, - 1.6714766451061E-11, - 2.1171472321355E-03, - 23.895741934104, - 5.905956432427E-18, - 1.2621808899101E-06, - 0.038946842435739, 1.1256211360459E-11, - 8.2311340897998, 1.9809712802088E-08, 1.0406965210174E-19, - 1.0234747095929E-13, - 1.0018179379511E-09, - 8.0882908646985E-11, 0.10693031879409, - 0.33662250574171, 8.9185845355421E-25, 3.0629316876232E-13, - 4.2002467698208E-06, - 5.9056029685639E-26, 3.7826947613457E-06, - 1.2768608934681E-15, 7.3087610595061E-29, 5.5414715350778E-17, - 9.436970724121E-07]
     tau = 540 / T
     g0_tau = 0
-    for i in vbForRange(0, 8):
-        g0_tau = g0_tau + n0(i) * J0(i) * tau **  ( J0(i) - 1 )
+    for i in range(0, 1 + 8):
+        g0_tau = g0_tau + n0[i] * J0[i] * tau **  ( J0[i] - 1 )
     gr_tau = 0
-    for i in vbForRange(0, 42):
-        gr_tau = gr_tau + nr(i) * p ** Ir(i) * Jr(i) *  ( tau - 0.5 )  **  ( Jr(i) - 1 )
+    for i in range(0, 1 + 42):
+        gr_tau = gr_tau + nr[i] * p ** Ir[i] * Jr[i] *  ( tau - 0.5 )  **  ( Jr[i] - 1 )
     _ret = R * T * tau *  ( g0_tau + gr_tau )
     return _ret
 
 def u2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_tau = Variant()
+    # g0_tau = Variant()
 
-    g0_pi = Variant()
+    # g0_pi = Variant()
 
-    gr_pi = Variant()
+    # gr_pi = Variant()
 
-    gr_tau = Double()
+    # gr_tau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1851,11 +1851,11 @@ def u2_pT(p, T):
     tau = 540 / T
     g0_pi = 1 / p
     g0_tau = 0
-    for i in vbForRange(0, 8):
+    for i in range(0, 1 + 8):
         g0_tau = g0_tau + n0(i) * J0(i) * tau **  ( J0(i) - 1 )
     gr_pi = 0
     gr_tau = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr_pi = gr_pi + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  *  ( tau - 0.5 )  ** Jr(i)
         gr_tau = gr_tau + nr(i) * p ** Ir(i) * Jr(i) *  ( tau - 0.5 )  **  ( Jr(i) - 1 )
     _ret = R * T *  ( tau *  ( g0_tau + gr_tau )  - p *  ( g0_pi + gr_pi ) )
@@ -1863,27 +1863,27 @@ def u2_pT(p, T):
 
 def s2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0 = Variant()
+    # g0 = Variant()
 
-    g0_tau = Variant()
+    # g0_tau = Variant()
 
-    gr = Variant()
+    # gr = Variant()
 
-    gr_tau = Double()
+    # gr_tau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1897,12 +1897,12 @@ def s2_pT(p, T):
     tau = 540 / T
     g0 = Log(p)
     g0_tau = 0
-    for i in vbForRange(0, 8):
+    for i in range(0, 1 + 8):
         g0 = g0 + n0(i) * tau ** J0(i)
         g0_tau = g0_tau + n0(i) * J0(i) * tau **  ( J0(i) - 1 )
     gr = 0
     gr_tau = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr = gr + nr(i) * p ** Ir(i) *  ( tau - 0.5 )  ** Jr(i)
         gr_tau = gr_tau + nr(i) * p ** Ir(i) * Jr(i) *  ( tau - 0.5 )  **  ( Jr(i) - 1 )
     _ret = R *  ( tau *  ( g0_tau + gr_tau )  -  ( g0 + gr ) )
@@ -1910,23 +1910,23 @@ def s2_pT(p, T):
 
 def Cp2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_tautau = Variant()
+    # g0_tautau = Variant()
 
-    gr_tautau = Double()
+    # gr_tautau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -1939,39 +1939,39 @@ def Cp2_pT(p, T):
     nr = Array(- 1.7731742473213E-03, - 0.017834862292358, - 0.045996013696365, - 0.057581259083432, - 0.05032527872793, - 3.3032641670203E-05, - 1.8948987516315E-04, - 3.9392777243355E-03, - 0.043797295650573, - 2.6674547914087E-05, 2.0481737692309E-08, 4.3870667284435E-07, - 3.227767723857E-05, - 1.5033924542148E-03, - 0.040668253562649, - 7.8847309559367E-10, 1.2790717852285E-08, 4.8225372718507E-07, 2.2922076337661E-06, - 1.6714766451061E-11, - 2.1171472321355E-03, - 23.895741934104, - 5.905956432427E-18, - 1.2621808899101E-06, - 0.038946842435739, 1.1256211360459E-11, - 8.2311340897998, 1.9809712802088E-08, 1.0406965210174E-19, - 1.0234747095929E-13, - 1.0018179379511E-09, - 8.0882908646985E-11, 0.10693031879409, - 0.33662250574171, 8.9185845355421E-25, 3.0629316876232E-13, - 4.2002467698208E-06, - 5.9056029685639E-26, 3.7826947613457E-06, - 1.2768608934681E-15, 7.3087610595061E-29, 5.5414715350778E-17, - 9.436970724121E-07)
     tau = 540 / T
     g0_tautau = 0
-    for i in vbForRange(0, 8):
+    for i in range(0, 1 + 8):
         g0_tautau = g0_tautau + n0(i) * J0(i) *  ( J0(i) - 1 )  * tau **  ( J0(i) - 2 )
     gr_tautau = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr_tautau = gr_tautau + nr(i) * p ** Ir(i) * Jr(i) *  ( Jr(i) - 1 )  *  ( tau - 0.5 )  **  ( Jr(i) - 2 )
     _ret = - R * tau ** 2 *  ( g0_tautau + gr_tautau )
     return _ret
 
 def Cv2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_tautau = Variant()
+    # g0_tautau = Variant()
 
-    gr_pi = Variant()
+    # gr_pi = Variant()
 
-    gr_pitau = Variant()
+    # gr_pitau = Variant()
 
-    gr_pipi = Variant()
+    # gr_pipi = Variant()
 
-    gr_tautau = Double()
+    # gr_tautau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     J0 = Array(0, 1, - 5, - 4, - 3, - 2, - 1, 2, 3)
@@ -1981,13 +1981,13 @@ def Cv2_pT(p, T):
     nr = Array(- 1.7731742473213E-03, - 0.017834862292358, - 0.045996013696365, - 0.057581259083432, - 0.05032527872793, - 3.3032641670203E-05, - 1.8948987516315E-04, - 3.9392777243355E-03, - 0.043797295650573, - 2.6674547914087E-05, 2.0481737692309E-08, 4.3870667284435E-07, - 3.227767723857E-05, - 1.5033924542148E-03, - 0.040668253562649, - 7.8847309559367E-10, 1.2790717852285E-08, 4.8225372718507E-07, 2.2922076337661E-06, - 1.6714766451061E-11, - 2.1171472321355E-03, - 23.895741934104, - 5.905956432427E-18, - 1.2621808899101E-06, - 0.038946842435739, 1.1256211360459E-11, - 8.2311340897998, 1.9809712802088E-08, 1.0406965210174E-19, - 1.0234747095929E-13, - 1.0018179379511E-09, - 8.0882908646985E-11, 0.10693031879409, - 0.33662250574171, 8.9185845355421E-25, 3.0629316876232E-13, - 4.2002467698208E-06, - 5.9056029685639E-26, 3.7826947613457E-06, - 1.2768608934681E-15, 7.3087610595061E-29, 5.5414715350778E-17, - 9.436970724121E-07)
     tau = 540 / T
     g0_tautau = 0
-    for i in vbForRange(0, 8):
+    for i in range(0, 1 + 8):
         g0_tautau = g0_tautau + n0(i) * J0(i) *  ( J0(i) - 1 )  * tau **  ( J0(i) - 2 )
     gr_pi = 0
     gr_pitau = 0
     gr_pipi = 0
     gr_tautau = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr_pi = gr_pi + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  *  ( tau - 0.5 )  ** Jr(i)
         gr_pipi = gr_pipi + nr(i) * Ir(i) *  ( Ir(i) - 1 )  * p **  ( Ir(i) - 2 )  *  ( tau - 0.5 )  ** Jr(i)
         gr_pitau = gr_pitau + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  * Jr(i) *  ( tau - 0.5 )  **  ( Jr(i) - 1 )
@@ -1997,29 +1997,29 @@ def Cv2_pT(p, T):
 
 def w2_pT(p, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    tau = Variant()
+    # tau = Variant()
 
-    g0_tautau = Variant()
+    # g0_tautau = Variant()
 
-    gr_pi = Variant()
+    # gr_pi = Variant()
 
-    gr_pitau = Variant()
+    # gr_pitau = Variant()
 
-    gr_pipi = Variant()
+    # gr_pipi = Variant()
 
-    gr_tautau = Double()
+    # gr_tautau = Double()
 
-    Ir = Variant()
+    # Ir = Variant()
 
-    Jr = Variant()
+    # Jr = Variant()
 
-    nr = Variant()
+    # nr = Variant()
 
-    J0 = Variant()
+    # J0 = Variant()
 
-    n0 = Variant()
+    # n0 = Variant()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -2032,13 +2032,13 @@ def w2_pT(p, T):
     nr = Array(- 1.7731742473213E-03, - 0.017834862292358, - 0.045996013696365, - 0.057581259083432, - 0.05032527872793, - 3.3032641670203E-05, - 1.8948987516315E-04, - 3.9392777243355E-03, - 0.043797295650573, - 2.6674547914087E-05, 2.0481737692309E-08, 4.3870667284435E-07, - 3.227767723857E-05, - 1.5033924542148E-03, - 0.040668253562649, - 7.8847309559367E-10, 1.2790717852285E-08, 4.8225372718507E-07, 2.2922076337661E-06, - 1.6714766451061E-11, - 2.1171472321355E-03, - 23.895741934104, - 5.905956432427E-18, - 1.2621808899101E-06, - 0.038946842435739, 1.1256211360459E-11, - 8.2311340897998, 1.9809712802088E-08, 1.0406965210174E-19, - 1.0234747095929E-13, - 1.0018179379511E-09, - 8.0882908646985E-11, 0.10693031879409, - 0.33662250574171, 8.9185845355421E-25, 3.0629316876232E-13, - 4.2002467698208E-06, - 5.9056029685639E-26, 3.7826947613457E-06, - 1.2768608934681E-15, 7.3087610595061E-29, 5.5414715350778E-17, - 9.436970724121E-07)
     tau = 540 / T
     g0_tautau = 0
-    for i in vbForRange(0, 8):
+    for i in range(0, 1 + 8):
         g0_tautau = g0_tautau + n0(i) * J0(i) *  ( J0(i) - 1 )  * tau **  ( J0(i) - 2 )
     gr_pi = 0
     gr_pitau = 0
     gr_pipi = 0
     gr_tautau = 0
-    for i in vbForRange(0, 42):
+    for i in range(0, 1 + 42):
         gr_pi = gr_pi + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  *  ( tau - 0.5 )  ** Jr(i)
         gr_pipi = gr_pipi + nr(i) * Ir(i) *  ( Ir(i) - 1 )  * p **  ( Ir(i) - 2 )  *  ( tau - 0.5 )  ** Jr(i)
         gr_pitau = gr_pitau + nr(i) * Ir(i) * p **  ( Ir(i) - 1 )  * Jr(i) *  ( tau - 0.5 )  **  ( Jr(i) - 1 )
@@ -2048,19 +2048,19 @@ def w2_pT(p, T):
 
 def T2_ph(p, h):
     _ret = None
-    sub_reg = Integer()
+    # sub_reg = Integer()
 
-    i = Integer()
+    # i = Integer()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    hs = Double()
+    # hs = Double()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #6 Equations for Region 2,6.3.1 The Backward Equations T( p, h ) for Subregions 2a, 2b, and 2c
     if p < 4:
@@ -2079,7 +2079,7 @@ def T2_ph(p, h):
         ni = Array(1089.8952318288, 849.51654495535, - 107.81748091826, 33.153654801263, - 7.4232016790248, 11.765048724356, 1.844574935579, - 4.1792700549624, 6.2478196935812, - 17.344563108114, - 200.58176862096, 271.96065473796, - 455.11318285818, 3091.9688604755, 252266.40357872, - 6.1707422868339E-03, - 0.31078046629583, 11.670873077107, 128127984.04046, - 985549096.23276, 2822454697.3002, - 3594897141.0703, 1722734991.3197, - 13551.334240775, 12848734.66465, 1.3865724283226, 235988.32556514, - 13105236.545054, 7399.9835474766, - 551966.9703006, 3715408.5996233, 19127.72923966, - 415351.64835634, - 62.459855192507)
         Ts = 0
         hs = h / 2000
-        for i in vbForRange(0, 33):
+        for i in range(0, 1 + 33):
             Ts = Ts + ni(i) * p **  ( Ii(i) )  *  ( hs - 2.1 )  ** Ji(i)
         _ret = Ts
     elif (_select26 == 2):
@@ -2090,7 +2090,7 @@ def T2_ph(p, h):
         ni = Array(1489.5041079516, 743.07798314034, - 97.708318797837, 2.4742464705674, - 0.63281320016026, 1.1385952129658, - 0.47811863648625, 8.5208123431544E-03, 0.93747147377932, 3.3593118604916, 3.3809355601454, 0.16844539671904, 0.73875745236695, - 0.47128737436186, 0.15020273139707, - 0.002176411421975, - 0.021810755324761, - 0.10829784403677, - 0.046333324635812, 7.1280351959551E-05, 1.1032831789999E-04, 1.8955248387902E-04, 3.0891541160537E-03, 1.3555504554949E-03, 2.8640237477456E-07, - 1.0779857357512E-05, - 7.6462712454814E-05, 1.4052392818316E-05, - 3.1083814331434E-05, - 1.0302738212103E-06, 2.821728163504E-07, 1.2704902271945E-06, 7.3803353468292E-08, - 1.1030139238909E-08, - 8.1456365207833E-14, - 2.5180545682962E-11, - 1.7565233969407E-18, 8.6934156344163E-15)
         Ts = 0
         hs = h / 2000
-        for i in vbForRange(0, 37):
+        for i in range(0, 1 + 37):
             Ts = Ts + ni(i) *  ( p - 2 )  **  ( Ii(i) )  *  ( hs - 2.6 )  ** Ji(i)
         _ret = Ts
     else:
@@ -2101,26 +2101,26 @@ def T2_ph(p, h):
         ni = Array(- 3236839855524.2, 7326335090218.1, 358250899454.47, - 583401318515.9, - 10783068217.47, 20825544563.171, 610747.83564516, 859777.2253558, - 25745.72360417, 31081.088422714, 1208.2315865936, 482.19755109255, 3.7966001272486, - 10.842984880077, - 0.04536417267666, 1.4559115658698E-13, 1.126159740723E-12, - 1.7804982240686E-11, 1.2324579690832E-07, - 1.1606921130984E-06, 2.7846367088554E-05, - 5.9270038474176E-04, 1.2918582991878E-03)
         Ts = 0
         hs = h / 2000
-        for i in vbForRange(0, 22):
+        for i in range(0, 1 + 22):
             Ts = Ts + ni(i) *  ( p + 25 )  **  ( Ii(i) )  *  ( hs - 1.8 )  ** Ji(i)
         _ret = Ts
     return _ret
 
 def T2_ps(p, s):
     _ret = None
-    sub_reg = Integer()
+    # sub_reg = Integer()
 
-    i = Integer()
+    # i = Integer()
 
-    teta = Variant()
+    # teta = Variant()
 
-    sigma = Double()
+    # sigma = Double()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #6 Equations for Region 2,6.3.2 The Backward Equations T( p, s ) for Subregions 2a, 2b, and 2c
     #Page 26
@@ -2140,7 +2140,7 @@ def T2_ps(p, s):
         ni = Array(- 392359.83861984, 515265.7382727, 40482.443161048, - 321.93790923902, 96.961424218694, - 22.867846371773, - 449429.14124357, - 5011.8336020166, 0.35684463560015, 44235.33584819, - 13673.388811708, 421632.60207864, 22516.925837475, 474.42144865646, - 149.31130797647, - 197811.26320452, - 23554.39947076, - 19070.616302076, 55375.669883164, 3829.3691437363, - 603.91860580567, 1936.3102620331, 4266.064369861, - 5978.0638872718, - 704.01463926862, 338.36784107553, 20.862786635187, 0.033834172656196, - 4.3124428414893E-05, 166.53791356412, - 139.86292055898, - 0.78849547999872, 0.072132411753872, - 5.9754839398283E-03, - 1.2141358953904E-05, 2.3227096733871E-07, - 10.538463566194, 2.0718925496502, - 0.072193155260427, 2.074988708112E-07, - 0.018340657911379, 2.9036272348696E-07, 0.21037527893619, 2.5681239729999E-04, - 0.012799002933781, - 8.2198102652018E-06)
         sigma = s / 2
         teta = 0
-        for i in vbForRange(0, 45):
+        for i in range(0, 1 + 45):
             teta = teta + ni(i) * p ** Ii(i) *  ( sigma - 2 )  ** Ji(i)
         _ret = teta
     elif (_select27 == 2):
@@ -2151,7 +2151,7 @@ def T2_ps(p, s):
         ni = Array(316876.65083497, 20.864175881858, - 398593.99803599, - 21.816058518877, 223697.85194242, - 2784.1703445817, 9.920743607148, - 75197.512299157, 2970.8605951158, - 3.4406878548526, 0.38815564249115, 17511.29508575, - 1423.7112854449, 1.0943803364167, 0.89971619308495, - 3375.9740098958, 471.62885818355, - 1.9188241993679, 0.41078580492196, - 0.33465378172097, 1387.0034777505, - 406.63326195838, 41.72734715961, 2.1932549434532, - 1.0320050009077, 0.35882943516703, 5.2511453726066E-03, 12.838916450705, - 2.8642437219381, 0.56912683664855, - 0.099962954584931, - 3.2632037778459E-03, 2.3320922576723E-04, - 0.1533480985745, 0.029072288239902, 3.7534702741167E-04, 1.7296691702411E-03, - 3.8556050844504E-04, - 3.5017712292608E-05, - 1.4566393631492E-05, 5.6420857267269E-06, 4.1286150074605E-08, - 2.0684671118824E-08, 1.6409393674725E-09)
         sigma = s / 0.7853
         teta = 0
-        for i in vbForRange(0, 43):
+        for i in range(0, 1 + 43):
             teta = teta + ni(i) * p ** Ii(i) *  ( 10 - sigma )  ** Ji(i)
         _ret = teta
     else:
@@ -2162,30 +2162,30 @@ def T2_ps(p, s):
         ni = Array(909.68501005365, 2404.566708842, - 591.6232638713, 541.45404128074, - 270.98308411192, 979.76525097926, - 469.66772959435, 14.399274604723, - 19.104204230429, 5.3299167111971, - 21.252975375934, - 0.3114733441376, 0.60334840894623, - 0.042764839702509, 5.8185597255259E-03, - 0.014597008284753, 5.6631175631027E-03, - 7.6155864584577E-05, 2.2440342919332E-04, - 1.2561095013413E-05, 6.3323132660934E-07, - 2.0541989675375E-06, 3.6405370390082E-08, - 2.9759897789215E-09, 1.0136618529763E-08, 5.9925719692351E-12, - 2.0677870105164E-11, - 2.0874278181886E-11, 1.0162166825089E-10, - 1.6429828281347E-10)
         sigma = s / 2.9251
         teta = 0
-        for i in vbForRange(0, 29):
+        for i in range(0, 1 + 29):
             teta = teta + ni(i) * p ** Ii(i) *  ( 2 - sigma )  ** Ji(i)
         _ret = teta
     return _ret
 
 def p2_hs(h, s):
     _ret = None
-    sub_reg = Integer()
+    # sub_reg = Integer()
 
-    i = Integer()
+    # i = Integer()
 
-    eta = Variant()
+    # eta = Variant()
 
-    teta = Variant()
+    # teta = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    p = Double()
+    # p = Double()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
     #Supplementary Release on Backward Equations for Pressure as a Function of Enthalpy and Entropy p(h,s) to the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam
     #Chapter 6:Backward Equations p(h,s) for Region 2
     if h <  ( - 3498.98083432139 + 2575.60716905876 * s - 421.073558227969 * s ** 2 + 27.6349063799944 * s ** 3 ) :
@@ -2205,7 +2205,7 @@ def p2_hs(h, s):
         eta = h / 4200
         sigma = s / 12
         p = 0
-        for i in vbForRange(0, 28):
+        for i in range(0, 1 + 28):
             p = p + ni(i) *  ( eta - 0.5 )  ** Ii(i) *  ( sigma - 1.2 )  ** Ji(i)
         _ret = p ** 4 * 4
     elif (_select28 == 2):
@@ -2216,7 +2216,7 @@ def p2_hs(h, s):
         ni = Array(8.01496989929495E-02, - 0.543862807146111, 0.337455597421283, 8.9055545115745, 313.840736431485, 0.797367065977789, - 1.2161697355624, 8.72803386937477, - 16.9769781757602, - 186.552827328416, 95115.9274344237, - 18.9168510120494, - 4334.0703719484, 543212633.012715, 0.144793408386013, 128.024559637516, - 67230.9534071268, 33697238.0095287, - 586.63419676272, - 22140322476.9889, 1716.06668708389, - 570817595.806302, - 3121.09693178482, - 2078413.8463301, 3056059461577.86, 3221.57004314333, 326810259797.295, - 1441.04158934487, 410.694867802691, 109077066873.024, - 24796465425889.3, 1888019068.65134, - 123651009018773)
         eta = h / 4100
         sigma = s / 7.9
-        for i in vbForRange(0, 32):
+        for i in range(0, 1 + 32):
             p = p + ni(i) *  ( eta - 0.6 )  ** Ii(i) *  ( sigma - 1.01 )  ** Ji(i)
         _ret = p ** 4 * 100
     else:
@@ -2227,20 +2227,20 @@ def p2_hs(h, s):
         ni = Array(0.112225607199012, - 3.39005953606712, - 32.0503911730094, - 197.5973051049, - 407.693861553446, 13294.3775222331, 1.70846839774007, 37.3694198142245, 3581.44365815434, 423014.446424664, - 751071025.760063, 52.3446127607898, - 228.351290812417, - 960652.417056937, - 80705929.2526074, 1626980172256.69, 0.772465073604171, 46392.9973837746, - 13731788.5134128, 1704703926305.12, - 25110462818730.8, 31774883083552, 53.8685623675312, - 55308.9094625169, - 1028615.22421405, 2042494187562.34, 273918446.626977, - 2.63963146312685E+15, - 1078908541.08088, - 29649262098.0124, - 1.11754907323424E+15)
         eta = h / 3500
         sigma = s / 5.9
-        for i in vbForRange(0, 30):
+        for i in range(0, 1 + 30):
             p = p + ni(i) *  ( eta - 0.7 )  ** Ii(i) *  ( sigma - 1.1 )  ** Ji(i)
         _ret = p ** 4 * 100
     return _ret
 
 def T2_prho(p, rho):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    rhos = Variant()
+    # rhos = Variant()
 
-    Ts = Double()
+    # Ts = Double()
     #Solve by iteration. Observe that fo low temperatures this equation has 2 solutions.
     #Solve with half interval method
     if p < 16.5292:
@@ -2260,19 +2260,19 @@ def T2_prho(p, rho):
 
 def p3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fidelta = Double()
+    # fidelta = Double()
 
     R = 0.461526
 
@@ -2290,7 +2290,7 @@ def p3_rhoT(rho, T):
     delta = rho / rhoc
     tau = tc / T
     fidelta = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fidelta = fidelta + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * tau ** Ji(i)
     fidelta = fidelta + ni(0) / delta
     _ret = rho * R * T * delta * fidelta / 1000
@@ -2298,19 +2298,19 @@ def p3_rhoT(rho, T):
 
 def u3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fitau = Double()
+    # fitau = Double()
 
     R = 0.461526
 
@@ -2328,28 +2328,28 @@ def u3_rhoT(rho, T):
     delta = rho / rhoc
     tau = tc / T
     fitau = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fitau = fitau + ni(i) * delta ** Ii(i) * Ji(i) * tau **  ( Ji(i) - 1 )
     _ret = R * T *  ( tau * fitau )
     return _ret
 
 def h3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fidelta = Variant()
+    # fidelta = Variant()
 
-    fitau = Double()
+    # fitau = Double()
 
     R = 0.461526
 
@@ -2368,7 +2368,7 @@ def h3_rhoT(rho, T):
     tau = tc / T
     fidelta = 0
     fitau = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fidelta = fidelta + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * tau ** Ji(i)
         fitau = fitau + ni(i) * delta ** Ii(i) * Ji(i) * tau **  ( Ji(i) - 1 )
     fidelta = fidelta + ni(0) / delta
@@ -2377,21 +2377,21 @@ def h3_rhoT(rho, T):
 
 def s3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    fi = Variant()
+    # fi = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fitau = Double()
+    # fitau = Double()
 
     R = 0.461526
 
@@ -2410,7 +2410,7 @@ def s3_rhoT(rho, T):
     tau = tc / T
     fi = 0
     fitau = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fi = fi + ni(i) * delta ** Ii(i) * tau ** Ji(i)
         fitau = fitau + ni(i) * delta ** Ii(i) * Ji(i) * tau **  ( Ji(i) - 1 )
     fi = fi + ni(0) * Log(delta)
@@ -2419,29 +2419,29 @@ def s3_rhoT(rho, T):
 
 def Cp3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    fideltatau = Variant()
+    # fideltatau = Variant()
 
-    fi = Variant()
+    # fi = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fitautau = Variant()
+    # fitautau = Variant()
 
-    fidelta = Variant()
+    # fidelta = Variant()
 
-    fideltatautau = Variant()
+    # fideltatautau = Variant()
 
-    fideltadelta = Double()
+    # fideltadelta = Double()
 
     R = 0.461526
 
@@ -2462,7 +2462,7 @@ def Cp3_rhoT(rho, T):
     fidelta = 0
     fideltatau = 0
     fideltadelta = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fitautau = fitautau + ni(i) * delta ** Ii(i) * Ji(i) *  ( Ji(i) - 1 )  * tau **  ( Ji(i) - 2 )
         fidelta = fidelta + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * tau ** Ji(i)
         fideltatau = fideltatau + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * Ji(i) * tau **  ( Ji(i) - 1 )
@@ -2474,27 +2474,27 @@ def Cp3_rhoT(rho, T):
 
 def w3_rhoT(rho, T):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    fi = Variant()
+    # fi = Variant()
 
-    delta = Variant()
+    # delta = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    fitautau = Variant()
+    # fitautau = Variant()
 
-    fidelta = Variant()
+    # fidelta = Variant()
 
-    fideltatau = Variant()
+    # fideltatau = Variant()
 
-    fideltadelta = Double()
+    # fideltadelta = Double()
 
     R = 0.461526
 
@@ -2515,7 +2515,7 @@ def w3_rhoT(rho, T):
     fidelta = 0
     fideltatau = 0
     fideltadelta = 0
-    for i in vbForRange(1, 39):
+    for i in range(1, 1 + 39):
         fitautau = fitautau + ni(i) * delta ** Ii(i) * Ji(i) *  ( Ji(i) - 1 )  * tau **  ( Ji(i) - 2 )
         fidelta = fidelta + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * tau ** Ji(i)
         fideltatau = fideltatau + ni(i) * Ii(i) * delta **  ( Ii(i) - 1 )  * Ji(i) * tau **  ( Ji(i) - 1 )
@@ -2527,21 +2527,21 @@ def w3_rhoT(rho, T):
 
 def T3_ph(p, h):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    h3ab = Variant()
+    # h3ab = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    hs = Variant()
+    # hs = Variant()
 
-    Ts = Double()
+    # Ts = Double()
 
     R = 0.461526
 
@@ -2564,7 +2564,7 @@ def T3_ph(p, h):
         ps = p / 100
         hs = h / 2300
         Ts = 0
-        for i in vbForRange(0, 30):
+        for i in range(0, 1 + 30):
             Ts = Ts + ni(i) *  ( ps + 0.24 )  ** Ii(i) *  ( hs - 0.615 )  ** Ji(i)
         _ret = Ts * 760
     else:
@@ -2576,28 +2576,28 @@ def T3_ph(p, h):
         hs = h / 2800
         ps = p / 100
         Ts = 0
-        for i in vbForRange(0, 32):
+        for i in range(0, 1 + 32):
             Ts = Ts + ni(i) *  ( ps + 0.298 )  ** Ii(i) *  ( hs - 0.72 )  ** Ji(i)
         _ret = Ts * 860
     return _ret
 
 def v3_ph(p, h):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    h3ab = Variant()
+    # h3ab = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    hs = Variant()
+    # hs = Variant()
 
-    vs = Double()
+    # vs = Double()
 
     R = 0.461526
 
@@ -2620,7 +2620,7 @@ def v3_ph(p, h):
         ps = p / 100
         hs = h / 2100
         vs = 0
-        for i in vbForRange(0, 31):
+        for i in range(0, 1 + 31):
             vs = vs + ni(i) *  ( ps + 0.128 )  ** Ii(i) *  ( hs - 0.727 )  ** Ji(i)
         _ret = vs * 0.0028
     else:
@@ -2632,26 +2632,26 @@ def v3_ph(p, h):
         ps = p / 100
         hs = h / 2800
         vs = 0
-        for i in vbForRange(0, 29):
+        for i in range(0, 1 + 29):
             vs = vs + ni(i) *  ( ps + 0.0661 )  ** Ii(i) *  ( hs - 0.72 )  ** Ji(i)
         _ret = vs * 0.0088
     return _ret
 
 def T3_ps(p, s):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    teta = Double()
+    # teta = Double()
 
     R = 0.461526
 
@@ -2673,7 +2673,7 @@ def T3_ps(p, s):
         sigma = s / 4.4
         ps = p / 100
         teta = 0
-        for i in vbForRange(0, 32):
+        for i in range(0, 1 + 32):
             teta = teta + ni(i) *  ( ps + 0.24 )  ** Ii(i) *  ( sigma - 0.703 )  ** Ji(i)
         _ret = teta * 760
     else:
@@ -2685,26 +2685,26 @@ def T3_ps(p, s):
         sigma = s / 5.3
         ps = p / 100
         teta = 0
-        for i in vbForRange(0, 27):
+        for i in range(0, 1 + 27):
             teta = teta + ni(i) *  ( ps + 0.76 )  ** Ii(i) *  ( sigma - 0.818 )  ** Ji(i)
         _ret = teta * 860
     return _ret
 
 def v3_ps(p, s):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    omega = Double()
+    # omega = Double()
 
     R = 0.461526
 
@@ -2726,7 +2726,7 @@ def v3_ps(p, s):
         ps = p / 100
         sigma = s / 4.4
         omega = 0
-        for i in vbForRange(0, 27):
+        for i in range(0, 1 + 27):
             omega = omega + ni(i) *  ( ps + 0.187 )  ** Ii(i) *  ( sigma - 0.755 )  ** Ji(i)
         _ret = omega * 0.0028
     else:
@@ -2738,26 +2738,26 @@ def v3_ps(p, s):
         ps = p / 100
         sigma = s / 5.3
         omega = 0
-        for i in vbForRange(0, 30):
+        for i in range(0, 1 + 30):
             omega = omega + ni(i) *  ( ps + 0.298 )  ** Ii(i) *  ( sigma - 0.816 )  ** Ji(i)
         _ret = omega * 0.0088
     return _ret
 
 def p3_hs(h, s):
     _ret = None
-    i = Integer()
+    # i = Integer()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    Ii = Variant()
+    # Ii = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    eta = Double()
+    # eta = Double()
 
     R = 0.461526
 
@@ -2781,7 +2781,7 @@ def p3_hs(h, s):
         sigma = s / 4.4
         eta = h / 2300
         ps = 0
-        for i in vbForRange(0, 32):
+        for i in range(0, 1 + 32):
             ps = ps + ni(i) *  ( eta - 1.01 )  ** Ii(i) *  ( sigma - 0.75 )  ** Ji(i)
         _ret = ps * 99
     else:
@@ -2793,20 +2793,20 @@ def p3_hs(h, s):
         sigma = s / 5.3
         eta = h / 2800
         ps = 0
-        for i in vbForRange(0, 34):
+        for i in range(0, 1 + 34):
             ps = ps + ni(i) *  ( eta - 0.681 )  ** Ii(i) *  ( sigma - 0.792 )  ** Ji(i)
         _ret = 16.6 / ps
     return _ret
 
 def h3_pT(p, T):
     _ret = None
-    Ts = Variant()
+    # Ts = Variant()
 
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    hs = Double()
+    # hs = Double()
     #Not avalible with IF 97
     #Solve function T3_ph-T=0 with half interval method.
     #ver2.6 Start corrected bug
@@ -2835,13 +2835,13 @@ def h3_pT(p, T):
 
 def T3_prho(p, rho):
     _ret = None
-    ps = Variant()
+    # ps = Variant()
 
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    Ts = Double()
+    # Ts = Double()
     #Solve by iteration. Observe that fo low temperatures this equation has 2 solutions.
     #Solve with half interval method
     Low_Bound = 623.15
@@ -2858,13 +2858,13 @@ def T3_prho(p, rho):
 
 def p4_T(T):
     _ret = None
-    teta = Variant()
+    # teta = Variant()
 
-    a = Variant()
+    # a = Variant()
 
-    b = Variant()
+    # b = Variant()
 
-    c = Double()
+    # c = Double()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #Section 8.1 The Saturation-Pressure Equation
     #Eq 30, Page 33
@@ -2877,15 +2877,15 @@ def p4_T(T):
 
 def T4_p(p):
     _ret = None
-    beta = Variant()
+    # beta = Variant()
 
-    e = Variant()
+    # e = Variant()
 
-    f = Variant()
+    # f = Variant()
 
-    g = Variant()
+    # g = Variant()
 
-    d = Double()
+    # d = Double()
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
     #Section 8.2 The Saturation-Temperature Equation
     #Eq 31, Page 34
@@ -2899,21 +2899,21 @@ def T4_p(p):
 
 def h4_s(s):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    eta = Variant()
+    # eta = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    sigma1 = Variant()
+    # sigma1 = Variant()
 
-    sigma2 = Double()
+    # sigma2 = Double()
 
-    i = Integer()
+    # i = Integer()
     #Supplementary Release on Backward Equations ( ) , p h s for Region 3,Equations as a Function of h and s for the Region Boundaries, and an Equation( ) sat , T hs for Region 4 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam
     #4 Equations for Region Boundaries Given Enthalpy and Entropy
     # Se picture page 14
@@ -2925,7 +2925,7 @@ def h4_s(s):
         ni = Array(0.332171191705237, 6.11217706323496E-04, - 8.82092478906822, - 0.45562819254325, - 2.63483840850452E-05, - 22.3949661148062, - 4.28398660164013, - 0.616679338856916, - 14.682303110404, 284.523138727299, - 113.398503195444, 1156.71380760859, 395.551267359325, - 1.54891257229285, 19.4486637751291, - 3.57915139457043, - 3.35369414148819, - 0.66442679633246, 32332.1885383934, 3317.66744667084, - 22350.1257931087, 5739538.75852936, 173.226193407919, - 3.63968822121321E-02, 8.34596332878346E-07, 5.03611916682674, 65.5444787064505)
         sigma = s / 3.8
         eta = 0
-        for i in vbForRange(0, 26):
+        for i in range(0, 1 + 26):
             eta = eta + ni(i) *  ( sigma - 1.09 )  ** Ii(i) *  ( sigma + 0.0000366 )  ** Ji(i)
         _ret = eta * 1700
     elif s > 3.77828134 and s <= 4.41202148223476:
@@ -2936,7 +2936,7 @@ def h4_s(s):
         ni = Array(0.822673364673336, 0.181977213534479, - 0.011200026031362, - 7.46778287048033E-04, - 0.179046263257381, 4.24220110836657E-02, - 0.341355823438768, - 2.09881740853565, - 8.22477343323596, - 4.99684082076008, 0.191413958471069, 5.81062241093136E-02, - 1655.05498701029, 1588.70443421201, - 85.0623535172818, - 31771.4386511207, - 94589.0406632871, - 1.3927384708869E-06, 0.63105253224098)
         sigma = s / 3.8
         eta = 0
-        for i in vbForRange(0, 18):
+        for i in range(0, 1 + 18):
             eta = eta + ni(i) *  ( sigma - 1.09 )  ** Ii(i) *  ( sigma + 0.0000366 )  ** Ji(i)
         _ret = eta * 1700
     elif s > 4.41202148223476 and s <= 5.85:
@@ -2948,7 +2948,7 @@ def h4_s(s):
         ni = Array(1.04351280732769, - 2.27807912708513, 1.80535256723202, 0.420440834792042, - 105721.24483466, 4.36911607493884E+24, - 328032702839.753, - 6.7868676080427E+15, 7439.57464645363, - 3.56896445355761E+19, 1.67590585186801E+31, - 3.55028625419105E+37, 396611982166.538, - 4.14716268484468E+40, 3.59080103867382E+18, - 1.16994334851995E+40)
         sigma = s / 5.9
         eta = 0
-        for i in vbForRange(0, 15):
+        for i in range(0, 1 + 15):
             eta = eta + ni(i) *  ( sigma - 1.02 )  ** Ii(i) *  ( sigma - 0.726 )  ** Ji(i)
         _ret = eta ** 4 * 2800
     elif s > 5.85 and s < 9.155759395:
@@ -2960,7 +2960,7 @@ def h4_s(s):
         sigma1 = s / 5.21
         sigma2 = s / 9.2
         eta = 0
-        for i in vbForRange(0, 29):
+        for i in range(0, 1 + 29):
             eta = eta + ni(i) *  ( 1 / sigma1 - 0.513 )  ** Ii(i) *  ( sigma2 - 0.524 )  ** Ji(i)
         _ret = Exp(eta) * 2800
     else:
@@ -2969,7 +2969,7 @@ def h4_s(s):
 
 def p4_s(s):
     _ret = None
-    hsat = Double()
+    # hsat = Double()
     #Uses h4_s and p_hs for the diffrent regions to determine p4_s
     hsat = h4_s(s)
     if s > - 0.0001545495919 and s <= 3.77828134:
@@ -2984,15 +2984,15 @@ def p4_s(s):
 
 def h4L_p(p):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    hs = Variant()
+    # hs = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    Ts = Double()
+    # Ts = Double()
     if p > 0.000611657 and p < 22.06395:
         Ts = T4_p(p)
         if p < 16.529:
@@ -3015,15 +3015,15 @@ def h4L_p(p):
 
 def h4V_p(p):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    hs = Variant()
+    # hs = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    Ts = Double()
+    # Ts = Double()
     if p > 0.000611657 and p < 22.06395:
         Ts = T4_p(p)
         if p < 16.529:
@@ -3046,9 +3046,9 @@ def h4V_p(p):
 
 def x4_ph(p, h):
     _ret = None
-    h4v = Variant()
+    # h4v = Variant()
 
-    h4l = Double()
+    # h4l = Double()
     #Calculate vapour fraction from hL and hV for given p
     h4v = h4V_p(p)
     h4l = h4L_p(p)
@@ -3062,9 +3062,9 @@ def x4_ph(p, h):
 
 def x4_ps(p, s):
     _ret = None
-    ssV = Variant()
+    # ssV = Variant()
 
-    ssL = Double()
+    # ssL = Double()
     if p < 16.529:
         ssV = s2_pT(p, T4_p(p))
         ssL = s1_pT(p, T4_p(p))
@@ -3081,43 +3081,43 @@ def x4_ps(p, s):
 
 def T4_hs(h, s):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    hL = Variant()
+    # hL = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    ss = Variant()
+    # ss = Variant()
 
-    p = Variant()
+    # p = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    eta = Variant()
+    # eta = Variant()
 
-    teta = Variant()
+    # teta = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    PL = Variant()
+    # PL = Variant()
 
-    s4V = Variant()
+    # s4V = Variant()
 
-    v4V = Variant()
+    # v4V = Variant()
 
-    s4L = Variant()
+    # s4L = Variant()
 
-    v4L = Variant()
+    # v4L = Variant()
 
-    xs = Double()
+    # xs = Double()
 
-    i = Integer()
+    # i = Integer()
     #Supplementary Release on Backward Equations ( ) , p h s for Region 3,
     #Chapter 5.3 page 30.
     #The if 97 function is only valid for part of region4. Use iteration outsida.
@@ -3128,7 +3128,7 @@ def T4_hs(h, s):
         sigma = s / 9.2
         eta = h / 2800
         teta = 0
-        for i in vbForRange(0, 35):
+        for i in range(0, 1 + 35):
             teta = teta + ni(i) *  ( eta - 0.119 )  ** Ii(i) *  ( sigma - 1.07 )  ** Ji(i)
         _ret = teta * 550
     else:
@@ -3173,23 +3173,23 @@ def T4_hs(h, s):
 
 def h5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_tau = Variant()
+    # gamma0_tau = Variant()
 
-    gammar_tau = Double()
+    # gammar_tau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3202,33 +3202,33 @@ def h5_pT(p, T):
     nir = Array(- 1.2563183589592E-04, 2.1774678714571E-03, - 0.004594282089991, - 3.9724828359569E-06, 1.2919228289784E-07)
     tau = 1000 / T
     gamma0_tau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tau = gamma0_tau + ni0(i) * Ji0(i) * tau **  ( Ji0(i) - 1 )
     gammar_tau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_tau = gammar_tau + nir(i) * p ** Iir(i) * Jir(i) * tau **  ( Jir(i) - 1 )
     _ret = R * T * tau *  ( gamma0_tau + gammar_tau )
     return _ret
 
 def v5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_pi = Variant()
+    # gamma0_pi = Variant()
 
-    gammar_pi = Double()
+    # gammar_pi = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3242,34 +3242,34 @@ def v5_pT(p, T):
     tau = 1000 / T
     gamma0_pi = 1 / p
     gammar_pi = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_pi = gammar_pi + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * tau ** Jir(i)
     _ret = R * T / p * p *  ( gamma0_pi + gammar_pi )  / 1000
     return _ret
 
 def u5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_pi = Variant()
+    # gamma0_pi = Variant()
 
-    gammar_pi = Variant()
+    # gammar_pi = Variant()
 
-    gamma0_tau = Variant()
+    # gamma0_tau = Variant()
 
-    gammar_tau = Double()
+    # gammar_tau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3283,11 +3283,11 @@ def u5_pT(p, T):
     tau = 1000 / T
     gamma0_pi = 1 / p
     gamma0_tau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tau = gamma0_tau + ni0(i) * Ji0(i) * tau **  ( Ji0(i) - 1 )
     gammar_pi = 0
     gammar_tau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_pi = gammar_pi + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * tau ** Jir(i)
         gammar_tau = gammar_tau + nir(i) * p ** Iir(i) * Jir(i) * tau **  ( Jir(i) - 1 )
     _ret = R * T *  ( tau *  ( gamma0_tau + gammar_tau )  - p *  ( gamma0_pi + gammar_pi ) )
@@ -3295,23 +3295,23 @@ def u5_pT(p, T):
 
 def Cp5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_tautau = Variant()
+    # gamma0_tautau = Variant()
 
-    gammar_tautau = Double()
+    # gammar_tautau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3324,37 +3324,37 @@ def Cp5_pT(p, T):
     nir = Array(- 1.2563183589592E-04, 2.1774678714571E-03, - 0.004594282089991, - 3.9724828359569E-06, 1.2919228289784E-07)
     tau = 1000 / T
     gamma0_tautau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tautau = gamma0_tautau + ni0(i) * Ji0(i) *  ( Ji0(i) - 1 )  * tau **  ( Ji0(i) - 2 )
     gammar_tautau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_tautau = gammar_tautau + nir(i) * p ** Iir(i) * Jir(i) *  ( Jir(i) - 1 )  * tau **  ( Jir(i) - 2 )
     _ret = - R * tau ** 2 *  ( gamma0_tautau + gammar_tautau )
     return _ret
 
 def s5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0 = Variant()
+    # gamma0 = Variant()
 
-    gamma0_tau = Variant()
+    # gamma0_tau = Variant()
 
-    gammar = Variant()
+    # gammar = Variant()
 
-    gammar_tau = Double()
+    # gammar_tau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3368,12 +3368,12 @@ def s5_pT(p, T):
     tau = 1000 / T
     gamma0 = Log(p)
     gamma0_tau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tau = gamma0_tau + ni0(i) * Ji0(i) * tau **  ( Ji0(i) - 1 )
         gamma0 = gamma0 + ni0(i) * tau ** Ji0(i)
     gammar = 0
     gammar_tau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar = gammar + nir(i) * p ** Iir(i) * tau ** Jir(i)
         gammar_tau = gammar_tau + nir(i) * p ** Iir(i) * Jir(i) * tau **  ( Jir(i) - 1 )
     _ret = R *  ( tau *  ( gamma0_tau + gammar_tau )  -  ( gamma0 + gammar ) )
@@ -3381,29 +3381,29 @@ def s5_pT(p, T):
 
 def Cv5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_tautau = Variant()
+    # gamma0_tautau = Variant()
 
-    gammar_pi = Variant()
+    # gammar_pi = Variant()
 
-    gammar_pitau = Variant()
+    # gammar_pitau = Variant()
 
-    gammar_pipi = Variant()
+    # gammar_pipi = Variant()
 
-    gammar_tautau = Double()
+    # gammar_tautau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3416,13 +3416,13 @@ def Cv5_pT(p, T):
     nir = Array(- 1.2563183589592E-04, 2.1774678714571E-03, - 0.004594282089991, - 3.9724828359569E-06, 1.2919228289784E-07)
     tau = 1000 / T
     gamma0_tautau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tautau = gamma0_tautau + ni0(i) *  ( Ji0(i) - 1 )  * Ji0(i) * tau **  ( Ji0(i) - 2 )
     gammar_pi = 0
     gammar_pitau = 0
     gammar_pipi = 0
     gammar_tautau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_pi = gammar_pi + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * tau ** Jir(i)
         gammar_pitau = gammar_pitau + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * Jir(i) * tau **  ( Jir(i) - 1 )
         gammar_pipi = gammar_pipi + nir(i) * Iir(i) *  ( Iir(i) - 1 )  * p **  ( Iir(i) - 2 )  * tau ** Jir(i)
@@ -3432,29 +3432,29 @@ def Cv5_pT(p, T):
 
 def w5_pT(p, T):
     _ret = None
-    Iir = Variant()
+    # Iir = Variant()
 
-    Jir = Variant()
+    # Jir = Variant()
 
-    nir = Variant()
+    # nir = Variant()
 
-    ni0 = Variant()
+    # ni0 = Variant()
 
-    Ji0 = Variant()
+    # Ji0 = Variant()
 
-    tau = Variant()
+    # tau = Variant()
 
-    gamma0_tautau = Variant()
+    # gamma0_tautau = Variant()
 
-    gammar_pi = Variant()
+    # gammar_pi = Variant()
 
-    gammar_pitau = Variant()
+    # gammar_pitau = Variant()
 
-    gammar_pipi = Variant()
+    # gammar_pipi = Variant()
 
-    gammar_tautau = Double()
+    # gammar_tautau = Double()
 
-    i = Integer()
+    # i = Integer()
 
     R = 0.461526
     #Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
@@ -3467,13 +3467,13 @@ def w5_pT(p, T):
     nir = Array(- 1.2563183589592E-04, 2.1774678714571E-03, - 0.004594282089991, - 3.9724828359569E-06, 1.2919228289784E-07)
     tau = 1000 / T
     gamma0_tautau = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         gamma0_tautau = gamma0_tautau + ni0(i) *  ( Ji0(i) - 1 )  * Ji0(i) * tau **  ( Ji0(i) - 2 )
     gammar_pi = 0
     gammar_pitau = 0
     gammar_pipi = 0
     gammar_tautau = 0
-    for i in vbForRange(0, 4):
+    for i in range(0, 1 + 4):
         gammar_pi = gammar_pi + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * tau ** Jir(i)
         gammar_pitau = gammar_pitau + nir(i) * Iir(i) * p **  ( Iir(i) - 1 )  * Jir(i) * tau **  ( Jir(i) - 1 )
         gammar_pipi = gammar_pipi + nir(i) * Iir(i) *  ( Iir(i) - 1 )  * p **  ( Iir(i) - 2 )  * tau ** Jir(i)
@@ -3483,13 +3483,13 @@ def w5_pT(p, T):
 
 def T5_ph(p, h):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    hs = Double()
+    # hs = Double()
     #Solve with half interval method
     Low_Bound = 1073.15
     High_Bound = 2273.15
@@ -3505,13 +3505,13 @@ def T5_ph(p, h):
 
 def T5_ps(p, s):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    ss = Double()
+    # ss = Double()
     #Solve with half interval method
     Low_Bound = 1073.15
     High_Bound = 2273.15
@@ -3527,13 +3527,13 @@ def T5_ps(p, s):
 
 def T5_prho(p, rho):
     _ret = None
-    Low_Bound = Variant()
+    # Low_Bound = Variant()
 
-    High_Bound = Variant()
+    # High_Bound = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    rhos = Double()
+    # rhos = Double()
     #Solve by iteration. Observe that fo low temperatures this equation has 2 solutions.
     #Solve with half interval method
     Low_Bound = 1073.15
@@ -3550,7 +3550,7 @@ def T5_prho(p, rho):
 
 def region_pT(p, T):
     _ret = None
-    ps = Double()
+    # ps = Double()
     if T > 1073.15 and p < 10 and T < 2273.15 and p > 0.000611:
         _ret = 5
     elif T <= 1073.15 and T > 273.15 and p <= 100 and p > 0.000611:
@@ -3577,15 +3577,15 @@ def region_pT(p, T):
 
 def region_ph(p, h):
     _ret = None
-    hL = Variant()
+    # hL = Variant()
 
-    hV = Variant()
+    # hV = Variant()
 
-    h_45 = Variant()
+    # h_45 = Variant()
 
-    h_5u = Variant()
+    # h_5u = Variant()
 
-    Ts = Double()
+    # Ts = Double()
     #Check if outside pressure limits
     if p < 0.000611657 or p > 100:
         _ret = 0
@@ -3653,7 +3653,7 @@ def region_ph(p, h):
 
 def region_ps(p, s):
     _ret = None
-    ss = Double()
+    # ss = Double()
     if p < 0.000611657 or p > 100 or s < 0 or s > s5_pT(p, 2273.15):
         _ret = 0
         return _ret
@@ -3695,21 +3695,21 @@ def region_ps(p, s):
 
 def Region_hs(h, s):
     _ret = None
-    TMax = Variant()
+    # TMax = Variant()
 
-    hMax = Variant()
+    # hMax = Variant()
 
-    hB = Variant()
+    # hB = Variant()
 
-    hL = Variant()
+    # hL = Variant()
 
-    hV = Variant()
+    # hV = Variant()
 
-    vmax = Variant()
+    # vmax = Variant()
 
-    Tmin = Variant()
+    # Tmin = Variant()
 
-    hMin = Double()
+    # hMin = Double()
     if s < - 0.0001545495919:
         _ret = 0
         return _ret
@@ -3836,7 +3836,7 @@ def Region_hs(h, s):
 
 def Region_prho(p, rho):
     _ret = None
-    v = Double()
+    # v = Double()
     v = 1 / rho
     if p < 0.000611657 or p > 100:
         _ret = 0
@@ -3906,15 +3906,15 @@ def B23T_p(p):
 
 def p3sat_h(h):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    ps = Double()
+    # ps = Double()
 
-    i = Integer()
+    # i = Integer()
     #Revised Supplementary Release on Backward Equations for the Functions T(p,h), v(p,h) and T(p,s), v(p,s) for Region 3 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam
     #2004
     #Section 4 Boundary Equations psat(h) and psat(s) for the Saturation Lines of Region 3
@@ -3924,47 +3924,47 @@ def p3sat_h(h):
     ni = Array(0.600073641753024, - 9.36203654849857, 24.6590798594147, - 107.014222858224, - 91582131580576.8, - 8623.32011700662, - 23.5837344740032, 2.52304969384128E+17, - 3.89718771997719E+18, - 3.33775713645296E+22, 35649946963.6328, - 1.48547544720641E+26, 3.30611514838798E+18, 8.13641294467829E+37)
     h = h / 2600
     ps = 0
-    for i in vbForRange(0, 13):
+    for i in range(0, 1 + 13):
         ps = ps + ni(i) *  ( h - 1.02 )  ** Ii(i) *  ( h - 0.608 )  ** Ji(i)
     _ret = ps * 22
     return _ret
 
 def p3sat_s(s):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    p = Double()
+    # p = Double()
 
-    i = Integer()
+    # i = Integer()
     Ii = Array(0, 1, 1, 4, 12, 12, 16, 24, 28, 32)
     Ji = Array(0, 1, 32, 7, 4, 14, 36, 10, 0, 18)
     ni = Array(0.639767553612785, - 12.9727445396014, - 2.24595125848403E+15, 1774667.41801846, 7170793495.71538, - 3.78829107169011E+17, - 9.55586736431328E+34, 1.87269814676188E+23, 119254746466.473, 1.10649277244882E+36)
     sigma = s / 5.2
     p = 0
-    for i in vbForRange(0, 9):
+    for i in range(0, 1 + 9):
         p = p + ni(i) *  ( sigma - 1.03 )  ** Ii(i) *  ( sigma - 0.699 )  ** Ji(i)
     _ret = p * 22
     return _ret
 
 def hB13_s(s):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    eta = Double()
+    # eta = Double()
 
-    i = Integer()
+    # i = Integer()
     #Supplementary Release on Backward Equations ( ) , p h s for Region 3,
     #Chapter 4.5 page 23.
     Ii = Array(0, 1, 1, 3, 5, 6)
@@ -3972,26 +3972,26 @@ def hB13_s(s):
     ni = Array(0.913965547600543, - 4.30944856041991E-05, 60.3235694765419, 1.17518273082168E-18, 0.220000904781292, - 69.0815545851641)
     sigma = s / 3.8
     eta = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         eta = eta + ni(i) *  ( sigma - 0.884 )  ** Ii(i) *  ( sigma - 0.864 )  ** Ji(i)
     _ret = eta * 1700
     return _ret
 
 def TB23_hs(h, s):
     _ret = None
-    Ii = Variant()
+    # Ii = Variant()
 
-    Ji = Variant()
+    # Ji = Variant()
 
-    ni = Variant()
+    # ni = Variant()
 
-    sigma = Variant()
+    # sigma = Variant()
 
-    eta = Variant()
+    # eta = Variant()
 
-    teta = Double()
+    # teta = Double()
 
-    i = Integer()
+    # i = Integer()
     #Supplementary Release on Backward Equations ( ) , p h s for Region 3,
     #Chapter 4.6 page 25.
     Ii = Array(- 12, - 10, - 8, - 4, - 3, - 2, - 2, - 2, - 2, 0, 1, 1, 1, 3, 3, 5, 6, 6, 8, 8, 8, 12, 12, 14, 14)
@@ -4000,42 +4000,42 @@ def TB23_hs(h, s):
     sigma = s / 5.3
     eta = h / 3000
     teta = 0
-    for i in vbForRange(0, 24):
+    for i in range(0, 1 + 24):
         teta = teta + ni(i) *  ( eta - 0.727 )  ** Ii(i) *  ( sigma - 0.864 )  ** Ji(i)
     _ret = teta * 900
     return _ret
 
 def my_AllRegions_pT(p, T):
     _ret = None
-    h0 = Variant()
+    # h0 = Variant()
 
-    h1 = Variant()
+    # h1 = Variant()
 
-    h2 = Variant()
+    # h2 = Variant()
 
-    h3 = Variant()
+    # h3 = Variant()
 
-    h4 = Variant()
+    # h4 = Variant()
 
-    h5 = Variant()
+    # h5 = Variant()
 
-    h6 = Variant()
+    # h6 = Variant()
 
-    rho = Variant()
+    # rho = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    my0 = Variant()
+    # my0 = Variant()
 
-    sum = Variant()
+    # sum = Variant()
 
-    my1 = Variant()
+    # my1 = Variant()
 
-    rhos = Double()
+    # rhos = Double()
 
-    i = Integer()
+    # i = Integer()
     h0 = Array(0.5132047, 0.3205656, 0, 0, - 0.7782567, 0.1885447)
     h1 = Array(0.2151778, 0.7317883, 1.241044, 1.476783, 0, 0)
     h2 = Array(- 0.2818107, - 1.070786, - 1.263184, 0, 0, 0)
@@ -4067,7 +4067,7 @@ def my_AllRegions_pT(p, T):
         return _ret
     my0 = Ts ** 0.5 /  ( 1 + 0.978197 / Ts + 0.579829 /  ( Ts ** 2 )  - 0.202354 /  ( Ts ** 3 ) )
     sum = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         sum = sum + h0(i) *  ( 1 / Ts - 1 )  ** i + h1(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 1 + h2(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 2 + h3(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 3 + h4(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 4 + h5(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 5 + h6(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 6
     my1 = Exp(rhos * sum)
     _ret = my0 * my1 * 0.000055071
@@ -4075,43 +4075,43 @@ def my_AllRegions_pT(p, T):
 
 def my_AllRegions_ph(p, h):
     _ret = None
-    h0 = Variant()
+    # h0 = Variant()
 
-    h1 = Variant()
+    # h1 = Variant()
 
-    h2 = Variant()
+    # h2 = Variant()
 
-    h3 = Variant()
+    # h3 = Variant()
 
-    h4 = Variant()
+    # h4 = Variant()
 
-    h5 = Variant()
+    # h5 = Variant()
 
-    h6 = Variant()
+    # h6 = Variant()
 
-    rho = Variant()
+    # rho = Variant()
 
-    T = Variant()
+    # T = Variant()
 
-    Ts = Variant()
+    # Ts = Variant()
 
-    ps = Variant()
+    # ps = Variant()
 
-    my0 = Variant()
+    # my0 = Variant()
 
-    sum = Variant()
+    # sum = Variant()
 
-    my1 = Variant()
+    # my1 = Variant()
 
-    rhos = Variant()
+    # rhos = Variant()
 
-    v4V = Variant()
+    # v4V = Variant()
 
-    v4L = Variant()
+    # v4L = Variant()
 
-    xs = Double()
+    # xs = Double()
 
-    i = Integer()
+    # i = Integer()
     h0 = Array(0.5132047, 0.3205656, 0, 0, - 0.7782567, 0.1885447)
     h1 = Array(0.2151778, 0.7317883, 1.241044, 1.476783, 0, 0)
     h2 = Array(- 0.2818107, - 1.070786, - 1.263184, 0, 0, 0)
@@ -4158,7 +4158,7 @@ def my_AllRegions_ph(p, h):
         return _ret
     my0 = Ts ** 0.5 /  ( 1 + 0.978197 / Ts + 0.579829 /  ( Ts ** 2 )  - 0.202354 /  ( Ts ** 3 ) )
     sum = 0
-    for i in vbForRange(0, 5):
+    for i in range(0, 1 + 5):
         sum = sum + h0(i) *  ( 1 / Ts - 1 )  ** i + h1(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 1 + h2(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 2 + h3(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 3 + h4(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 4 + h5(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 5 + h6(i) *  ( 1 / Ts - 1 )  ** i *  ( rhos - 1 )  ** 6
     my1 = Exp(rhos * sum)
     _ret = my0 * my1 * 0.000055071
@@ -4166,19 +4166,19 @@ def my_AllRegions_ph(p, h):
 
 def tc_ptrho(p, T, rho):
     _ret = None
-    tc0 = Variant()
+    # tc0 = Variant()
 
-    tc1 = Variant()
+    # tc1 = Variant()
 
-    dT = Variant()
+    # dT = Variant()
 
-    Q = Variant()
+    # Q = Variant()
 
-    s = Variant()
+    # s = Variant()
 
-    tc2 = Variant()
+    # tc2 = Variant()
 
-    tc = Double()
+    # tc = Double()
     #Revised release on the IAPS Formulation 1985 for the Thermal Conductivity of ordinary water
     #IAPWS September 1998
     #Page 8
@@ -4215,7 +4215,7 @@ def tc_ptrho(p, T, rho):
 
 def Surface_Tension_T(T):
     _ret = None
-    tau = Double()
+    # tau = Double()
 
     tc = 647.096
 

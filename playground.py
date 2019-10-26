@@ -1,4 +1,1 @@
-asawawu = ['AAA', 'BBB']
-
-for a in asawawu:
-    eval(a + " = 1")
+print(2**6)
