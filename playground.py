@@ -1,4 +1,3 @@
-asawawu = ['AAA', 'BBB']
+import SteamTable as st
 
-for a in asawawu:
-    eval(a + " = 1")
+print(st.x_ph(8.02, 2240))

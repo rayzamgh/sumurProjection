@@ -1,3 +1,6 @@
+from vb2py.vbfunctions import *
+from vb2py.vbdebug import *
+
 """***********************************************************************************************************
 * Water and steam properties according to IAPWS IF-97                                                     *
 * By Magnus Holmgren, www.x-eng.com                                                                       *
@@ -6,7 +9,6 @@
 * You are free to use, modify and distribute the code as long as authorship is properly acknowledged.     *
 * Please notify me at magnus@x-eng.com if the code is used in commercial applications                     *
 ***********************************************************************************************************'
-
  The code is also avalibale for matlab at www.x-eng.com
 *Contents.
 *1 Calling functions
@@ -28,31 +30,26 @@
 *1.16 Heat conductivity
 *1.17 Vapour fraction
 *1.18 Vapour Volume Fraction
-
 *2 IAPWS IF 97 Calling functions
 *2.1 Functions for region 1
 *2.2 Functions for region 2
 *2.3 Functions for region 3
 *2.4 Functions for region 4
 *2.5 Functions for region 5
-
 *3 Region Selection
 *3.1 Regions as a function of pT
 *3.2 Regions as a function of ph
 *3.3 Regions as a function of ps
 *3.4 Regions as a function of hs
 *3.5 Regions as a function of p and rho
-
 4 Region Borders
 4.1 Boundary between region 1 and 3.
 4.2 Region 3. pSat_h and pSat_s
 4.3 Region boundary 1to3 and 3to2 as a functions of s
-
 5 Transport properties
 5.1 Viscosity (IAPWS formulation 1985)
 5.2 Thermal Conductivity (IAPWS formulation 1985)
 5.3 Surface Tension
-
 6 Units
 ***********************************************************************************************************
 *1 Calling functions                                                                                      *
@@ -97,7 +94,6 @@
 ***********************************************************************************************************
 *2 IAPWS IF 97 Calling functions                                                                          *
 ***********************************************************************************************************
-
 ***********************************************************************************************************
 *2.1 Functions for region 1
 ***********************************************************************************************************
@@ -3718,7 +3714,7 @@ def Region_hs(h, s):
     if s < 9.155759395 and h < hMin:
         _ret = 0
         return _ret
-    #******Kolla 1 eller 4. (+liten bit �ver B13)
+    
     if s >= - 0.0001545495919 and s <= 3.77828134:
         if h < h4_s(s):
             _ret = 4
@@ -3746,7 +3742,7 @@ def Region_hs(h, s):
             else:
                 _ret = 0
                 return _ret
-    #******Kolla region 2 eller 4. (�vre delen av omr�de b23-> max)
+    
     if s >= 5.260578707 and s <= 11.9212156897728:
         if s > 9.155759395:
             Tmin = T2_ps(0.000611, s)
@@ -3775,7 +3771,7 @@ def Region_hs(h, s):
         else:
             _ret = 0
             return _ret
-    #Kolla region 3 eller 4. Under kritiska punkten.
+    
     if s >= 3.77828134 and s <= 4.41202148223476:
         hL = h4_s(s)
         if h < hL:
@@ -3790,13 +3786,13 @@ def Region_hs(h, s):
         else:
             _ret = 0
             return _ret
-    #Kolla region 3 eller 4 fr�n kritiska punkten till �vre delen av b23
+    
     if s >= 4.41202148223476 and s <= 5.260578707:
         hV = h4_s(s)
         if h < hV:
             _ret = 4
             return _ret
-        #Kolla om vi �r under b23 giltighetsomr�de.
+        
         if s <= 5.048096828:
             TMax = T3_ps(100, s)
             vmax = v3_ps(100, s)
@@ -3824,7 +3820,7 @@ def Region_hs(h, s):
             if  ( h < 2563.592004 ) :
                 _ret = 3
                 return _ret
-            #Vi �r inom b23 omr�det i b�de s och h led.
+            
             if p2_hs(h, s) > B23p_T(TB23_hs(h, s)):
                 _ret = 3
                 return _ret

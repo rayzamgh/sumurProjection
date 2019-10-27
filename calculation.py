@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import formulas
 
 PI_CONST = 3.14159265358979323
 RADIANS = 0.0174533
