@@ -1,1 +1,3 @@
-print(2**6)
+import SteamTable as st
+
+print(st.x_ph(8.02, 2240))
