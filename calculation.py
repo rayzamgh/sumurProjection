@@ -84,10 +84,10 @@ def noslipHoldup(vsl,vsg):
     return vsl / (vsl+vsg)
 
 def liquidVelocityNumb(vsl,rhoL,g,delta):
-    return vsl * ((rhoL / g*delta)**0,25)
+    return vsl * ((rhoL / g/delta)**0.25)
 
 def gasVelocityNumb(vsg,rhoL,g,delta):
-    return vsg * ((rhoL / g*delta)**0.25)
+    return vsg * ((rhoL / g/delta)**0.25)
 
 def diameterNum(d,rhoL,g,delta):
     return d * (((rhoL*g)/delta)**0.5)
