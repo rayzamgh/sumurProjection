@@ -4,7 +4,7 @@ import SteamTable as st
 import calculation as calc
 import numpy as np
 import collections
-
+import os
 import pandas as pd
 
 
@@ -61,11 +61,11 @@ class inputTable(object):
 class DataFrameSteam(object):
     def __init__(self, currentTableInput):
 
-        self.columnnames = ["mdlist", "segment","angle","diameter","roughness","pressure","massrate","gravity", "dryness","area","H_enthalpy","Dryness","Rhom_", "rhol","rhog","velocity","Vsl","Vsg","miu","miuL", "miug","deltaw","NoslipHoldup","LiqVelNumb", "GasVelNumb","diaNum","liqVisNum", "L1","L2","Lb","Ls","Lm","F1","F2","F3","F4","F5","F6", "F6aksen","F7","PolaAliran","Sbubble","Sslug", "S_pattern","slip_vel_for_bubble_slug", "HL","Re","Debil","fff","f1","R","f_input_bub_frifact", "f2","f3","fmBF","Nre","Nw","eD","fm","dpdz","A","B", "dens_correction","transisi","BLColumn", "EkComplement","Dpdz_total","Dptot","P2","ReBQ", "BRColumn","fff","mff","BUColumn","DeltaPGravity", "acceleration","DeltaPfriksi","DeltaPtotal","P2BZ", "rho_","velocityCB", "Ep", "Ek", "H2", "T2"]
+        self.columnnames = ["mdlist", "segment","angle","diameter","roughness","pressure","massrate","gravity","area","H_enthalpy","Dryness","Rhom_", "rhol","rhog","velocity","Vsl","Vsg","miu","miuL", "miug","deltaw","NoslipHoldup","LiqVelNumb", "GasVelNumb","diaNum","liqVisNum", "L1","L2","Lb","Ls","Lm","F1","F2","F3","F4","F5","F6", "F6aksen","F7","PolaAliran","Sbubble","Sslug", "S_pattern","slip_vel_for_bubble_slug", "HL","Re","Debil","fff","f1","R","f_input_bub_frifact", "f2","f3","fmBF","Nre","Nw","eD","fm","dpdz","A","B", "dens_correction","transisi","BLColumn", "EkComplement","Dpdz_total","Dptot","P2","ReBQ", "BRColumn","fff","mff","BUColumn","DeltaPGravity", "acceleration","DeltaPfriksi","DeltaPtotal","P2BZ", "rho_","velocityCB", "Ep", "Ek", "H2", "T2"]
 
-        self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.dryness,self.area,self.H_enthalpy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2BZ,self.rho_,self.velocityCB, self.Ep, self.Ek, self.H2, self.T2 = ([] for i in xrange(len(self.columnnames)))
+        self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.area,self.H_enthalpy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2BZ,self.rho_,self.velocityCB, self.Ep, self.Ek, self.H2, self.T2 = ([] for i in xrange(len(self.columnnames)))
 
-        self.columns = [self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.dryness,self.area,self.H_enthalpy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2BZ,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2,self.rho_,self.velocityCB, self.Ep, self.Ek, self.H2, self.T2]
+        self.columns = [self.mdlist, self.segment,self.angle,self.diameter,self.roughness,self.pressure,self.massrate,self.gravity,self.area,self.H_enthalpy,self.Dryness,self.Rhom_,self.rhol,self.rhog,self.velocity,self.Vsl,self.Vsg,self.miu,self.miuL,self.miug,self.deltaw,self.NoslipHoldup,self.LiqVelNumb,self.GasVelNumb,self.diaNum,self.liqVisNum,self.L1,self.L2,self.Lb,self.Ls,self.Lm,self.F1,self.F2,self.F3,self.F4,self.F5,self.F6,self.F6aksen,self.F7,self.PolaAliran,self.Sbubble,self.Sslug,self.S_pattern,self.slip_vel_for_bubble_slug,self.HL,self.Re,self.Debil,self.fffAV,self.f1,self.R,self.f_input_bub_frifact,self.f2,self.f3,self.fmBF,self.Nre,self.Nw,self.eD,self.fm,self.dpdz,self.A,self.B,self.dens_correction,self.transisi,self.BLColumn,self.EkComplement,self.Dpdz_total,self.Dptot,self.P2BZ,self.ReBQ,self.BRColumn,self.fff,self.mff,self.BUColumn,self.DeltaPGravity,self.acceleration,self.DeltaPfriksi,self.DeltaPtotal,self.P2,self.rho_,self.velocityCB, self.Ep, self.Ek, self.H2, self.T2]
         
         # self.mdlist                     = []
         # self.segment                    = []
@@ -200,7 +200,35 @@ class DataFrameSteam(object):
 
         self.H_enthalpy[0] = currentTableInput.enthalpy
 
-        self.Dryness[0] = st.x_ph(self.pressure[0], self.H_enthalpy[0])
+        self.Dryness[0]         = st.x_ph(self.pressure[0], self.H_enthalpy[0])
+        self.Rhom_[0]           = st.rho_ph(self.pressure[0], self.H_enthalpy[0])
+        self.rhol[0]            = st.rhoL_p(self.pressure[0])
+        self.rhog[0]            = st.rhoV_p(self.pressure[0])
+        self.velocity[0]        = calc.velocity(self.massrate[0], self.Rhom_[0], self.area[0])
+        self.Vsl[0]             = calc.vsl(self.Dryness[0], self.massrate[0], self.rhol[0], self.area[0])
+        self.Vsg[0]             = calc.vsg(self.Dryness[0], self.massrate[0], self.rhog[0], self.area[0])
+        self.miu[0]             = st.mixvisco(self.pressure[0], self.H_enthalpy[0])
+        self.miuL[0]            = st.my_pT(self.pressure[0], st.Tsat_p(self.pressure[0] - 0.001))
+        self.miug[0]            = st.my_pT(self.pressure[0], st.Tsat_p(self.pressure[0] + 0.001))
+        self.deltaw[0]          = st.st_p(self.pressure[0])
+        self.NoslipHoldup[0]    = calc.noslipHoldup(self.Vsl[0], self.Vsg[0])
+        self.LiqVelNumb[0]      = calc.liquidVelocityNumb(self.Vsl[0], self.rhol[0], self.gravity[0], self.deltaw[0])
+        self.GasVelNumb[0]      = calc.gasVelocityNumb(self.Vsg[0], self.rhol[0], self.gravity[0], self.deltaw[0])
+        self.diaNum[0]          = calc.diameterNum(self.diameter[0], self.rhol[0], self.gravity[0], self.deltaw[0])
+        self.liqVisNum[0]       = calc.liquidViscosityNum(self.miuL[0], self.gravity[0], self.rhol[0], self.deltaw[0])
+        self.L1[0]              = calc.funcAA(self.diaNum[0])               
+        # self.L2                 = 
+        # self.Lb                 = 
+        # self.Ls                 = 
+        # self.Lm                 = 
+        # self.F1                 = 
+        # self.F2                 = 
+        # self.F3                 = 
+        # self.F4                 = 
+        # self.F5                 = 
+        # self.F6                 = 
+        # self.F6aksen            =         
+        # self.F7                 = 
 
     # def dataPreparation(self):
 
@@ -301,7 +329,8 @@ class DataFrameSteam(object):
                 print x
                 print eval("len(self." + x + ")")
         df = pd.DataFrame(collections.OrderedDict(self.data))
-        
+        if (os.path.isfile("pepeg.csv")):
+            os.remove("pepeg.csv")
         df.to_csv(r'pepeg.csv')
 
         print df
