@@ -43,7 +43,6 @@ CRAH12 = 0.000567516268889
 CRAH13 = 2901.14346223
 CRAH14 = -1.69325583209
 
-
 CRAK5 = 4.5703803465
 CRAK6 = -620.727124902
 CRAK7 = 1481.17551769
@@ -67,69 +66,201 @@ CRAO12 = 0.180686525103
 CRAO13 = 0.0272344110216
 CRAO14 = 0.0199653895751
 CRAO15 = 0.714379712487
-# 0.25*PI()*D7^2
-def area(d):
+
+CRP5 = 0.17668956841
+CRP6 = 0.020194360332
+CRP7 = -0.00000278914571449
+CRP8 = -0.00000144116520574
+
+# 0,25*PI()*D3^2
+#area
+#d 		= D3
+def funcN(d):
     return 0.25*PI_CONST*d**2
 
-def velocity(m,rho,a):
+#M/(rho*A)
+#G3/(J3*N3)
+#velocity
+#m 		= G3
+#rho	= J3
+#a		= N3
+def funcO(m,rho,a):
     return m/(rho*a)
 
-def vsl(x,m,rhoL,a):
+#(1-x)*M/(rhol*A)
+#(1-I3)*G3/(K3*N3)
+#vsl
+#x		= I3
+#m		= G3
+#rhoL	= K3
+#a		= N3
+def funcP(x,m,rhoL,a):
     return (1-x)*m / (rhoL*a)
 
-def vsg(x,m,rhoG,a):
+#x*M/(rhog*A)
+#I3*G3/(L3*N3)
+#vsg
+#x		= I3
+#m		= G3
+#rhoG	= L3
+#a		= N3
+def funcQ(x,m,rhoG,a):
     return x*m / (rhoG*a)
 
-def noslipHoldup(vsl,vsg):
+#vsl/(vsl+vsg)
+#P3/(P3+Q3)
+#noslipHoldup
+#vsl	= P3
+#vsg	= Q3
+def funcV(vsl,vsg):
     return vsl / (vsl+vsg)
 
-def liquidVelocityNumb(vsl,rhoL,g,delta):
-    return vsl * ((rhoL / g/delta)**0.25)
+#vsl * ((rhoL / g/delta)**0.25)
+#P3*(K3/M3/U3)^0,25
+#liquidVelocityNumb
+#vsl	= P3
+#rhoL	= K3
+#g		= M3
+#delta	= U3
+def funcW(vsl,rhoL,g,delta):
+    return vsl * ((rhoL / g / delta)**0.25)
 
-def gasVelocityNumb(vsg,rhoL,g,delta):
+#vsg * ((rhoL / g/delta)**0.25)
+#Q3*(K3/U3/M3)^0,25
+#gasVelocityNumb
+#vsg	= Q3
+#rhoL	= K3
+#g		= U3
+#delta	= M3
+def funcX(vsg,rhoL,g,delta):
     return vsg * ((rhoL / g/delta)**0.25)
 
-def diameterNum(d,rhoL,g,delta):
+#d * (((rhoL*g)/delta)**0.5)
+#D3*(K3*M3/U3)^0,5
+#diameterNum
+#d		= D3
+#rhoL	= K3
+#g		= M3
+#delta	= U3
+def funcY(d,rhoL,g,delta):
     return d * (((rhoL*g)/delta)**0.5)
-    
-def liquidViscosityNum(miul,g,rhoL,delta):
+
+#miul * ((g/(rhoL*delta**3))**0.25)
+#S3*(M3/K3/U3^3)^0,25
+#liquidviscositynum
+#miul	= S3
+#g		= M3
+#rhoL	= K3
+#delta	= U3
+def funcZ(miul,g,rhoL,delta):
     return miul * ((g/(rhoL*delta**3))**0.25)
 
-def lb(l1,l2,nlv):
+#l1 + l2*nlv
+#AA3+AB3*W3
+#lb
+#l1		= AA3
+#l2		= AB3
+#nlv	= W3
+def funcAC(l1,l2,nlv):
     return l1 + l2*nlv
 
-def ls(nlv):
+#50 + 36*nlv
+#50+36*W3
+#ls
+#nlv	= W3
+def funcAD(nlv):
     return 50 + 36*nlv
 
-def lm(nlv):
-    return 75 + ((84*nlv)*0.75)
+#75 + (84*nlv**0.75)
+#75+84*W3^0,75
+#lm
+#nlv	= W3
+def funcAE(nlv):
+    return 75 + (84*(nlv**0.75))
 
-def f6accent(nd,f6):
+#0.029*nd + f6
+#0,029*Y3+AK3
+#f6'  (F6 accent)
+#nd		= Y3
+#f6		= AK3
+def funcAL(nd,f6):
     return 0.029*nd + f6
 
-def sBubble(f1,f2,nlv,f3,ngv):
-    return f1 + f2*nlv + f3 ((ngv/(1+nlv))**2)
+#f1 + f2*nlv + f3 ((ngv/(1+nlv))**2)
+#AF3+AG3*W3+AH3*(X3/(1+W3))^2
+#Sbubble
+#f1		= AF3
+#f2		= AG3
+#nlv	= W3
+#f3		= AH3
+#ngv	= X3
+def funcAO(f1,f2,nlv,f3,ngv):
+    return f1 + f2*nlv + f3 * ((ngv/(1+nlv))**2)
 
-def sSlug(f5,ngv,f6accent,f7,nlv):
+#(1+f5) * (ngv**0.982 + f6accent) / ((1 + f7*nlv)**2)
+#(1+AJ3)*(X3^0,982+AL3)/(1+AM3*W3)^2
+#sSlug
+#f5			= AJ3
+#ngv		= X3
+#f6accent	= AL3
+#f7			= AM3
+#nlv		= W3
+def funcAP(f5,ngv,f6accent,f7,nlv):
     return (1+f5) * (ngv**0.982 + f6accent) / ((1 + f7*nlv)**2)
 
-def slipVelForBubbleOrSlug(s,rhoL,deltaL,g):
+#s / ((rhoL / (deltaL*g))**0.25)
+#AQ3/(K3/(M3*U3))^0,25
+#slipVelForBubbleOrSlug
+#s		= AQ3
+#rhoL	= K3
+#deltaL	= M3
+#g		= U3
+def funcAR(s,rhoL,deltaL,g):
     return s / ((rhoL / (deltaL*g))**0.25)
 
-def re(rhoL,vsl,d,miul):
-    return (rhoL * vsl * d) / miul
+#(rhoL * vsl * d) / miul
+#K3*P3*D3/S3
+#re
+#rhoL	= K3
+#vsl	= P3
+#d		= D3
+#miuL	= S3
+def funcAT(rhoL,vsl,d,miuL):
+    return (rhoL * vsl * d) / miuL
 
-def r(vsg,vsl):
+#vsg/vsl
+#Q3/P3
+#r
+#vsg	= Q3
+#vsl	= P3
+def funcAX(vsg,vsl):
     return vsg/vsl
 
-def AU3(roughness,diameter,re):
-    # return ((roughness/diameter)**1.1098)2.8257 + ((7.419/re)**0.8981)
-    return ((roughness/diameter)**1.1098)*2.8257 + ((7.419/re)**0.8981)
+#((roughness/diameter)**1.1098)/2.8257 + ((7.419/re)**0.8981)
+#((E3/D3)^1,1098)/2,8257+(7,149/AT3)^0,8981
+#lambda /\
+#roughness	= E3
+#diameter	= D3
+#re			= AT3
+def funcAU(roughness,diameter,re):
+    # return ((roughness/diameter)**1.1098)/2.8257 + ((7.419/re)**0.8981)
+    return ((roughness/diameter)**1.1098)/2.8257 + ((7.419/re)**0.8981)
 
-def fanningFF(roughness,diameter,re,au3):
-    return 1/((4*np.log10(roughness/diameter/3.7065 - 5.0452/re*np.log10(au3)))**2)
+#1/((4*np.log10(roughness/diameter/3.7065 - 5.0452/re*np.log10(au)))**2)
+#1/(4*LOG10(E3/D3/3,7065-5,0452/AT3*LOG10(AU3)))^2
+#fanningFF
+#roughness	= E3
+#diameter	= D3
+#re			= AT3
+#au			= AU3
+def funcAV(roughness,diameter,re,au):
+    return 1/((4*np.log10(roughness/diameter/3.7065 - 5.0452/re*np.log10(au)))**2)
 
-def moddyFrictionFactor(fff):
+#4*fff
+#4*AV3
+#moddyFrictionFactor
+#fff	= AV3
+def funcAW(fff):
     return 4*fff
 
 # x = H3
@@ -521,3 +652,12 @@ def funcAA(x):
 			return CRK5 + CRK6 * x + CRK7 * (x**2)  + CRK8 * (x**3)
 		else :
 			return 1
+
+#=IF(Y3<70;
+# 'Chart Regresion'!$P$5+'Chart Regresion'!$P$6*Y3+'Chart Regresion'!$P$7*(Y3^2)+'Chart Regresion'!$P$8*(Y3^3);1,1)
+# x = Y3
+def funcAB(x):
+	if (x < 70):
+		return CRP5 + CRP6 * x + CRP7 * (x ** 2) + CRP8 * (x ** 3)
+	else:
+		return 1
