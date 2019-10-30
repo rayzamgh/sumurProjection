@@ -140,7 +140,7 @@ from vb2py.vbdebug import *
 """
 
 def CVErr(x):
-    return None
+    return -9999999999
 
 def Tsat_p(p):
     _ret = None

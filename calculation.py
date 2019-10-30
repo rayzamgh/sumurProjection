@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import math
 
 PI_CONST = 3.14159265358979323
 RADIANS = 0.0174533
@@ -347,7 +348,7 @@ def funcBT(x):
 #  z = BQ3
 #  a = BR3
 def funcBS(x, y, z, a):
-	return 1/(4*np.log10(x/y/3.7065 - 5.0452/z*np.log10(a)))
+	return 1/math.pow((4*np.log10(x/y/3.7065 - 5.0452/z*np.log10(a))),2)
 
 #  ((E3/D3)^1.1098)/2.8257+(7.149/BQ3)^0.8981
 #  x = E3

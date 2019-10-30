@@ -113,7 +113,6 @@ class DataFrameSteam(object):
             self.pressure[0] = currentTableInput.whp
 
         self.H_enthalpy[0] = currentTableInput.enthalpy
-
         self.Dryness[0]         = st.x_ph(self.pressure[0], self.H_enthalpy[0])
         self.Rhom_[0]           = st.rho_ph(self.pressure[0], self.H_enthalpy[0])
         self.rhol[0]            = st.rhoL_p(self.pressure[0])
@@ -140,30 +139,122 @@ class DataFrameSteam(object):
         self.F3[0]              = calc.funcAH(self.liqVisNum[0])
         self.F4[0]              = calc.funcAI(self.liqVisNum[0])
         self.F5[0]              = calc.funcAJ(self.liqVisNum[0])
-        
-        # self.ReHomogen[0]                = calc.funcBQ(self.Rhom_[0], self.velocity[0], self.diameter[0], self.miu[0])
-        # self.BRColumnHomogen[0]          = calc.funcBR(self.diameter[0], self.roughness[0], self.ReHomogen[0])
-        # self.fffHomogen[0]               = calc.funcBS(self.roughness[0], self.diameter[0], self.ReHomogen[0], self.BRColumnHomogen[0])
-        # self.mffHomogen[0]               = calc.funcBT(self.fffHomogen[0])
-        # self.Tanradian[0]                = calc.funcBU(self.angle[0])
-        # self.DeltaPGravityHomogen[0]     = calc.funcBV(self.Rhom_[0], self.gravity[0], self.segment[1], self.segment[0], self.angle[0])
-        # self.accelerationHomogen         = calc.funcBW(self.Rhom_[0], self.velocity[0], self.pressure[0])
-        # self.DeltaPfriksiHomogen         = calc.funcBX(self.mffHomogen[0], self.segment[1], self.segment[0], self.Rhom_[0], self.velocity[0], self.diameter[0])
-        # self.DeltaPtotalHomogen          = calc.func
-        # self.P2Homogen                   = calc.func
-        # self.rho_Homogen                 = calc.func
-        # self.velocityHomogen             = calc.func
-        # self.EpHomogen                   = calc.func
-        # self.EkHomogen                   = calc.func
-        # self.H2Homogen                   = calc.func
-        # self.Tanradian                   = calc.func
-        # self.T2Homogen                   = calc.func
+        # self.F6[0]
+        # self.F6aksen[0]
+        self.F7[0]              = calc.funcAM(self.liqVisNum[0])
+        self.PolaAliran[0]      = calc.funcAN(self.GasVelNumb[0], self.Lb[0], self.Ls[0], self.Lm[0])
+        self.Sbubble[0]         = calc.funcAO(self.F1[0], self.F2[0], self.LiqVelNumb[0], self.F3[0], self.GasVelNumb[0])
+        self.Sslug                     = calc.funcAP(self.F5[0], self.GasVelNumb[0], self.F6aksen, self.F7[0], self.LiqVelNumb[0])     
+        self.S_pattern                 = calc.funcAQ()         
+        self.slip_vel_for_bubble_slug  =                          
+        self.HL                        =  
+        self.Re                        =  
+        self.AUColumn                  =          
+        self.fff                       =      
+        self.f1                        =  
+        self.R                         =  
+        self.f_input_bub_frifact       =                      
+        self.f2                        =  
+        self.f3                        =  
+        self.fm                        =  
+        self.Nre                       =      
+        self.Nw                        =  
+        self.eD                        =  
 
-        # self.F6[0]              = calc.funcAK(self.liqVisNum[0], )
-        # self.F6aksen[0]         = calc.funcAL(self.diaNum[0], self.F6[0])
-        # self.F7[0]              = calc.funcAM(self.liqVisNum[0])
 
-    # def dataPreparation(self):
+        # homogen
+        self.ReHomogen[0]                      = calc.funcBQ(self.Rhom_[0], self.velocity[0], self.diameter[0], self.miu[0])
+        self.BRColumnHomogen[0]                = calc.funcBR(self.roughness[0], self.diameter[0], self.ReHomogen[0])
+        self.fffHomogen[0]                     = calc.funcBS(self.roughness[0], self.diameter[0], self.ReHomogen[0], self.BRColumnHomogen[0])
+        self.mffHomogen[0]                     = calc.funcBT(self.fffHomogen[0])
+        self.Tanradian[0]                      = calc.funcBU(self.angle[0])
+        self.DeltaPGravityHomogen[0]           = calc.funcBV(self.Rhom_[0], self.gravity[0], self.segment[1], self.segment[0], self.angle[0])
+        self.accelerationHomogen[0]            = calc.funcBW(self.Rhom_[0], self.velocity[0], self.pressure[0])
+        self.DeltaPfriksiHomogen[0]            = calc.funcBX(self.mffHomogen[0], self.segment[1], self.segment[0], self.Rhom_[0], self.velocity[0], self.diameter[0])
+        self.DeltaPtotalHomogen[0]             = calc.funcBY(self.DeltaPGravityHomogen[0], self.DeltaPfriksiHomogen[0], self.accelerationHomogen[0])
+        self.P2Homogen[0]                      = calc.funcBZ(self.DeltaPtotalHomogen[0], self.pressure[0])
+        self.rho_Homogen[0]                    = st.rho_ph(self.P2Homogen[0], self.H_enthalpy[0])
+        self.velocityHomogen[0]                = calc.funcCB(self.massrate[0], self.rho_Homogen[0] ,self.area[0])
+        self.EpHomogen[0]                      = calc.funcCC(self.gravity[0], self.segment[1], self.segment[0])
+        self.EkHomogen[0]                      = calc.funcCD(self.velocity[0], self.velocityHomogen[0])
+        self.H2Homogen[0]                      = calc.funcCE(self.H_enthalpy[0], self.EkHomogen[0], self.EpHomogen[0])
+        self.T2Homogen[0]                      = st.T_ph(self.pressure[0], self.H_enthalpy[0])
+
+        # non-homogen
+        self.Re[0]                             = calc.funcAT(self.rhol[0], self.Vsl[0], self.diameter[0], self.miuL[0]) 
+        self.AUColumn[0]                       = calc.funcAU(self.roughness[0], self.diameter[0], self.Re[0])         
+        self.fff[0]                            = calc.funcAV(self.roughness[0], self.diameter[0], self.Re[0], self.AUColumn[0])
+        self.f1[0]                             = calc.funcAW(self.fff[0])
+        self.R[0]                              = calc.funcAX(self.Vsg[0], self.Vsl[0])
+        self.f_input_bub_frifact[0]            = calc.funcAY(self.f1[0], self.R[0], self.diaNum[0], self.Vsl[0])
+        self.f2[0]                             = calc.funcAZ(self.f_input_bub_frifact[0])
+        self.f3[0]                             = calc.funcBA(self.f1[0], self.R[0])
+        self.fm[0]                             = calc.funcBB(self.f1[0], self.f2[0], self.f3[0])
+        self.Nre[0]                            = calc.funcBC(self.rhog[0], self.Vsg[0], self.diameter[0], self.miug[0])
+        self.Nw[0]                             = calc.funcBD(self.Vsg[0], self.miuL[0], self.rhog[0], self.rhol[0], self.deltaw[0])
+        self.eD[0]                             = calc.funcBE()
+        self.fmBF[0]                           =      
+        self.dpdz[0]                           =      
+        self.A[0]                              =  
+        self.B[0]                              =  
+        self.dens_correction[0]                =              
+        self.transisi[0]                       =          
+        self.BLColumn[0]                       =          
+        self.EkComplement[0]                   =              
+        self.Dpdz_total[0]                     =          
+        self.Dptot[0]                          =      
+        self.P2[0]                             =  
+
+        # for i in expression_list:
+        #     self.pressure[i]        = 
+        #     self.H_enthalpy[i]      = currentTableInput.enthalpy
+        #     self.Dryness[i]         = st.x_ph(self.pressure[i], self.H_enthalpy[i])
+        #     self.Rhom_[i]           = st.rho_ph(self.pressure[i], self.H_enthalpy[i])
+        #     self.rhol[i]            = st.rhoL_p(self.pressure[i])
+        #     self.rhog[i]            = st.rhoV_p(self.pressure[i])
+        #     self.velocity[i]        = calc.funcO(self.massrate[i], self.Rhom_[i], self.area[i])
+        #     self.Vsl[i]             = calc.funcP(self.Dryness[i], self.massrate[i], self.rhol[i], self.area[i])
+        #     self.Vsg[i]             = calc.funcQ(self.Dryness[i], self.massrate[i], self.rhog[i], self.area[i])
+        #     self.miu[i]             = st.mixvisco(self.pressure[i], self.H_enthalpy[i])
+        #     self.miuL[i]            = st.my_pT(self.pressure[i], st.Tsat_p(self.pressure[i] - 0.001))
+        #     self.miug[i]            = st.my_pT(self.pressure[i], st.Tsat_p(self.pressure[i] + 0.001))
+        #     self.deltaw[i]          = st.st_p(self.pressure[i])
+        #     self.NoslipHoldup[i]    = calc.funcV(self.Vsl[i], self.Vsg[i])
+        #     self.LiqVelNumb[i]      = calc.funcW(self.Vsl[i], self.rhol[i], self.gravity[i], self.deltaw[i])
+        #     self.GasVelNumb[i]      = calc.funcX(self.Vsg[i], self.rhol[i], self.gravity[i], self.deltaw[i])
+        #     self.diaNum[i]          = calc.funcY(self.diameter[i], self.rhol[i], self.gravity[i], self.deltaw[i])
+        #     self.liqVisNum[i]       = calc.funcZ(self.miuL[i], self.gravity[i], self.rhol[i], self.deltaw[i])
+        #     self.L1[i]              = calc.funcAA(self.diaNum[i])               
+        #     self.L2[i]              = calc.funcAB(self.diaNum[i])
+        #     self.Lb[i]              = calc.funcAC(self.L1[i], self.L2[i], self.LiqVelNumb[i])
+        #     self.Ls[i]              = calc.funcAD(self.LiqVelNumb[i])
+        #     self.Lm[i]              = calc.funcAE(self.LiqVelNumb[i])
+        #     self.F1[i]              = calc.funcAF(self.liqVisNum[i])
+        #     self.F2[i]              = calc.funcAG(self.liqVisNum[i])
+        #     self.F3[i]              = calc.funcAH(self.liqVisNum[i])
+        #     self.F4[i]              = calc.funcAI(self.liqVisNum[i])
+        #     self.F5[i]              = calc.funcAJ(self.liqVisNum[i])
+
+        # for i in range(len(self.mdlist)):
+        #     self.Rhom_[i]                          = st.rho_ph(self.pressure[i], self.H_enthalpy[i])
+        #     self.velocity[i]                       = calc.funcO(self.massrate[i], self.Rhom_[i], self.area[i])
+        #     self.miu[i]                            = st.mixvisco(self.pressure[i], self.H_enthalpy[i])
+        #     self.ReHomogen[i]                      = calc.funcBQ(self.Rhom_[i], self.velocity[i], self.diameter[i], self.miu[i])
+        #     self.BRColumnHomogen[i]                = calc.funcBR(self.diameter[i], self.roughness[i], self.ReHomogen[i])
+        #     self.fffHomogen[i]                     = calc.funcBS(self.roughness[i], self.diameter[i], self.ReHomogen[i], self.BRColumnHomogen[i])
+        #     self.mffHomogen[i]                     = calc.funcBT(self.fffHomogen[i])
+        #     self.Tanradian[i]                      = calc.funcBU(self.angle[i])
+        #     self.DeltaPGravityHomogen[i]           = calc.funcBV(self.Rhom_[i], self.gravity[i], 0 if ((i + 1) == len(self.mdlist)) else self.segment[i + 1], self.segment[i], self.angle[i])
+        #     self.accelerationHomogen[i]            = calc.funcBW(self.Rhom_[i], self.velocity[i], self.pressure[i])
+        #     self.DeltaPfriksiHomogen[i]            = calc.funcBX(self.mffHomogen[i], 0 if ((i + 1) == len(self.mdlist)) else self.segment[i + 1], self.segment[i], self.Rhom_[i], self.velocity[i], self.diameter[i])
+        #     self.DeltaPtotalHomogen[i]             = calc.funcBY(self.DeltaPGravityHomogen[i], self.DeltaPfriksiHomogen[i], self.accelerationHomogen[i])
+        #     self.P2Homogen[i]                      = calc.funcBZ(self.DeltaPtotalHomogen[i], self.pressure[i])
+        #     self.rho_Homogen[i]                    = st.rho_ph(self.P2Homogen[i], self.H_enthalpy[i])
+        #     self.velocityHomogen[i]                = calc.funcCB(self.massrate[i], self.rho_Homogen[i] ,self.area[i])
+        #     self.EpHomogen[i]                      = calc.funcCC(self.gravity[i], 0 if ((i + 1) == len(self.mdlist)) else self.segment[i + 1], self.segment[i])
+        #     self.EkHomogen[i]                      = calc.funcCD(self.velocity[i], self.velocityHomogen[i])
+        #     self.H2Homogen[i]                      = calc.funcCE(self.H_enthalpy[i], self.EkHomogen[i], self.EpHomogen[i])
+        #     self.T2Homogen[i]                      = st.T_ph(self.pressure[i], self.H_enthalpy[i])
 
 
         
@@ -219,7 +310,7 @@ class DataFrameSteam(object):
         ("fff"                       , self.fff),
         ("f1"                        , self.f1),
         ("R"                         , self.R),
-        ("f_input_bub_frifact"       , self.f_input_bub_frifact, ),
+        ("f_input_bub_frifact"       , self.f_input_bub_frifact),
         ("f2"                        , self.f2),
         ("f3"                        , self.f3),
         ("fm"                        , self.fm),
@@ -255,7 +346,7 @@ class DataFrameSteam(object):
         ("Tanradian"                 , self.Tanradian),
         ("T2_Homogen"                , self.T2Homogen),
         ])
-        print self.data.keys()
+        # print self.data.keys()
         print "==============================="
         print "Harusnya:" +  unicode(self.lenofdata)
         for x in self.columnnames:
