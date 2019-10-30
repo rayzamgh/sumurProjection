@@ -139,27 +139,9 @@ class DataFrameSteam(object):
         self.F3[0]              = calc.funcAH(self.liqVisNum[0])
         self.F4[0]              = calc.funcAI(self.liqVisNum[0])
         self.F5[0]              = calc.funcAJ(self.liqVisNum[0])
-        # self.F6[0]
-        # self.F6aksen[0]
-        self.F7[0]              = calc.funcAM(self.liqVisNum[0])
-        self.PolaAliran[0]      = calc.funcAN(self.GasVelNumb[0], self.Lb[0], self.Ls[0], self.Lm[0])
-        self.Sbubble[0]         = calc.funcAO(self.F1[0], self.F2[0], self.LiqVelNumb[0], self.F3[0], self.GasVelNumb[0])
-        self.Sslug                     = calc.funcAP(self.F5[0], self.GasVelNumb[0], self.F6aksen, self.F7[0], self.LiqVelNumb[0])     
-        self.S_pattern                 = calc.funcAQ()         
-        self.slip_vel_for_bubble_slug  =                          
-        self.HL                        =  
-        self.Re                        =  
-        self.AUColumn                  =          
-        self.fff                       =      
-        self.f1                        =  
-        self.R                         =  
-        self.f_input_bub_frifact       =                      
-        self.f2                        =  
-        self.f3                        =  
-        self.fm                        =  
-        self.Nre                       =      
-        self.Nw                        =  
-        self.eD                        =  
+
+
+
 
 
         # homogen
@@ -180,6 +162,18 @@ class DataFrameSteam(object):
         self.H2Homogen[0]                      = calc.funcCE(self.H_enthalpy[0], self.EkHomogen[0], self.EpHomogen[0])
         self.T2Homogen[0]                      = st.T_ph(self.pressure[0], self.H_enthalpy[0])
 
+
+        # self.F6[0]                        = calc.funcAK(self.liqVisNum[0], self.fffHomogen[0])
+        self.F6[0]                        = calc.funcAK(self.liqVisNum[0], 0.00357)
+        self.F6aksen[0]                   = calc.funcAL(self.diaNum[0], self.F6[0])
+        self.F7[0]                        = calc.funcAM(self.liqVisNum[0])
+        self.PolaAliran[0]                = calc.funcAN(self.GasVelNumb[0], self.Lb[0], self.Ls[0], self.Lm[0])
+        self.Sbubble[0]                   = calc.funcAO(self.F1[0], self.F2[0], self.LiqVelNumb[0], self.F3[0], self.GasVelNumb[0])
+        self.Sslug[0]                     = calc.funcAP(self.F5[0], self.GasVelNumb[0], self.F6aksen[0], self.F7[0], self.LiqVelNumb[0])     
+        self.S_pattern[0]                 = calc.funcAQ(self.PolaAliran[0], self.Sbubble[0], self.Sslug[0])         
+        self.slip_vel_for_bubble_slug[0]  = calc.funcAR(self.S_pattern[0], self.rhol[0], self.deltaw[0], self.gravity[0])                         
+        self.HL[0]                        = calc.funcAS(self.PolaAliran[0], self.Vsl[0], self.velocity[0], self.slip_vel_for_bubble_slug[0])
+
         # non-homogen
         self.Re[0]                             = calc.funcAT(self.rhol[0], self.Vsl[0], self.diameter[0], self.miuL[0]) 
         self.AUColumn[0]                       = calc.funcAU(self.roughness[0], self.diameter[0], self.Re[0])         
@@ -192,18 +186,18 @@ class DataFrameSteam(object):
         self.fm[0]                             = calc.funcBB(self.f1[0], self.f2[0], self.f3[0])
         self.Nre[0]                            = calc.funcBC(self.rhog[0], self.Vsg[0], self.diameter[0], self.miug[0])
         self.Nw[0]                             = calc.funcBD(self.Vsg[0], self.miuL[0], self.rhog[0], self.rhol[0], self.deltaw[0])
-        self.eD[0]                             = calc.funcBE()
-        self.fmBF[0]                           =      
-        self.dpdz[0]                           =      
-        self.A[0]                              =  
-        self.B[0]                              =  
-        self.dens_correction[0]                =              
-        self.transisi[0]                       =          
-        self.BLColumn[0]                       =          
-        self.EkComplement[0]                   =              
-        self.Dpdz_total[0]                     =          
-        self.Dptot[0]                          =      
-        self.P2[0]                             =  
+        self.eD[0]                             = calc.funcBE(self.Nw[0], self.deltaw[0], self.rhog[0], self.Vsg[0], self.diameter[0])
+        self.fmBF[0]                           = calc.funcBF(self.eD[0], self.f1[0])    
+        self.dpdz[0]                           = calc.funcBG(self.PolaAliran[0], self.fmBF[0], self.rhog[0], self.Vsg[0], self.diameter[0], self.fm[0], self.rhol[0], self.Vsl[0], self.velocity[0])     
+        self.A[0]                              = calc.funcBH(self.Lm[0], self.GasVelNumb[0], self.Ls[0])
+        self.B[0]                              = calc.funcBI(self.GasVelNumb[0], self.Ls[0], self.Lm[0])
+        self.dens_correction[0]                = calc.funcBJ(self.rhog[0], self.GasVelNumb[0], self.Lm[0])             
+        self.transisi[0]                       = calc.funcBK(self.PolaAliran[0], self.A[0], self.dpdz[0], self.B[0], self.fm[0], self.rhog[0], self.gravity[0], self.Vsg[0], self.diameter[0], self.dpdz[0])
+        self.BLColumn[0]                       = calc.funcBL(self.gravity[0], self.HL[0], self.rhol[0], self.rhog[0])         
+        self.EkComplement[0]                   = calc.funcBM(self.rhog[0], self.velocity[0], self.Vsg[0], self.pressure[0])
+        self.Dpdz_total[0]                     = calc.funcBN(self.transisi[0], self.BLColumn[0], self.EkComplement[0])
+        self.Dptot[0]                          = calc.funcBO(self.Dpdz_total[0], self.segment[1], self.segment[0], self.angle[0])
+        self.P2[0]                             = calc.funcBP(self.Dptot[0], self.pressure[0])
 
         # for i in expression_list:
         #     self.pressure[i]        = 
