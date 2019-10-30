@@ -130,7 +130,11 @@ def funcV(vsl,vsg):
 # g		= M3
 # delta	= U3
 def funcW(vsl,rhoL,g,delta):
-    return vsl * ((rhoL / g / delta)**0.25)
+	# print(vsl)
+	# print(rhoL)
+	# print(g)
+	# print(delta)
+	return (vsl * ((rhoL / g / delta)**0.25))
 
 # vsg * ((rhoL / g/delta)**0.25)
 # Q3*(K3/U3/M3)^0,25

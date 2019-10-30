@@ -76,21 +76,37 @@ class DataFrameSteam(object):
         for x in self.columns:
             for _ in xrange(0,self.lenofdata):
                 x.append(0)
-        
-        i = 0
-        for x in xrange(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
-            self.mdlist[i] = x
-            i += 1
-        self.mdlist[i] = (int(np.floor((currentTableInput.subTable[-1].md))))
 
-        i = 0
-        for x in self.mdlist:
-            self.segment[i] = (x * -1)
+        # normal / top down
+        if currentTableInput.whp != 0:
+            i = 0
+            j = 0
+            for x in xrange(0, int(np.floor(currentTableInput.subTable[-1].md)), 3):
+                self.mdlist[j] = x
+                j += 1
+            self.mdlist[j] = (int(np.floor((currentTableInput.subTable[-1].md))))
+            for x in self.mdlist:
+                self.segment[i] = (x * -1)
 
-            self.massrate[i] = currentTableInput.massrate
-            
-            self.gravity[i] = (9.81)
-            i += 1
+                self.massrate[i] = currentTableInput.massrate
+                
+                self.gravity[i] = (9.81)
+                i += 1
+        else:
+            i = 0
+            j = 0
+            for x in xrange(int(np.floor(currentTableInput.subTable[-1].md)), 0, -3):
+                self.mdlist[j] = x
+                j += 1
+            self.mdlist[j] = (0)
+            for x in self.mdlist:
+                self.segment[i] = (currentTableInput.subTable[-1].md - x)
+
+                self.massrate[i] = currentTableInput.massrate
+                
+                self.gravity[i] = (9.81)
+                i += 1
+
 
         i = 0
         for x in self.mdlist:
@@ -146,21 +162,21 @@ class DataFrameSteam(object):
         self.fffHomogen[0]                     = calc.funcBS(self.roughness[0], self.diameter[0], self.ReHomogen[0], self.BRColumnHomogen[0])
         self.mffHomogen[0]                     = calc.funcBT(self.fffHomogen[0])
         self.Tanradian[0]                      = calc.funcBU(self.angle[0])
-        self.DeltaPGravityHomogen[0]           = calc.funcBV(self.Rhom_[0], self.gravity[0], self.segment[1], self.segment[0], self.angle[0])
+        self.DeltaPGravityHomogen[0]           = calc.funcBV(self.Rhom_[0], self.gravity[0], self.segment[1] , self.segment[0], self.angle[0])
         self.accelerationHomogen[0]            = calc.funcBW(self.Rhom_[0], self.velocity[0], self.pressure[0])
-        self.DeltaPfriksiHomogen[0]            = calc.funcBX(self.mffHomogen[0], self.segment[1], self.segment[0], self.Rhom_[0], self.velocity[0], self.diameter[0])
+        self.DeltaPfriksiHomogen[0]            = calc.funcBX(self.mffHomogen[0], self.segment[1] , self.segment[0], self.Rhom_[0], self.velocity[0], self.diameter[0])
         self.DeltaPtotalHomogen[0]             = calc.funcBY(self.DeltaPGravityHomogen[0], self.DeltaPfriksiHomogen[0], self.accelerationHomogen[0])
         self.P2Homogen[0]                      = calc.funcBZ(self.DeltaPtotalHomogen[0], self.pressure[0])
         self.rho_Homogen[0]                    = st.rho_ph(self.P2Homogen[0], self.H_enthalpy[0])
         self.velocityHomogen[0]                = calc.funcCB(self.massrate[0], self.rho_Homogen[0] ,self.area[0])
-        self.EpHomogen[0]                      = calc.funcCC(self.gravity[0], self.segment[1], self.segment[0])
+        self.EpHomogen[0]                      = calc.funcCC(self.gravity[0], self.segment[1] , self.segment[0])
         self.EkHomogen[0]                      = calc.funcCD(self.velocity[0], self.velocityHomogen[0])
         self.H2Homogen[0]                      = calc.funcCE(self.H_enthalpy[0], self.EkHomogen[0], self.EpHomogen[0])
         self.T2Homogen[0]                      = st.T_ph(self.pressure[0], self.H_enthalpy[0])
 
 
         # second part after fffHomogen has been determined
-        self.F6[0]                        = calc.funcAK(self.liqVisNum[0], self.fffHomogen[5])
+        self.F6[0]                        = calc.funcAK(self.liqVisNum[0], self.fffHomogen[0])
         self.F6aksen[0]                   = calc.funcAL(self.diaNum[0], self.F6[0])
         self.F7[0]                        = calc.funcAM(self.liqVisNum[0])
         self.PolaAliran[0]                = calc.funcAN(self.GasVelNumb[0], self.Lb[0], self.Ls[0], self.Lm[0])
@@ -192,7 +208,7 @@ class DataFrameSteam(object):
         self.BLColumn[0]                       = calc.funcBL(self.gravity[0], self.HL[0], self.rhol[0], self.rhog[0])         
         self.EkComplement[0]                   = calc.funcBM(self.rhog[0], self.velocity[0], self.Vsg[0], self.pressure[0])
         self.Dpdz_total[0]                     = calc.funcBN(self.transisi[0], self.BLColumn[0], self.EkComplement[0])
-        self.Dptot[0]                          = calc.funcBO(self.Dpdz_total[0], self.segment[1], self.segment[0], self.angle[0])
+        self.Dptot[0]                          = calc.funcBO(self.Dpdz_total[0], self.segment[1] , self.segment[0], self.angle[0])
         self.P2[0]                             = calc.funcBP(self.Dptot[0], self.pressure[0])
 
     def secondIteration(self):
@@ -225,6 +241,59 @@ class DataFrameSteam(object):
             self.F3[i]              = calc.funcAH(self.liqVisNum[i])
             self.F4[i]              = calc.funcAI(self.liqVisNum[i])
             self.F5[i]              = calc.funcAJ(self.liqVisNum[i])
+
+            self.ReHomogen[i]                      = calc.funcBQ(self.Rhom_[i], self.velocity[i], self.diameter[i], self.miu[i])
+            self.BRColumnHomogen[i]                = calc.funcBR(self.roughness[i], self.diameter[i], self.ReHomogen[i])
+            self.fffHomogen[i]                     = calc.funcBS(self.roughness[i], self.diameter[i], self.ReHomogen[i], self.BRColumnHomogen[i])
+            self.mffHomogen[i]                     = calc.funcBT(self.fffHomogen[i])
+            self.Tanradian[i]                      = calc.funcBU(self.angle[i])
+            self.DeltaPGravityHomogen[i]           = calc.funcBV(self.Rhom_[i], self.gravity[i], self.segment[((i + 1) if (i != (len(self.mdlist) - 1)) else 0)], self.segment[i], self.angle[i])
+            self.accelerationHomogen[i]            = calc.funcBW(self.Rhom_[i], self.velocity[i], self.pressure[i])
+            self.DeltaPfriksiHomogen[i]            = calc.funcBX(self.mffHomogen[i], self.segment[((i + 1) if (i != (len(self.mdlist) - 1)) else 0)], self.segment[i], self.Rhom_[i], self.velocity[i], self.diameter[i])
+            self.DeltaPtotalHomogen[i]             = calc.funcBY(self.DeltaPGravityHomogen[i], self.DeltaPfriksiHomogen[i], self.accelerationHomogen[i])
+            self.P2Homogen[i]                      = calc.funcBZ(self.DeltaPtotalHomogen[i], self.pressure[i])
+            self.rho_Homogen[i]                    = st.rho_ph(self.P2Homogen[i], self.H_enthalpy[i])
+            self.velocityHomogen[i]                = calc.funcCB(self.massrate[i], self.rho_Homogen[i] ,self.area[i])
+            self.EpHomogen[i]                      = calc.funcCC(self.gravity[i], self.segment[((i + 1) if (i != (len(self.mdlist) - 1)) else 0)], self.segment[i])
+            self.EkHomogen[i]                      = calc.funcCD(self.velocity[i], self.velocityHomogen[i])
+            self.H2Homogen[i]                      = calc.funcCE(self.H_enthalpy[i], self.EkHomogen[i], self.EpHomogen[i])
+            self.T2Homogen[i]                      = st.T_ph(self.pressure[i], self.H_enthalpy[i])
+        
+            # second part after fffHomogen has been determined
+            self.F6[i]                        = calc.funcAK(self.liqVisNum[i], self.fffHomogen[i])
+            self.F6aksen[i]                   = calc.funcAL(self.diaNum[i], self.F6[i])
+            self.F7[i]                        = calc.funcAM(self.liqVisNum[i])
+            self.PolaAliran[i]                = calc.funcAN(self.GasVelNumb[i], self.Lb[i], self.Ls[i], self.Lm[i])
+            self.Sbubble[i]                   = calc.funcAO(self.F1[i], self.F2[i], self.LiqVelNumb[i], self.F3[i], self.GasVelNumb[i])
+            self.Sslug[i]                     = calc.funcAP(self.F5[i], self.GasVelNumb[i], self.F6aksen[i], self.F7[i], self.LiqVelNumb[i])     
+            self.S_pattern[i]                 = calc.funcAQ(self.PolaAliran[i], self.Sbubble[i], self.Sslug[i])         
+            self.slip_vel_for_bubble_slug[i]  = calc.funcAR(self.S_pattern[i], self.rhol[i], self.deltaw[i], self.gravity[i])                         
+            self.HL[i]                        = calc.funcAS(self.PolaAliran[i], self.Vsl[i], self.velocity[i], self.slip_vel_for_bubble_slug[i])
+
+            # non-homogen
+            self.Re[i]                             = calc.funcAT(self.rhol[i], self.Vsl[i], self.diameter[i], self.miuL[i]) 
+            self.AUColumn[i]                       = calc.funcAU(self.roughness[i], self.diameter[i], self.Re[i])         
+            self.fff[i]                            = calc.funcAV(self.roughness[i], self.diameter[i], self.Re[i], self.AUColumn[i])
+            self.f1[i]                             = calc.funcAW(self.fff[i])
+            self.R[i]                              = calc.funcAX(self.Vsg[i], self.Vsl[i])
+            self.f_input_bub_frifact[i]            = calc.funcAY(self.f1[i], self.R[i], self.diaNum[i], self.Vsl[i])
+            self.f2[i]                             = calc.funcAZ(self.f_input_bub_frifact[i])
+            self.f3[i]                             = calc.funcBA(self.f1[i], self.R[i])
+            self.fm[i]                             = calc.funcBB(self.f1[i], self.f2[i], self.f3[i])
+            self.Nre[i]                            = calc.funcBC(self.rhog[i], self.Vsg[i], self.diameter[i], self.miug[i])
+            self.Nw[i]                             = calc.funcBD(self.Vsg[i], self.miuL[i], self.rhog[i], self.rhol[i], self.deltaw[i])
+            self.eD[i]                             = calc.funcBE(self.Nw[i], self.deltaw[i], self.rhog[i], self.Vsg[i], self.diameter[i])
+            self.fmBF[i]                           = calc.funcBF(self.eD[i], self.f1[i])    
+            self.dpdz[i]                           = calc.funcBG(self.PolaAliran[i], self.fmBF[i], self.rhog[i], self.Vsg[i], self.diameter[i], self.fm[i], self.rhol[i], self.Vsl[i], self.velocity[i])     
+            self.A[i]                              = calc.funcBH(self.Lm[i], self.GasVelNumb[i], self.Ls[i])
+            self.B[i]                              = calc.funcBI(self.GasVelNumb[i], self.Ls[i], self.Lm[i])
+            self.dens_correction[i]                = calc.funcBJ(self.rhog[i], self.GasVelNumb[i], self.Lm[i])             
+            self.transisi[i]                       = calc.funcBK(self.PolaAliran[i], self.A[i], self.dpdz[i], self.B[i], self.fm[i], self.rhog[i], self.gravity[i], self.Vsg[i], self.diameter[i], self.dpdz[i])
+            self.BLColumn[i]                       = calc.funcBL(self.gravity[i], self.HL[i], self.rhol[i], self.rhog[i])         
+            self.EkComplement[i]                   = calc.funcBM(self.rhog[i], self.velocity[i], self.Vsg[i], self.pressure[i])
+            self.Dpdz_total[i]                     = calc.funcBN(self.transisi[i], self.BLColumn[i], self.EkComplement[i])
+            self.Dptot[i]                          = calc.funcBO(self.Dpdz_total[i], self.segment[((i + 1) if (i != (len(self.mdlist) - 1)) else 0)], self.segment[i], self.angle[i])
+            self.P2[i]                             = calc.funcBP(self.Dptot[i], self.pressure[i])
         
     def printl(self):
         self.data = collections.OrderedDict([
@@ -334,13 +403,13 @@ def main():
 
     # Table Variable
 
-    print "WHP (bar)"
+    # print "WHP (bar)"
     whp = float(raw_input())
-    print "Massrate (Kg/s)"
+    # print "Massrate (Kg/s)"
     massrate = float(raw_input())
-    print "Enthalpy (KJ/kg)"
+    # print "Enthalpy (KJ/kg)"
     enthalpy = float(raw_input())
-    print "Pwf (bar)"
+    # print "Pwf (bar)"
     pwf = float(raw_input())
 
     currentTableInput = inputTable(whp, massrate, enthalpy, pwf)   
@@ -351,26 +420,26 @@ def main():
     while not loopInput:
         
         n = n + 1
-        print "Loop input baris", n
-        print "MD(meter):"
+        # print "Loop input baris", n
+        # print "MD(meter):"
         md = float(raw_input())
-        print "Angle:"
+        # print "Angle:"
         angle = float(raw_input())
-        print "Diameter(m):"
+        # print "Diameter(m):"
         diameter = float(raw_input())
-        print "Roughn(m):"
+        # print "Roughn(m):"
         roughness = float(raw_input())
 
         elemListSubinput = OneInput(md, angle, diameter, roughness)
 
         currentTableInput.subTable.append(elemListSubinput)
         
-        print "Stop input? y/n"
+        # print "Stop input? y/n"
         loopStop = raw_input()
         if loopStop == "y" :
             loopInput = True
     
-    currentTableInput.printl()
+    # currentTableInput.printl()
 
     currentDataframe = DataFrameSteam(currentTableInput)
 
