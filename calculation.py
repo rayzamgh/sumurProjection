@@ -79,6 +79,12 @@ CRP8 = -0.00000144116520574
 def funcN(d):
     return 0.25*PI_CONST*d**2
 
+def funcF(i, bp, bz):
+	if (i < 0.9999) and (i > 0.0001) :
+		return bp
+	else:
+		return bz
+
 # M/(rho*A)
 # G3/(J3*N3)
 # velocity
@@ -452,7 +458,7 @@ def funcBH(x, y, z):
 #  f = O3
 def funcBG(x, y, z, a, b, c, d, e, f):
 	if(x == "Mist"):
-		return (y*z*a**3)/2/b/10**5
+		return (y*z*a**2)/2/b/10**5
 	else:
 		return c*d*e*f/2/b/10**5
 
@@ -522,7 +528,7 @@ def funcAZ(x):
 #  z = Y3
 #  a = P3
 def funcAY(x, y, z, a):
-	return (x*y*z**(2/3))/a
+	return (x * y * z**(float(2)/3)/a)
 
 #  IF(AN3="Mist",(P3/O3),(AR3-O3+SQRT((O3-AR3)^2+4*AR3*P3))/(2*AR3))
 #  x = AN3
