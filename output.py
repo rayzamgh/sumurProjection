@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import tkinter as tk
+from PIL import ImageTk,Image,ImageDraw, ImageFont
+
 
 #===========
 # CONSTANTS
@@ -9,6 +11,13 @@ height = 600
 width = 800
 option_button_height = 2
 option_button_width = 2
+options = [
+	'P',
+	'T',
+	'V',
+	'PI'
+]
+
 
 #===========
 #GLOBAL VAR
@@ -44,6 +53,9 @@ def setPlot(axis, var):
 		y_val = var
 
 	print("just changed {} axis var to {}".format(axis, var))
+
+def doPlot():
+	print("will plot with x : {} and y : {}".format(varx.get(), vary.get()))
 
 
 # =====================
@@ -83,53 +95,75 @@ frame_export_buttons.pack_propagate(False)
 # tombol option
 #===============
 
-frame_separator = tk.Frame(frame_options, width=width, height=15, background="#CBCBCB")
-frame_separator.pack(fill=None, expand=False, side=tk.TOP)
+frame_padding = tk.Frame(frame_options, width=width, height=15, background="#CBCBCB")
+frame_padding.pack(fill=None, expand=False, side=tk.TOP)
 
 frame_option_buttons = tk.Frame(frame_options, width=width, height=45, background="#CBCBCB")
 frame_option_buttons.pack(fill=None, expand=False, side=tk.TOP)
 frame_option_buttons.pack_propagate(0)
 
-frame_separator = tk.Frame(frame_option_buttons, width=50, height=45,background="#CBCBCB")
-frame_separator.pack(fill=None, expand=False, side=tk.LEFT)
+frame_padding = tk.Frame(frame_option_buttons, width=50, height=45,background="#CBCBCB")
+frame_padding.pack(fill=None, expand=False, side=tk.LEFT)
 
 # label_x_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_x_var.pack(fill=None)
 
-frame_x_var = tk.Frame(frame_option_buttons, width=120, height=45, background="#CBCBCB")
+frame_x_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
 frame_x_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_x_var.pack_propagate(0)
 
-frame_separator = tk.Frame(frame_option_buttons, width=50, height=45,background="#CBCBCB")
-frame_separator.pack(fill=None, expand=False, side=tk.LEFT)
+# frame_padding = tk.Frame(frame_option_buttons, width=50, height=45,background="#CBCBCB")
+# frame_padding.pack(fill=None, expand=False, side=tk.LEFT)
 
 # label_y_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_y_var.pack(fill=None)
 
-frame_y_var = tk.Frame(frame_option_buttons, width=120, height=45, background="#CBCBCB")
+frame_y_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
 frame_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_y_var.pack_propagate(0)
 
+frame_padding = tk.Frame(frame_option_buttons, width=50, height=45, background="#CBCBCB")
+frame_padding.pack(fill=None, expand=False, side=tk.RIGHT)
 
-button_x_p = tk.Button(frame_x_var, width=option_button_width, height=option_button_height, text="P", command=lambda: setPlot('x', 'P'))
-button_x_p.pack(fill=None, expand=False, side=tk.LEFT)
+frame_plot_button = tk.Frame(frame_option_buttons, width=50, height=45, background="#CBCBCB")
+frame_plot_button.pack(fill=None, expand=False, side=tk.RIGHT)
+frame_plot_button.pack_propagate(0)
 
-button_x_v = tk.Button(frame_x_var, width=option_button_width, height=option_button_height, text="V", command=lambda: setPlot('x', 'V'))
-button_x_v.pack(fill=None, expand=False, side=tk.LEFT)
 
-button_y_t = tk.Button(frame_y_var, width=option_button_width, height=option_button_height, text='T', command=lambda: setPlot('y', 'T'))
-button_y_t.pack(fill=None, expand=False, side=tk.LEFT)
+# button_x_p = tk.Button(frame_x_var, width=option_button_width, height=option_button_height, text="P", command=lambda: setPlot('x', 'P'))
+# button_x_p.pack(fill=None, expand=False, side=tk.LEFT)
 
-button_y_pi = tk.Button(frame_y_var, width=option_button_width, height=option_button_height, text='pi', command=lambda: setPlot('y', 'PI'))
-button_y_pi.pack(fill=None, expand=False, side=tk.LEFT)
+# button_x_v = tk.Button(frame_x_var, width=option_button_width, height=option_button_height, text="V", command=lambda: setPlot('x', 'V'))
+# button_x_v.pack(fill=None, expand=False, side=tk.LEFT)
+
+# button_y_t = tk.Button(frame_y_var, width=option_button_width, height=option_button_height, text='T', command=lambda: setPlot('y', 'T'))
+# button_y_t.pack(fill=None, expand=False, side=tk.LEFT)
+
+# button_y_pi = tk.Button(frame_y_var, width=option_button_width, height=option_button_height, text='pi', command=lambda: setPlot('y', 'PI'))
+# button_y_pi.pack(fill=None, expand=False, side=tk.LEFT)
+
+varx = tk.StringVar(frame_x_var)
+varx.set(options[0])
+
+dropdown_x_var = tk.OptionMenu(frame_x_var, varx, *options)
+dropdown_x_var.pack(fill=None, expand=False, side=tk.LEFT)
+
+vary = tk.StringVar(frame_y_var)
+vary.set(options[0])
+
+dropdown_y_var = tk.OptionMenu(frame_y_var, vary, *options)
+dropdown_y_var.pack(fill=None, expand=False, side=tk.LEFT)
+
+button_plot = tk.Button(frame_plot_button, width=option_button_width, height=option_button_height, text="Plot", command=lambda: doPlot())
+button_plot.pack(fill=None, expand=None, side=tk.LEFT)
 
 
 #====================================
 # label untuk menaruh output dari csv
 #====================================
 
-frame_separator = tk.Frame(frame_label, width=400, height=20, background="#CBCBCB")
-frame_separator.pack(fill=None, expand=False, side=tk.TOP)
+frame_padding = tk.Frame(frame_label, width=400, height=20, background="#CBCBCB")
+frame_padding.pack(fill=None, expand=False, side=tk.TOP)
 
 frame_label_whp = tk.Frame(frame_label, width=400, height=40, background="#CBCBCB")
 frame_label_whp.pack(fill="both", expand=False, side=tk.TOP)
@@ -150,8 +184,8 @@ label_pwf.pack(fill="x")
 # tombol export
 #===============
 
-frame_separator = tk.Frame(frame_export_buttons, width=400, height=20, background="#CBCBCB")
-frame_separator.pack(fill=None, expand=False, side=tk.TOP)
+frame_padding = tk.Frame(frame_export_buttons, width=400, height=20, background="#CBCBCB")
+frame_padding.pack(fill=None, expand=False, side=tk.TOP)
 
 
 frame_export_report = tk.Frame(frame_export_buttons, width=300, height=30, background="#CBCBCB")
