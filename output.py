@@ -1,7 +1,13 @@
 #!/usr/bin/python
 
 import tkinter as tk
-from PIL import ImageTk,Image,ImageDraw, ImageFont
+import pandas as pd 
+import matplotlib 
+
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+
 
 
 #===========
@@ -26,7 +32,10 @@ options = [
 x_val = "X"
 y_val = "Y"
 
-
+#==================
+# DUMMY DATA FRAME
+#==================
+dummy = pd.read_csv("~/sandbox/python/therwell.csv")
 
 
 
@@ -54,13 +63,40 @@ def setPlot(axis, var):
 
 	print("just changed {} axis var to {}".format(axis, var))
 
-def doPlot():
+
+# plot result dengan sumbu x dan y yang telah dipilih oleh pengguna
+# df merupakan data frame yang akan di plot
+def doPlot(df, frame):
 	print("will plot with x : {} and y : {}".format(varx.get(), vary.get()))
+
+	# hapus plot lama, jika ada 
+	try:
+		# canvas.get_tk_widget.pack_forget()
+		for child in frame.winfo_children():
+			child.destroy()
+	except :
+		print("something seems a bit off")
+
+	f = Figure(figsize=(5,5), dpi=100)
+	a = f.add_subplot(111)
+	a.plot(df[varx.get()].tolist(), df[vary.get()].tolist())
+
+	# df.plot(x=varx.get(), y=vary.get())
+	# plt.show()
+	canvas = FigureCanvasTkAgg(f, frame)
+	canvas.draw()
+	canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+	# toolbar = NavigationToolbar2TkAgg(canvas, frame)
+	# toolbar.update()
+	# canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
 
 # =====================
 # Tkinter window
 # =====================
+
+
 
 root = tk.Tk()
 root.title("Therwell")
@@ -76,8 +112,9 @@ frame_options = tk.Frame(root, width=width, height=75, background="#CBCBCB")
 frame_options.pack(fill=None, expand=False, side=tk.TOP)
 frame_options.pack_propagate(False)
 
-frame_plot = tk.Frame(root, width=width, height=425, background="green")
+frame_plot = tk.Frame(root, width=width, height=425, background="#CBCBCB")
 frame_plot.pack(fill=None, expand=False, side=tk.TOP)
+frame_plot.pack_propagate(False)
 
 frame_exports = tk.Frame(root, width=width, height=100, background="#CBCBCB")
 frame_exports.pack(fill=None, expand=False, side=tk.TOP)
@@ -154,7 +191,7 @@ vary.set(options[0])
 dropdown_y_var = tk.OptionMenu(frame_y_var, vary, *options)
 dropdown_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 
-button_plot = tk.Button(frame_plot_button, width=option_button_width, height=option_button_height, text="Plot", command=lambda: doPlot())
+button_plot = tk.Button(frame_plot_button, width=option_button_width, height=option_button_height, text="Plot", command=lambda: doPlot(dummy, frame_plot))
 button_plot.pack(fill=None, expand=None, side=tk.LEFT)
 
 
