@@ -17,12 +17,12 @@ height = 600
 width = 800
 option_button_height = 2
 option_button_width = 2
-options = [
-	'P',
-	'T',
-	'V',
-	'PI'
-]
+# options = [
+# 	'P',
+# 	'T',
+# 	'V',
+# 	'PI'
+# ]
 
 
 #===========
@@ -36,7 +36,7 @@ y_val = "Y"
 # DUMMY DATA FRAME
 #==================
 dummy = pd.read_csv("~/sandbox/python/therwell.csv")
-
+options = list(dummy)
 
 
 #================
