@@ -80,6 +80,7 @@ def doPlot(df, frame):
 	f = Figure(figsize=(5,5), dpi=100)
 	a = f.add_subplot(111)
 	a.plot(df[varx.get()].tolist(), df[vary.get()].tolist())
+	a.grid(b=True, which='both', color='#666666', linestyle='--')
 
 	# df.plot(x=varx.get(), y=vary.get())
 	# plt.show()
@@ -145,9 +146,12 @@ frame_padding.pack(fill=None, expand=False, side=tk.LEFT)
 # label_x_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_x_var.pack(fill=None)
 
-frame_x_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
+frame_x_var = tk.Frame(frame_option_buttons, width=150, height=45, background="#CBCBCB")
 frame_x_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_x_var.pack_propagate(0)
+
+frame_x_title = tk.Label(frame_x_var, text="X Axis: ", background="#CBCBCB")
+frame_x_title.pack(fill=None, expand=False, side=tk.LEFT)
 
 # frame_padding = tk.Frame(frame_option_buttons, width=50, height=45,background="#CBCBCB")
 # frame_padding.pack(fill=None, expand=False, side=tk.LEFT)
@@ -155,9 +159,12 @@ frame_x_var.pack_propagate(0)
 # label_y_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_y_var.pack(fill=None)
 
-frame_y_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
+frame_y_var = tk.Frame(frame_option_buttons, width=150, height=45, background="#CBCBCB")
 frame_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_y_var.pack_propagate(0)
+
+frame_y_title = tk.Label(frame_y_var, text="Y Axis: ", background="#CBCBCB")
+frame_y_title.pack(fill=None, expand=False, side=tk.LEFT)
 
 frame_padding = tk.Frame(frame_option_buttons, width=50, height=45, background="#CBCBCB")
 frame_padding.pack(fill=None, expand=False, side=tk.RIGHT)
@@ -182,6 +189,8 @@ frame_plot_button.pack_propagate(0)
 varx = tk.StringVar(frame_x_var)
 varx.set(options[0])
 
+frame_x_title = tk.Frame(frame_x_var)
+
 dropdown_x_var = tk.OptionMenu(frame_x_var, varx, *options)
 dropdown_x_var.pack(fill=None, expand=False, side=tk.LEFT)
 
@@ -191,7 +200,7 @@ vary.set(options[0])
 dropdown_y_var = tk.OptionMenu(frame_y_var, vary, *options)
 dropdown_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 
-button_plot = tk.Button(frame_plot_button, width=option_button_width, height=option_button_height, text="Plot", command=lambda: doPlot(dummy, frame_plot))
+button_plot = tk.Button(frame_plot_button, width=10, height=option_button_height, text="Plot", command=lambda: doPlot(dummy, frame_plot))
 button_plot.pack(fill=None, expand=None, side=tk.LEFT)
 
 
