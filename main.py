@@ -212,6 +212,7 @@ class DataFrameSteam(object):
         self.P2[0]                             = calc.funcBP(self.Dptot[0], self.pressure[0])
 
     def secondIteration(self):
+        print(self.lenofdata)
         for i in range(1, len(self.mdlist)):
             self.pressure[i]        = calc.funcF(self.Dryness[i - 1], self.P2[i - 1], self.P2Homogen[i - 1])
             self.H_enthalpy[i]      = self.H2Homogen[i - 1]
@@ -391,9 +392,9 @@ class DataFrameSteam(object):
                 print x
                 print eval("len(self." + x + ")")
         df = pd.DataFrame(collections.OrderedDict(self.data))
-        if (os.path.isfile("pepeg.csv")):
-            os.remove("pepeg.csv")
-        df.to_csv(r'pepeg.csv')
+        if (os.path.isfile("output.csv")):
+            os.remove("output.csv")
+        df.to_csv(r'output.csv')
 
         print df
 
@@ -403,13 +404,13 @@ def main():
 
     # Table Variable
 
-    # print "WHP (bar)"
+    print "WHP (bar)"
     whp = float(raw_input())
-    # print "Massrate (Kg/s)"
+    print "Massrate (Kg/s)"
     massrate = float(raw_input())
-    # print "Enthalpy (KJ/kg)"
+    print "Enthalpy (KJ/kg)"
     enthalpy = float(raw_input())
-    # print "Pwf (bar)"
+    print "Pwf (bar)"
     pwf = float(raw_input())
 
     currentTableInput = inputTable(whp, massrate, enthalpy, pwf)   
@@ -420,21 +421,21 @@ def main():
     while not loopInput:
         
         n = n + 1
-        # print "Loop input baris", n
-        # print "MD(meter):"
+        print "Loop input baris", n
+        print "MD(meter):"
         md = float(raw_input())
-        # print "Angle:"
+        print "Angle:"
         angle = float(raw_input())
-        # print "Diameter(m):"
+        print "Diameter(m):"
         diameter = float(raw_input())
-        # print "Roughn(m):"
+        print "Roughn(m):"
         roughness = float(raw_input())
 
         elemListSubinput = OneInput(md, angle, diameter, roughness)
 
         currentTableInput.subTable.append(elemListSubinput)
         
-        # print "Stop input? y/n"
+        print "Stop input? y/n"
         loopStop = raw_input()
         if loopStop == "y" :
             loopInput = True
@@ -442,8 +443,10 @@ def main():
     # currentTableInput.printl()
 
     currentDataframe = DataFrameSteam(currentTableInput)
-
-    currentDataframe.secondIteration()
+    try:
+        currentDataframe.secondIteration()
+    except:
+        print("PERHITUNGAN GAGAL PERHATIKAN INPUT")
     currentDataframe.printl()
 
     
