@@ -3,6 +3,9 @@
 import tkinter as tk
 import pandas as pd 
 import matplotlib 
+import os
+import shutil
+from datetime import datetime
 
 matplotlib.use("TkAgg")
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -37,6 +40,7 @@ y_val = "Y"
 #==================
 dummy = pd.read_csv("output.csv")
 options = list(dummy)
+datacount = dummy.MDmeter.count()
 
 
 #================
@@ -46,7 +50,12 @@ options = list(dummy)
 # fungsi yang dipanggil saat tombol export csv ditekan
 # menerima nama file yang akan diekpor dan menulis ke file system
 def exportCSV(filename):
-	print("export CSV here, may i help you with this {} file".format(filename))
+	now = datetime.now()
+	dt_string = now.strftime("%d-%m-%Y-%H%M%S")
+	print(dt_string)
+	newfilename = 'dataframe'+ dt_string +'.csv'
+	shutil.copyfile('output.csv', 'savedata/'+newfilename)
+	print("CSV file saved in savedata/{} file".format(newfilename))
 
 # fungsi yang dipanggil ketika tombol export report ditekan
 # menerima nama file yang akan diekspor dan menulis ke file system
@@ -96,8 +105,6 @@ def doPlot(df, frame):
 # Tkinter window
 # =====================
 
-
-
 root = tk.Tk()
 root.title("Therwell")
 root.geometry('{}x{}'.format(width, height))
@@ -145,7 +152,7 @@ frame_padding.pack(fill=None, expand=False, side=tk.LEFT)
 # label_x_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_x_var.pack(fill=None)
 
-frame_x_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
+frame_x_var = tk.Frame(frame_option_buttons, width=100, height=45, background="#CBCBCB")
 frame_x_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_x_var.pack_propagate(0)
 
@@ -155,7 +162,7 @@ frame_x_var.pack_propagate(0)
 # label_y_var = tk.Label(frame_option_buttons, wraplength=1, text="x : ", bg="#CBCBCB",font="none 11 bold")
 # label_y_var.pack(fill=None)
 
-frame_y_var = tk.Frame(frame_option_buttons, width=80, height=45, background="#CBCBCB")
+frame_y_var = tk.Frame(frame_option_buttons, width=100, height=45, background="#CBCBCB")
 frame_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 frame_y_var.pack_propagate(0)
 
@@ -191,13 +198,19 @@ vary.set(options[0])
 dropdown_y_var = tk.OptionMenu(frame_y_var, vary, *options)
 dropdown_y_var.pack(fill=None, expand=False, side=tk.LEFT)
 
-button_plot = tk.Button(frame_plot_button, width=option_button_width, height=option_button_height, text="Plot", command=lambda: doPlot(dummy, frame_plot))
+button_plot = tk.Button(frame_plot_button, width=option_button_width + 50, height=option_button_height, text="Plot", command=lambda: doPlot(dummy, frame_plot))
 button_plot.pack(fill=None, expand=None, side=tk.LEFT)
 
 
 #====================================
 # label untuk menaruh output dari csv
 #====================================
+ps = dummy['Pressure']
+finalp = ps[datacount - 1]
+initp = ps[0]
+
+WHP = min(finalp, initp)
+PWF = max(finalp, initp)
 
 frame_padding = tk.Frame(frame_label, width=400, height=20, background="#CBCBCB")
 frame_padding.pack(fill=None, expand=False, side=tk.TOP)
@@ -210,10 +223,10 @@ frame_label_pwf = tk.Frame(frame_label, width=400, height=40, background="#CBCBC
 frame_label_pwf.pack(fill="both", expand=False, side=tk.TOP)
 frame_label_pwf.pack_propagate(0)
 
-label_whp = tk.Label(frame_label_whp, text="WHP : ", bg="#CBCBCB", font="none 12 bold")
+label_whp = tk.Label(frame_label_whp, text="WHP : " + str(round(WHP, 3)), bg="#CBCBCB", font="none 12 bold")
 label_whp.pack(fill="x")
 
-label_pwf = tk.Label(frame_label_pwf, text="PWF : ", bg="#CBCBCB", font="none 12 bold")
+label_pwf = tk.Label(frame_label_pwf, text="PWF : " + str(round(PWF, 3)), bg="#CBCBCB", font="none 12 bold")
 label_pwf.pack(fill="x")
 
 
@@ -236,7 +249,7 @@ frame_export_csv.pack_propagate(0)
 button_export_report = tk.Button(frame_export_report, width=15, height=1, text="Export Report" , bg="white" , command=lambda: exportReport("my ass.txt"))
 button_export_report.pack(fill=None)
 
-button_export_csv = tk.Button(frame_export_csv, width=15, height=1, text="Export CSV" , bg="white" , command=lambda:exportCSV("my ass.csv"))
+button_export_csv = tk.Button(frame_export_csv, width=15, height=1, text="Export CSV" , bg="white" , command=lambda:exportCSV("output.csv"))
 button_export_csv.pack(fill=None)
 
 
