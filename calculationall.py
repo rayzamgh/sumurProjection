@@ -396,6 +396,25 @@ class DataFrameSteam(object):
             os.remove("output.csv")
         df.to_csv(r'output.csv')
 
+        oldDict = collections.OrderedDict(self.data)
+        newDict = collections.OrderedDict()
+# pressure, temp, enthalpy, depth, massrate, pola aliran, dryness, sama P2
+        newDict.__setitem__("Pressure", oldDict.pop("Pressure"))
+        newDict.__setitem__("Temperature", oldDict.pop("T2_Homogen"))
+        newDict.__setitem__("Enthalpy", oldDict.pop("H_enthalpy"))
+        newDict.__setitem__("Depth", oldDict.pop("MDmeter"))
+        newDict.__setitem__("Massrate", oldDict.pop("Massrate"))
+        newDict.__setitem__("Pola Aliran", oldDict.pop("PolaAliran"))
+        newDict.__setitem__("Dryness", oldDict.pop("Dryness"))
+        newDict.__setitem__("P2", oldDict.pop("P2"))
+        newDict.__setitem__("P2_Homogen", oldDict.pop("P2_Homogen"))
+
+        dftwo = pd.DataFrame(newDict)
+
+        if (os.path.isfile("report.csv")):
+            os.remove("report.csv")
+        dftwo.to_csv(r'report.csv')
+
         print df
 
 SEGMENT_CONST = 3 
@@ -449,6 +468,55 @@ def main():
         print("PERHITUNGAN GAGAL PERHATIKAN INPUT")
     currentDataframe.printl()
 
-    
+def automatedinput(curtabin):
 
-main()
+    # Table Variable
+
+    # print "WHP (bar)"
+    # whp = whpinp
+    # print "Massrate (Kg/s)"
+    # massrate = mrinp
+    # print "Enthalpy (KJ/kg)"
+    # enthalpy = entinp
+    # print "Pwf (bar)"
+    # pwf = pwfinp
+
+    # currentTableInput = inputTable(whp, massrate, enthalpy, pwf)   
+
+    # loopInput = False
+    # n = 0
+
+    # currentTableInput.subTable.append(subTableinp)
+
+    # while not loopInput:
+        
+    #     n = n + 1
+    #     print "Loop input baris", n
+    #     print "MD(meter):"
+    #     md = float(raw_input())
+    #     print "Angle:"
+    #     angle = float(raw_input())
+    #     print "Diameter(m):"
+    #     diameter = float(raw_input())
+    #     print "Roughn(m):"
+    #     roughness = float(raw_input())
+
+    #     elemListSubinput = OneInput(md, angle, diameter, roughness)
+
+    #     currentTableInput.subTable.append(elemListSubinput)
+        
+    #     print "Stop input? y/n"
+    #     loopStop = raw_input()
+    #     if loopStop == "y" :
+    #         loopInput = True
+    
+    # currentTableInput.printl()
+
+    currentDataframe = DataFrameSteam(curtabin)
+    try:
+        currentDataframe.secondIteration()
+    except:
+        print("PERHITUNGAN GAGAL PERHATIKAN INPUT")
+    currentDataframe.printl()
+
+# main()
