@@ -39,15 +39,18 @@ class WindowNew(Frame):
 
 	def __init__(self, conf, master=None):
 		Frame.__init__(self, master)
-		self.conf 			= conf
-		self.top 			= None
-		self.whp			= None 
-		self.mr				= None 
-		self.ent			= None 
-		self.pwf			= None
-		self.tableheight 	= 1
-		self.tablewidth 	= 4
-		self.entries 		= []
+		self.conf 					= conf
+		self.top 					= None
+		self.whp					= None 
+		self.mr						= None 
+		self.ent					= None 
+		self.pwf					= None
+		self.tableheight 			= 1
+		self.ovwtableheight			= 0
+		self.tablewidth 			= 4
+		self.ovwtablewidth 			= 2
+		self.entries 				= []
+		self.overwriteentries 		= []
 
 	def create(self):
 		self.top 	= Toplevel(master=None, cnf = self.conf)
@@ -61,7 +64,7 @@ class WindowNew(Frame):
 		print(self.pwf.get())
 		
 		tabledata = []
-		for x in self.entries:
+		for x in self.overwriteentries:
 			print('pepeg')
 			column = []
 			for y in x:
@@ -69,19 +72,32 @@ class WindowNew(Frame):
 			tabledata.append(column)
 			print(column)
 		print(tabledata)
+		
 
 	def enter_entry_fields(self):
 		tabledata = []
+		ovwtabledata = []
 		for x in self.entries:
-			print('pepeg')
 			column = []
 			for y in x:
 				column.append(y.get())
 			tabledata.append(column)
 			print(column)
 		
-		subTableinput = []
+		for x in self.overwriteentries:
+			column = []
+			for y in x:
+				column.append(y.get())
+			ovwtabledata.append(column)
+			print(column)
 		
+
+		subTableinput = []
+		overWrittenTableinput = []
+		
+		for x in ovwtabledata:
+			overWrittenTableinput.append([float(x[0]), float(x[1])])
+
 		for x in tabledata:
 			elemListSubinput = ca.OneInput(float(x[0]), float(x[1]), float(x[2]), float(x[3]))
 			subTableinput.append(elemListSubinput)
@@ -89,7 +105,8 @@ class WindowNew(Frame):
 		currentTableInput = ca.inputTable(float(self.whp.get()), float(self.mr.get()), float(self.ent.get()), float(self.pwf.get()))
 
 		currentTableInput.subTable = subTableinput
-
+		# currentTableInput.overwriteTable = overWrittenTableinput[::-1]
+		currentTableInput.overwriteTable = overWrittenTableinput
 		ca.automatedinput(currentTableInput)
 
 		self.top.destroy()
@@ -105,11 +122,23 @@ class WindowNew(Frame):
 		for j in range(1, width):
 			e = Entry(self.top)
 			e.grid(row=curheight, column=j, sticky=NSEW)
-			# e.insert(END, '%d.%d' % (curheight, j))
 			cols.append(e)
 		self.entries.append(cols)
 
 		self.tableheight += 1
+
+	def appendovwgrid(self):
+		curheight = self.ovwtableheight + 5
+		width = self.ovwtablewidth + 6
+		print(curheight, width)
+		cols = []
+		for j in range(6, width):
+			e = Entry(self.top)
+			e.grid(row=curheight, column=j, sticky=NSEW)
+			cols.append(e)
+		self.overwriteentries.append(cols)
+
+		self.ovwtableheight += 1
 
 	def create_window_one(self):
 		
@@ -137,6 +166,10 @@ class WindowNew(Frame):
 		tk.Label(self.top, text="Angle",background="#CBCBCB").grid(row=4, column=2)
 		tk.Label(self.top, text="Diameter(m)",background="#CBCBCB").grid(row=4, column=3)
 		tk.Label(self.top, text="Roughness(m)",background="#CBCBCB").grid(row=4, column=4)
+
+		tk.Label(self.top, text="        ",background="#CBCBCB").grid(row=4, column=5)
+		tk.Label(self.top, text="Depth",background="#CBCBCB").grid(row=4, column=6)
+		tk.Label(self.top, text="Massrate",background="#CBCBCB").grid(row=4, column=7)
 		for i in range(5 , 5 + tbheight):
 			cols = []
 			for j in range(1, 1 + tbwidth):
@@ -149,6 +182,12 @@ class WindowNew(Frame):
 		tk.Button(self.top, 
 			text='Insert Row', command=lambda : self.appendgrid()).grid(row=20, 
 														column=4, 
+														sticky=tk.W, 
+														pady=4)
+
+		tk.Button(self.top, 
+			text='Insert Massrate Overwrite Row', command=lambda : self.appendovwgrid()).grid(row=20, 
+														column=6, 
 														sticky=tk.W, 
 														pady=4)
 

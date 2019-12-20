@@ -45,6 +45,7 @@ class inputTable(object):
         self.enthalpy = enthalpy
         self.pwf = pwf
         self.subTable = []
+        self.overwriteTable = []
     
     def printl(self):
         print "WHP (bar)"
@@ -106,8 +107,23 @@ class DataFrameSteam(object):
                 
                 self.gravity[i] = (9.81)
                 i += 1
-
-
+        
+        if len(currentTableInput.overwriteTable) != 0 :
+            if currentTableInput.whp != 0:
+                i = 0
+                for x in self.mdlist:
+                    for y in currentTableInput.overwriteTable:
+                        if x > y[0]:
+                            self.massrate[i] = y[1]
+                    i += 1
+            else:
+                i = 0
+                for x in self.mdlist:
+                    for y in currentTableInput.overwriteTable[::-1]:
+                        if x < y[0]:
+                            self.massrate[i] = y[1]
+                    i += 1
+                    
         i = 0
         for x in self.mdlist:
             for y in currentTableInput.subTable:
