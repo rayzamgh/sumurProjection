@@ -1,12 +1,12 @@
                
 
-![Image Screencapture1](therlogo.png)
+![Image Screencapture1](therlogo.PNG)
 
 Therwell, is a python program developed to calculate and predict well properties based on dunn & ross temperature and pressure prediction method. Therwell uses tkinter for its GUI and Pandas to manage well properties CSV and dataframe.
 
-![Screencapture1](thercapture.png)
+![Screencapture1](thercapture.PNG)
 
-![Image Screencapture1](thercapt.png)
+![Image Screencapture1](thercapt.PNG)
 
 
 How to run therwell:
