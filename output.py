@@ -6,6 +6,7 @@ import matplotlib
 import os
 import shutil
 import calculationall as ca
+import webbrowser
 
 from datetime import datetime
 from Tkinter import *
@@ -31,7 +32,10 @@ def restart_program():
 
 def updateroot(root):
    root.update()
-   
+
+def openreadme():
+	webbrowser.open('README.txt')
+
 def donothing():
    pass
 
@@ -239,8 +243,7 @@ class Window(Frame):
 		menubar.add_cascade(label="File", menu=filemenu)
 
 		helpmenu = Menu(menubar, tearoff=0)
-		helpmenu.add_command(label="Help Index", command=donothing)
-		helpmenu.add_command(label="About...", command=donothing)
+		helpmenu.add_command(label="Help", command=openreadme)
 		menubar.add_cascade(label="Help", menu=helpmenu)
 
 		root.config(menu=menubar)
@@ -302,7 +305,7 @@ def exportReport(filename):
 	dt_string = now.strftime("%d-%m-%Y-%H%M%S")
 	print(dt_string)
 	newfilename = 'dataframereport'+ dt_string +'.csv'
-	
+	shutil.copyfile('report.csv', 'savedata/'+newfilename)
 	print("CSV file saved in savedata/{} file".format(newfilename))
 
 # fungsi yang akan dipanggil ketika option diganti
@@ -480,10 +483,10 @@ frame_label_pwf = tk.Frame(frame_label, width=400, height=40, background="#CBCBC
 frame_label_pwf.pack(fill="both", expand=False, side=tk.TOP)
 frame_label_pwf.pack_propagate(0)
 
-label_whp = tk.Label(frame_label_whp, text="WHP : " + str(round(WHP, 3)), bg="#CBCBCB", font="none 12 bold")
+label_whp = tk.Label(frame_label_whp, text="WHP : " + str(round(WHP, 3)) + " Bar", bg="#CBCBCB", font="none 12 bold")
 label_whp.pack(fill="x")
 
-label_pwf = tk.Label(frame_label_pwf, text="PWF : " + str(round(PWF, 3)), bg="#CBCBCB", font="none 12 bold")
+label_pwf = tk.Label(frame_label_pwf, text="PWF : " + str(round(PWF, 3)) + " Bar", bg="#CBCBCB", font="none 12 bold")
 label_pwf.pack(fill="x")
 
 
